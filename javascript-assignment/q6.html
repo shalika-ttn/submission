@@ -1,0 +1,36 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>practise</title>
+
+<script>
+ function f1()
+ {
+ 	//r username=prompt("enter username","name");
+if(! document.getElementById("id1").value)
+   alert("Please enter your name");
+if(document.getElementById("id3").value <18)
+	alert("Age should be greater then 18");
+}
+
+
+</script>
+
+</head>
+
+
+<body style="background-color: #d3d3d3">
+<form action=# method="post">
+
+name:<br/>
+<input type="text" name="textbook" id="id1" placeholder="write name">
+email:<br/>
+<input type="text" name="email" id="id2" placeholder="write email">
+age:<br/>
+<input type="text" name="age" id="id3" placeholder="write age">
+
+
+<input type="button" value="submit" onClick="f1();">
+</html>

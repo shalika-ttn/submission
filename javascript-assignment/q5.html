@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>Copy text box text on each change</title>
+ 
+<script type="text/javascript">
+ 
+function copyText() {
+    src = document.getElementById("source");
+    dest = document.getElementById("dest");
+    dest.value = src.value;
+}
+ 
+</script>
+</head>
+ 
+<body>
+   <input type="text" id="source" onKeyPress="copyText()">
+   <input type="text" id="dest">
+</body>
+</html>
