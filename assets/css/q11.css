@@ -1,0 +1,79 @@
+.b1
+{
+	background-color: #CD7300;
+	padding: 20px;
+	margin: 20px;
+}
+
+.p1
+{
+	font-size: 25px;
+	color:#7CFC00;
+	font-weight: bold;
+	font-family:sans-serif;
+}
+.p2
+{
+	font-size: 18px;
+	font-family:Comic Sans MS;
+	font-style: oblique;
+	color: white;
+}
+
+.circle
+{
+	border-radius: 50px;
+  	color: white;
+  	height: 36px;
+  	font-weight: bold;
+  	width: 36px;
+  	border-color: white;
+  	border: 2px solid white;
+  	padding: 8px;
+}
+.input1
+{   margin: 5px;
+	width: 220px;
+	height: 20px;
+    background-color: #CD7300;
+	padding: 8px;
+	border:2px solid white;
+	font-weight: bold;
+	color:white;
+ text-align: center;
+
+}
+.s1
+{
+	background-color:#7CFC00;
+	padding: 8px;
+	margin: 10px;
+	width: 250px;
+	height: 40px;
+	color: white;
+	font-weight: bolder;
+}
+
+.final
+{
+	font-size: 15px;
+	color:white;
+	font-weight: bold;
+	font-family:sans-serif;
+}
+
+::-webkit-input-placeholder { 
+/* WebKit, Blink, Edge */ color: white; 
+} 
+:-moz-placeholder { 
+/* Mozilla Firefox 4 to 18 */ color: white; opacity: 1; 
+} 
+::-moz-placeholder { 
+	/* Mozilla Firefox 19+ */ color: white opacity: 1; 
+}
+ :-ms-input-placeholder { 
+ 	/* Internet Explorer 10-11 */ color:white;
+ } 
+ placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */ color: white; }
+
+ 
