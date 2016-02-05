@@ -1,5 +1,5 @@
-def currentDir = new File("/home/shalika/groovy-example")
+def currentDir = new File("groovy-example")
 
-currentDir.eachFile( FileType.FILES) {
-new File("home/shalika/groovynew.txt").text= it.text
+currentDir.eachFile(groovy.io.FileType.FILES) {
+new File("groovy-example/groovy_new.txt").append( it.text)
 }

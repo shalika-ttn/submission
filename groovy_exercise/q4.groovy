@@ -1,55 +1,42 @@
- if("test")
- println "test evaluated to true inside if 1"
- else
- println "test didnot worked here";
+class Employee extends Person
+{
+ int empid;
+ String company;
+ int salary;
  
- println "case 2"
+  String getCompany() {
+        return company;
+    }
+
+    void setCompany(String company) {
+        this.company= company;
+    }
+ int getEmpId() {
+        return empid;a
+    }
+
+    void setEmpId(int empid) {
+        this.empid =empid;
+    }
+
+ int getSalary() {
+        return salary;
+    }
+
+    void setSalary(int salary) {
+        this.salary=salary;
+    }
  
- if('null')
- println "test evaluated to true inside if 2"
- else
- println "test didnot worked here";
+ String toString()
+{
+ "$name is a man aged $age who lives at $address He works for $company with employee id $empid and draws $salary lots  of money !!!!"
  
- println "case3"
+}
+}
+def emp1=new Employee([name:"sachin",gender:"male",empid:39,salary:15000,age:24,address:"Delhi"])
+
+emp1.@company="To the New Digital"
  
- abc=null
- if(abc)
- println "test evaluated to true inside if 3"
- else
- println "test didnot worked here" 
- 
- println "case4"
- 
- if(100)
- println "test evaluated to true inside if 4"
- else
- println "test didnot worked here" 
- 
-  println "case5"
- 
- if(0)
- println "test evaluated to true inside if 5"
- else
- println "test didnot worked here" 
- 
-  println "case6"
-  List l=new ArrayList()
- if(l)
- println "test evaluated to true inside if 6"
- else
- println "test didnot worked here" 
- 
- 
-  println "case7 "
-  List l2=new ArrayList()
-  l2.add(2)
- if(l2)
- println "test evaluated to true inside if 7"
- else
- println "test didnot worked here" 
- 
- 
- 
- 
- 
- 
+println emp1
+
+

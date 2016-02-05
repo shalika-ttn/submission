@@ -1,0 +1,212 @@
+classs employee
+{ String name;
+int age;
+Date doj};class Employee
+{
+String name
+String empcode
+String dateofjoining
+String age
+
+}
+Employee emp=new Employee()
+emp.name="shalika"
+emp.empcode="ig039"
+emp.dateofjoining="16/01/2016"
+println(emp.name);classs employee
+{ String name;
+int age;
+Date doj};class Employee
+{
+String name
+String empcode
+String dateofjoining
+String age
+
+}
+Employee emp=new Employee()
+emp.name="shalika"
+emp.empcode="ig039"
+emp.dateofjoining="16/01/2016"
+println(emp.name);classs employee
+{ String name;
+int age;
+Date doj};class Employee
+{
+String name
+String empcode
+String dateofjoining
+String age
+
+}
+Employee emp=new Employee()
+emp.name="shalika"
+emp.empcode="ig039"
+emp.dateofjoining="16/01/2016"
+println(emp.name);classs employee
+{ String name;
+int age;
+Date doj};class Employee
+{
+String name
+String empcode
+String dateofjoining
+String age
+
+}
+Employee emp=new Employee()
+emp.name="shalika"
+emp.empcode="ig039"
+emp.dateofjoining="16/01/2016"
+println(emp.name);classs employee
+{ String name;
+int age;
+Date doj};class Employee
+{
+String name
+String empcode
+String dateofjoining
+String age
+
+}
+Employee emp=new Employee()
+emp.name="shalika"
+emp.empcode="ig039"
+emp.dateofjoining="16/01/2016"
+println(emp.name);1 classs employee 
+3 int age; 
+5 { 
+7 String empcode 
+9 String age 
+11 } 
+13 emp.name="shalika" 
+15 emp.dateofjoining="16/01/2016" 
+17 { String name; 
+19 Date doj};class Employee 
+21 String name 
+23 String dateofjoining 
+25  
+27 Employee emp=new Employee() 
+29 emp.empcode="ig039" 
+31 println(emp.name);classs employee 
+33 int age; 
+35 { 
+37 String empcode 
+39 String age 
+41 } 
+43 emp.name="shalika" 
+45 emp.dateofjoining="16/01/2016" 
+47 { String name; 
+49 Date doj};class Employee 
+51 String name 
+53 String dateofjoining 
+55  
+57 Employee emp=new Employee() 
+59 emp.empcode="ig039" 
+61 println(emp.name); 
+classs employee
+{ String name;
+int age;
+Date doj};class Employee
+{
+String name
+String empcode
+String dateofjoining
+String age
+
+}
+Employee emp=new Employee()
+emp.name="shalika"
+emp.empcode="ig039"
+emp.dateofjoining="16/01/2016"
+println(emp.name);classs employee
+{ String name;
+int age;
+Date doj};class Employee
+{
+String name
+String empcode
+String dateofjoining
+String age
+
+}
+Employee emp=new Employee()
+emp.name="shalika"
+emp.empcode="ig039"
+emp.dateofjoining="16/01/2016"
+println(emp.name);classs employee
+{ String name;
+int age;
+Date doj};class Employee
+{
+String name
+String empcode
+String dateofjoining
+String age
+
+}
+Employee emp=new Employee()
+emp.name="shalika"
+emp.empcode="ig039"
+emp.dateofjoining="16/01/2016"
+println(emp.name);classs employee
+{ String name;
+int age;
+Date doj};class Employee
+{
+String name
+String empcode
+String dateofjoining
+String age
+
+}
+Employee emp=new Employee()
+emp.name="shalika"
+emp.empcode="ig039"
+emp.dateofjoining="16/01/2016"
+println(emp.name);classs employee
+{ String name;
+int age;
+Date doj};class Employee
+{
+String name
+String empcode
+String dateofjoining
+String age
+
+}
+Employee emp=new Employee()
+emp.name="shalika"
+emp.empcode="ig039"
+emp.dateofjoining="16/01/2016"
+println(emp.name);1 classs employee 
+3 int age; 
+5 { 
+7 String empcode 
+9 String age 
+11 } 
+13 emp.name="shalika" 
+15 emp.dateofjoining="16/01/2016" 
+17 { String name; 
+19 Date doj};class Employee 
+21 String name 
+23 String dateofjoining 
+25  
+27 Employee emp=new Employee() 
+29 emp.empcode="ig039" 
+31 println(emp.name);classs employee 
+33 int age; 
+35 { 
+37 String empcode 
+39 String age 
+41 } 
+43 emp.name="shalika" 
+45 emp.dateofjoining="16/01/2016" 
+47 { String name; 
+49 Date doj};class Employee 
+51 String name 
+53 String dateofjoining 
+55  
+57 Employee emp=new Employee() 
+59 emp.empcode="ig039" 
+61 println(emp.name); 

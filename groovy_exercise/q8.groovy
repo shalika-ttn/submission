@@ -5,7 +5,7 @@ def check={l,item-> if(l.contains(item))
  3.times{i->l.add(i)}
  
  
-        assert check(l,2)==1             
+        println (check(l,2)==1)
         
         
         
