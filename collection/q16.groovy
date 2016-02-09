@@ -4,15 +4,35 @@ Returns the element at the top of the list Implement the aforesaid class */
 
 class Stack
 {
-int ele
-
-}
-def list=[new Stack(ele:10),
-            new Stack(ele:11),
-            new Stack(ele:12),
-            new Stack(ele:13),
-
-          ]
-  
-          
+   List l =[]
    
+    void push(int element)
+    {
+          if(l.size()==9)
+           println "stack overflow"
+            else 
+          { l.push(element)
+           
+           println "stack content is $l"
+             }
+     }
+     void pop()
+     {
+          if(l.size()==0)
+          println "underflow"
+          else
+        { println "element popped ${l.pop()}"
+          println "stack content is $l "
+          } 
+      }
+      
+   }
+   Stack s= new Stack()
+   s.push(1)
+   s.push(2)
+   s.push(3)
+   s.push(4)
+   s.push(5)
+   
+   s.pop()
+    s.pop()  
