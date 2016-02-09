@@ -7,12 +7,24 @@
 
 <script>
  function f1()
- {
+ {  var f=true;
+ 	var email_regex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
  	//r username=prompt("enter username","name");
 if(! document.getElementById("id1").value)
+	{ f=false;
    alert("Please enter your name");
+     }
 if(document.getElementById("id3").value <18)
-	alert("Age should be greater then 18");
+		{ f=false;
+			alert("Age should be greater then 18");
+          }
+       var email= document.getElementById("id2").value
+          if(! email_regex.test(email))
+		{ f=false;
+			alert("enter valid email");
+          }
+          if(f)
+          	alert("submitted succesfully")
 }
 
 
@@ -24,13 +36,14 @@ if(document.getElementById("id3").value <18)
 <body style="background-color: #d3d3d3">
 <form action=# method="post">
 
-name:<br/>
+name:
 <input type="text" name="textbook" id="id1" placeholder="write name">
-email:<br/>
+<br/>email:
 <input type="text" name="email" id="id2" placeholder="write email">
-age:<br/>
+<br/>age:
 <input type="text" name="age" id="id3" placeholder="write age">
 
 
 <input type="button" value="submit" onClick="f1();">
+</form>
 </html>

@@ -8,14 +8,22 @@
 
 <script language="JavaScript">
     function CalculateArea(){
-        var radius =document.form1.txtRadius.value;
+    
+     var n=document.getElementById("id1").value;
+      if((!n)||isNaN(n))
+      alert("Please enter  valid radius");
+          else
+          {     
+ 
+        var radius =document.form1.id1.value;
         document.write("<P>The area of the circle is " + (radius * radius * Math.PI) + "</p>");
+      }
         
     }
     </script>
     <form name=form1>
         Enter the radius of circle:
-       <input type="text" name="txtRadius" size=10>
+       <input type="text" id="id1" size=10>
        <br>
        <input type="button" value="Calculate" onClick='CalculateArea();'>  
     </form>

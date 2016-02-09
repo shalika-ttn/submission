@@ -1,7 +1,20 @@
+do
+{
+   var amount= prompt("enter for amount","amount");
+   }
+while(amount==null|| isNaN(amount)||amount=="");
 
-var amount=prompt("enter for amount","amount");
-var year=prompt("enter for year","years");
-var interest=prompt("enter rate of interest","interest");
+do
+{
+   var years= prompt("enter for years","years");
+   }
+while(years==null|| isNaN(years)||years=="");
 
-var simple=(amount*year*interest)/100;
+do
+{
+   var interest= prompt("enter for interest","interest");
+   }
+while(interest==null|| isNaN(interest)||interest=="");
+
+var simple=(amount*years*interest)/100;
 document.write("simple interest is "+simple); 
