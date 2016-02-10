@@ -2,9 +2,10 @@
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
 
-// grails.config.locations = [ "classpath:${appName}-config.properties",
+grails.config.locations =
+        //[ "classpath:${appName}-config.properties",
 //                             "classpath:${appName}-config.groovy",
-//                             "file:${userHome}/.grails/${appName}-config.properties",
+                     [  "file:${userHome}/.grails/${appName}-config.properties"]
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
 // if (System.properties["${appName}.config.location"]) {
@@ -36,6 +37,9 @@ grails.mime.types = [ // the first one is the default format
 
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
+
+def shalika=160039
+println "$shalika"
 
 // The default scope for controllers. May be prototype, session or singleton.
 // If unspecified, controllers are prototype scoped.
@@ -119,4 +123,5 @@ log4j.main = {
 
 
     trace 'grails.app.controllers.util'
+    info   'grails.app.controllers.util'
 }

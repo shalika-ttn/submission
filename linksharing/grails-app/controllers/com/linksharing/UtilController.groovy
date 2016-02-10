@@ -9,7 +9,9 @@ class UtilController {
         log.error("testing error log")
 
         log.trace("testing trace")
+        log.info("testing info")
 
-        render "helllo logs"
+        render "hello this page  is displaying Logs"
+
     }
 }
