@@ -3,10 +3,8 @@ class BootStrap {
     def grailsApplication
     def init = { servletContext ->
 
-
-       def abc=  grailsApplication.linksharing.config.shalika
-  println "$abc"
-    }
+println(grailsApplication.config.grails.shalika)
+          }
     def destroy = {
     }
 }

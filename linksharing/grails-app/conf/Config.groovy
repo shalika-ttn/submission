@@ -1,12 +1,12 @@
-// locations to search for config files that get merged into the main config;
+//// locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
 
 grails.config.locations =
         //[ "classpath:${appName}-config.properties",
 //                             "classpath:${appName}-config.groovy",
-                     [  "file:${userHome}/.grails/${appName}-config.properties"]
-//                             "file:${userHome}/.grails/${appName}-config.groovy"]
+           //          [  "file:${userHome}/.grails/${appName}-config.properties"]
+               [ "file:${userHome}/.grails/config.groovy"]
 
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
@@ -38,8 +38,7 @@ grails.mime.types = [ // the first one is the default format
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
 
-def shalika=160039
-println "$shalika"
+grails.shalika="hello internal config"
 
 // The default scope for controllers. May be prototype, session or singleton.
 // If unspecified, controllers are prototype scoped.
