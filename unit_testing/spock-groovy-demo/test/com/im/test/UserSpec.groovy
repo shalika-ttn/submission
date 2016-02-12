@@ -95,10 +95,6 @@ class UserSpec extends Specification {
     }
 
 
-    def "purchase product"() {
-
-    }
-
     def "reset password"() {
         setup:
         User user = new User(password: currpass)
@@ -133,11 +129,11 @@ class UserSpec extends Specification {
         when:
         user.purchase(p)
         then:
-       user.purchasedProducts.contains(p) == true
+        user.purchasedProducts.contains(p) == true
 
     }
 
-    def "cancel product"(){
+    def "cancel product"() {
         given:
         User user = new User()
         and:
@@ -150,14 +146,21 @@ class UserSpec extends Specification {
         user.purchasedProducts.contains(p) == false
     }
 
-  def "sorted interseted"()
-  {
-      setup:
-      User user = new User()
-      and:
-      user.metaClass.getInterestedInCategories = {
-      }
+    @IgnoreRest
+    def "sorted interseted"() {
+        setup:
+        User user = new User()
+        List l2 = [5, 2, 3, 4]
 
-  }
+        and:
+        user.metaClass.getInterestedInCategories = {
+
+            return l2
+        }
+        when:
+        List l3 = user.getSortedInterestedInCategories()
+        then:
+        l3 == l2.sort()
+    }
 
 }

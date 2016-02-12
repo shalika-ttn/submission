@@ -30,7 +30,7 @@ class Transaction {
             if (product.discountType == DiscountType.PRIVELLEGE_ONLY && user.isPrivellegedCustomer) {
                 discount = product.price * 30 / 100
             } else {
-                discount = product.price * 10 / 100
+                  discount = product.price * 10 / 100
             }
         }
         return discount
