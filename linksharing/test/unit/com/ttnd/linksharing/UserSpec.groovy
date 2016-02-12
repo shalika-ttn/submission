@@ -31,12 +31,12 @@ class UserSpec extends Specification {
         result == valid
 
         where:
-        sno | fname     | lname     | email            | password   | admin | uname  | active | valid
-        1   | ""        | "hello"   | "a@b.com"        | "test123"  | false | " "    | true   | false
-        2   | "shalika" | "singhal" | "shalika"        | "test123"  | false | "sha"  | false  | false
-        // 5   | "saloni" | "sharma"   | "saloni@gmail.com" | "te1238" | true  | "sal" | true   | true
-        4   | "testsha" | "hello"   | "test@gmail.com" | "test1238" | true  | "test" | true   | false
-        3   | "testsha" | "hello"   | "test@gmail.com" | "test1238" | true  | "test" | true   | false
+        sno | fname     | lname     | email              | password   | admin | uname  | active | valid
+        1   | ""        | "hello"   | "a@b.com"          | "test123"  | false | " "    | true   | false
+        2   | "shalika" | "singhal" | "shalika"          | "test123"  | false | "sha"  | false  | false
+        5   | "saloni"  | "sharma"  | "saloni@gmail.com" | "te1238"   | true  | "sal"  | true   | true
+        4   | "testsha" | "hello"   | "test@gmail.com"   | "test1238" | true  | "test" | true   | false
+        3   | "testsha" | "hello"   | "test@gmail.com"   | "test1238" | true  | "test" | true   | false
     }
 
     def "get user full name"() {
@@ -46,9 +46,9 @@ class UserSpec extends Specification {
 
         where:
         firstName | lastName | name
-        "shalika" | "kaur"   | "shalika kaur"
-        ""        | "kaur"   | "kaur"
-        null      | "kaur"   | "kaur"
+        "shalika" | "singhal"   | "shalika singhal"
+        ""        | "singhal"   | "singhal"
+        null      | "singhal"   | "singhal"
         "saloni"  | ""       | "saloni"
         "saloni"  | null     | "saloni"
         null      | null     | ""

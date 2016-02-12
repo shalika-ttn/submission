@@ -15,20 +15,21 @@ class DocumentResourceSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {void "test link"() {
+
+
+    void "test document resource"() {
         given:
-        LinkResource link =new LinkResource(url:url1)
+        DocumentResource doc =new DocumentResource(file:f1)
 
         when:
-        Boolean result=link.validate()
+        Boolean result=doc.validate()
         then:
         result==valid
         where:
-        url1|valid
-        "com.linksharing.UtilController"|true
+        f1|valid
+        "file.grails/config.groovy"|true
 
 
 
-    }
     }
 }

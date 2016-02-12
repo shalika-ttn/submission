@@ -18,10 +18,7 @@ class TopicSpec extends Specification {
     //@Unroll("Executing #sno")
     void "topic validations"() {
         expect:
-        User user1 = new User(firstName: fname, lastName: lname, email: email, password: password, userName: uname,
-                admin: admin, active: active);
-        and:
-        Topic topic =new Topic(name:tname,user:user1)
+         Topic topic =new Topic(name:tname,user:user1,visiblity: visiblity)
 
         when:
         Boolean result = topic.validate()
@@ -30,9 +27,11 @@ class TopicSpec extends Specification {
         result == valid
 
         where:
-        sno | fname     | lname     | email       | password  | admin | uname | active | valid|tname
-        //1   | "shalika" | "singhal" | "abc@gmail.com" | "test123" | false  | "shal" | true   | true| "grails"
-        2   | "test123" | "hello" | "puneet@gmail.com"  | "test12398" | false|"hii"|false|true|"groovy"
+        tname|user1|visiblity|valid
+        "grails"|new User()|Visiblity.PUBLIC |true
+
+
+
     }
 
 
