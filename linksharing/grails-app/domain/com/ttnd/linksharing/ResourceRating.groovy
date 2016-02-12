@@ -8,8 +8,8 @@ class ResourceRating {
 
     static constraints = {
 
-        score(nullable:false,min: 1 ,max:  5)
-        resource(unique:'user',nullable: false)
+        score(nullable: false, min: 1, max: 5)
+        resource(unique: 'user', nullable: false)
     }
-    static belongsTo = [user:User,resource:Resource]
+    static belongsTo = [user: User, resource: Resource]
 }

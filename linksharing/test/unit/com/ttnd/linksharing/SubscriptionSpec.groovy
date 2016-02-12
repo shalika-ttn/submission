@@ -33,6 +33,7 @@ class SubscriptionSpec extends Specification {
         description        | user       | topic       | seriousness         || isValid
         "All valid fields" | new User() | new Topic() | Seriousness.SERIOUS || true
         "Null topic"       | new User() | null        | Seriousness.SERIOUS || false
+        "Null user"        | null       | null        | Seriousness.SERIOUS || false
 
 
     }

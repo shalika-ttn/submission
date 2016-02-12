@@ -16,19 +16,20 @@ class DocumentResourceSpec extends Specification {
     }
 
 
-
     void "test document resource"() {
         given:
-        DocumentResource doc =new DocumentResource(file:f1)
+        DocumentResource doc = new DocumentResource(createdBy: user, topic: topic, description: description, filepath: f1)
 
         when:
-        Boolean result=doc.validate()
+        Boolean result = doc.validate()
         then:
-        result==valid
+        result == valid
         where:
-        f1|valid
-        "file.grails/config.groovy"|true
-
+        user       | topic       | description | f1                           | valid
+        new User() | new Topic() | "hello"     | "file/grails/config.groovy"  | true
+        new User() | new Topic() | "hello"     | "/file/grails/config.groovy" | true
+        new User() | new Topic() | "hello"     | ""                           | false
+        new User() | new Topic() | "hello"     | null                         | false
 
 
     }

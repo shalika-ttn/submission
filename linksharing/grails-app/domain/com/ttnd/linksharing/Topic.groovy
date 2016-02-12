@@ -21,5 +21,5 @@ class Topic {
 
 
     }
-    static hasMany = [resources:Resource,subscription:Subscription]
+    static hasMany = [resources: Resource, subscription: Subscription]
 }

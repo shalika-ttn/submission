@@ -9,13 +9,12 @@ class Subscription {
 
     Date DateCreated
     Date lastUpdated
- Seriousness seriousness
+    Seriousness seriousness
     static constraints = {
-        user(nullable:false)
-        topic(nullable:false,unique:'user')
-
+        user(nullable: false)
+        topic(nullable: false, unique: 'user')
 
 
     }
-    static belongsTo = [user:User,topic:Topic]
+    static belongsTo = [user: User, topic: Topic]
 }

@@ -15,6 +15,22 @@ class ReadingItemSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "reading Item"() {
+        given: "class Reading Item"
+        ReadingItem readingItem = new ReadingItem(resource: resource, user: user, isRead: isread)
+
+        when: "object is called to validate"
+        Boolean result = readingItem.validate()
+
+        then: "result should be equal to true"
+        result == valid
+
+        where:
+        resource               | user       | isread | valid
+        new DocumentResource() | new User() | true   | true
+        null                   | new User() | true   | false
+        new LinkResource()     | null       | true   | false
+        null                   | null       | false  | false
+
     }
 }

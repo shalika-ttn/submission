@@ -17,16 +17,16 @@ class LinkResourceSpec extends Specification {
 
     void "test link"() {
         given:
-        LinkResource link =new LinkResource(url:url1)
+        LinkResource link = new LinkResource(url: url1, description: "hello", createdBy: new User(), topic: new Topic())
 
         when:
-        Boolean result=link.validate()
-         then:
-         result==valid
+        Boolean result = link.validate()
+        then:
+        result == valid
         where:
-        url1|valid
-        "com.linksharing.UtilController"|true
-
+        url1                 | valid
+        "abc"                | false
+        "ftp://foo.bar.com/" | true
 
 
     }
