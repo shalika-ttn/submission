@@ -4,9 +4,6 @@ import com.ttnd.linksharing.Enum.Seriousness
 
 class Subscription {
 
-    Topic topic
-    User user
-
     Date DateCreated
     Date lastUpdated
     Seriousness seriousness

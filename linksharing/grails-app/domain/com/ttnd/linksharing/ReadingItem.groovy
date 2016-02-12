@@ -4,8 +4,6 @@ import javax.validation.groups.Default
 
 class ReadingItem {
 
-    Resource resource
-    User user
     Boolean isRead
     Date DateCreated
     Date lastUpdated

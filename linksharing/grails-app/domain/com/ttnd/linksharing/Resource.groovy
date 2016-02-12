@@ -3,7 +3,7 @@ package com.ttnd.linksharing
 abstract class Resource {
     String description
     User createdBy
-    Topic topic
+
     Date DateCreated
     Date lastUpdated
 
