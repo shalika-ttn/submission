@@ -6,9 +6,15 @@ class Time
  Time plus(Time t)
  { 
    Time tt=new Time()
+   if(this.mins+t.mins>60)
+   {tt.mins=(this.mins+t.mins)-60
+    tt.hours=(this.hours)+t.hours+1
+   }else{
+    
    tt.hours=(this.hours)+t.hours
     
     tt.mins=this.mins+t.mins
+     }
      tt
     
   }
@@ -16,9 +22,16 @@ class Time
   Time minus(Time t)
  { 
    Time tt=new Time()
+   if(this.mins>t.mins)
+   {
     tt.hours=this.hours-t.hours
     
-    tt.mins=this.mins-t.mins
+    tt.mins=this.mins-t.mins}
+    else
+    {tt.hours=t.hours-this.hours
+    
+    tt.mins=t.mins-this.mins
+    }
     tt
     
   }
@@ -27,8 +40,11 @@ class Time
     }
 }
 
-def t1=new Time ([hours:7,mins:20])
+def t1=new Time ([hours:7,mins:56])
 def t2=new Time ([hours:4,mins:10])
 
 t3=(t1+t2)
-println t3
+println "After overloading plus operator $t3"
+t3=t2-t1
+println "After overloading minus operator $t3"
+
