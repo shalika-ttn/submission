@@ -1,6 +1,7 @@
 package com.ttnd.linksharing
 
 import grails.test.mixin.TestFor
+import spock.lang.IgnoreRest
 import spock.lang.Specification
 import com.ttnd.linksharing.Enum.Visiblity
 
@@ -36,6 +37,31 @@ class TopicSpec extends Specification {
         null     | new User() | Visiblity.PRIVATE | false
         "groovy" | null       | Visiblity.PRIVATE | false
 
+    }
+    @IgnoreRest
+    def "should be unique per topic"() {
+        setup:
+        String tname = "grails"
+        User user1 =new User()
+        User user2 =new User()
+
+        Topic topic = new Topic(name: tname, createdBy: user1, visiblity:  Visiblity.PUBLIC )
+        //User user = new User(firstName: "shalika", lastName: "Kaur", userName: "sha", email: email, password: password)
+
+        when:
+        topic.save()
+
+        then:
+        Topic.count() == 1
+
+        when:
+        Topic topic2 = new Topic(name: tname, createdBy: user2, visiblity:  Visiblity.PUBLIC )
+
+        topic2.save()
+        then:
+        Topic.count() == 1
+        topic2.errors.allErrors.size() == 1
+        topic2.errors.getFieldErrorCount('name') == 1
     }
 
 
