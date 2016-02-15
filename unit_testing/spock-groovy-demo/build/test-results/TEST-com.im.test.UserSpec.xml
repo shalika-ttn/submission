@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.im.test.UserSpec" tests="10" skipped="0" failures="0" errors="0" timestamp="2016-02-09T11:51:07" hostname="shalika" time="0.217">
+<testsuite name="com.im.test.UserSpec" tests="9" skipped="8" failures="0" errors="0" timestamp="2016-02-15T12:15:14" hostname="shalika" time="0.078">
   <properties/>
-  <testcase name="FirstName and LastName of User" classname="com.im.test.UserSpec" time="0.006"/>
-  <testcase name="Display user name" classname="com.im.test.UserSpec" time="0.001"/>
-  <testcase name="Is valid password" classname="com.im.test.UserSpec" time="0.002"/>
-  <testcase name="encrypt pasword mocking" classname="com.im.test.UserSpec" time="0.116"/>
-  <testcase name="get income group spec[0]" classname="com.im.test.UserSpec" time="0.001"/>
-  <testcase name="get income group spec[1]" classname="com.im.test.UserSpec" time="0.001"/>
-  <testcase name="get income group spec[2]" classname="com.im.test.UserSpec" time="0.001"/>
-  <testcase name="reset password" classname="com.im.test.UserSpec" time="0.082"/>
-  <testcase name="purchase product" classname="com.im.test.UserSpec" time="0.001"/>
-  <testcase name="cancel product" classname="com.im.test.UserSpec" time="0.002"/>
+  <testcase name="FirstName and LastName of User" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="Display user name" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="Is valid password" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="encrypt pasword mocking" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="get income group spec" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reset password" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="purchase product" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="cancel product" classname="com.im.test.UserSpec" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="sorted interseted" classname="com.im.test.UserSpec" time="0.077"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

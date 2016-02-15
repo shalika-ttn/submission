@@ -30,15 +30,17 @@ class Transaction {
             if (product.discountType == DiscountType.PRIVELLEGE_ONLY && user.isPrivellegedCustomer) {
                 discount = product.price * 30 / 100
             } else {
-                  discount = product.price * 10 / 100
+                discount = product.price * 10 / 100
             }
         }
         return discount
     }
 
-    List<Product> getAllPopularProducts(){
+    List<Product> getAllPopularProducts() {
         List<Product> popularProducts = Product.getCurrentProducts()
-        return popularProducts.findAll{it.isPopular}
+        println("products:${popularProducts}")
+        println("===============${popularProducts.findAll { it.isPopular }}")
+        return popularProducts.findAll { it.isPopular }
 
     }
 
