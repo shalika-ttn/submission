@@ -22,10 +22,10 @@
     </div>
   </div>
 
-    <form class="navbar-form navbar-right" role="search">
+    <form class="navbar-form navbar-right" style="padding-right:30px" role="search">
        
         <span class="glyphicon glyphicon-search"></span>
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control"  placeholder="Search">
             
     </form>
   </nav>
@@ -103,27 +103,21 @@
           <div class="panel panel-heading">Login</div>
           <div class="panel-body">
             <form class="form-horizontal">
-    <div class="form-group">
-        <label for="inputEmail" class="control-label col-xs-2">Email</label>
-        <div class="col-xs-10">
+    <div class="form-group" style="padding:10px">
+        <label for="inputEmail" class="control-label col-xs-4">Email/Username</label>
+        <div class="col-xs-8">
             <input type="email" class="form-control" id="inputEmail" placeholder="Email">
         </div>
     </div>
-    <div class="form-group">
-        <label for="inputPassword" class="control-label col-xs-3">Password</label>
-        <div class="col-xs-9">
+    <div class="form-group" style="padding:10px">
+        <label for="inputPassword" class="control-label col-xs-4">Password</label>
+        <div class="col-xs-8">
             <input type="password" class="form-control" id="inputPassword" placeholder="Password">
         </div>
     </div>
     <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-10">
-            <div class="checkbox">
-                <label><input type="checkbox"> Remember me</label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-10">
+        <label  class="col-xs-4" style="padding:10px"><a>Forgot Password</a></label>  
+        <div class="col-xs-8">
             <button type="submit" class="btn btn-primary">Login</button>
         </div>
     </div>
@@ -139,8 +133,7 @@
 					<div class="panel-body">
 						<form class="form-horizontal">
 							<div class="form-group">
-                <br>
-								 <label for="inputName" class="col-xs-5">First Name*</label>
+              		 <label for="inputName" class="control-label col-xs-5">First Name*</label>
        							 <div class="col-xs-7">
             					 <input class="form-control" id="inputFname" placeholder="First Name">
        							 </div>
@@ -187,7 +180,7 @@
        					<div class="form-group">
        						<div class="col-xs-9"></div>
        						<div class="col-xs-3">
-       							<button type="submit" class="btn btn-success">Submit</button>
+       							<button type="submit" class="btn btn-success">Register</button>
        						</div>
        					</div>
 						</form>
