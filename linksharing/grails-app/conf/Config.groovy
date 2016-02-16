@@ -121,6 +121,7 @@ log4j.main = {
 
 
 
-    trace 'grails.app.controllers.util'
+    trace  'grails.app.controllers.util'
+
     info   'grails.app.controllers.util'
 }
