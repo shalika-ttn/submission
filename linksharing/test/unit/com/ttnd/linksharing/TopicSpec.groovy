@@ -60,16 +60,10 @@ class TopicSpec extends Specification {
 
         topic2.save()
         then:
-        Topic.count() == 2
+        Topic.count() == 1
 
-        /*when:
-        Topic topic3 = new Topic(name: tname, createdBy: user2, visiblity:  Visiblity.PUBLIC )
-
-        topic3.save()
-        then:*/
-      //  Topic.count() == 2
-        //topic2.errors.allErrors.size() == 1
-        //topic2.errors.getFieldErrorCount('name') == 1
+        topic2.errors.allErrors.size() == 1
+        topic2.errors.getFieldErrorCount('name') == 1
     }
 
 
