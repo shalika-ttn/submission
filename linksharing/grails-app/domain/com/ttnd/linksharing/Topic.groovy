@@ -1,5 +1,6 @@
 package com.ttnd.linksharing
 
+import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Enum.Visiblity
 
 
@@ -21,5 +22,16 @@ class Topic {
 
 
     }
+
+    def afterInsert() {
+        Topic.withNewSession {
+            Subscription subscription = new Subscription(topic: this, user: this.createdBy, seriousness: Seriousness.VERY_SERIOUS).save()
+            //this.createdBy.addToSubscriptions(subscription)
+        log.info()
+        } //this.addToSubscription(subscription)
+
+    }
     static hasMany = [resources: Resource, subscription: Subscription]
+
+
 }

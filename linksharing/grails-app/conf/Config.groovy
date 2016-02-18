@@ -118,10 +118,11 @@ log4j.main = {
             'org.hibernate',
             'net.sf.ehcache.hibernate'
             'grails.app.controllers.util'
-
-
+            'grails.app.conf.BootStrap.groovy'
 
     trace  'grails.app.controllers.util'
 
-    info   'grails.app.controllers.util'
+
+
+    info    'grails.app'
 }

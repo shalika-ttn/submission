@@ -14,4 +14,9 @@ class Subscription {
 
     }
     static belongsTo = [user: User, topic: Topic]
+
+    def afterInsert()
+    {
+
+    }
 }
