@@ -27,7 +27,7 @@ class Topic {
         Topic.withNewSession {
             Subscription subscription = new Subscription(topic: this, user: this.createdBy, seriousness: Seriousness.VERY_SERIOUS).save()
             //this.createdBy.addToSubscriptions(subscription)
-        log.info()
+        log.info(" subscription saved  ")
         } //this.addToSubscription(subscription)
 
     }
