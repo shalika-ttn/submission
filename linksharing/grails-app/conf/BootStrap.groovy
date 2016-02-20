@@ -4,6 +4,7 @@ import com.ttnd.linksharing.Enum.Visiblity
 import com.ttnd.linksharing.LinkResource
 import com.ttnd.linksharing.ReadingItem
 import com.ttnd.linksharing.Resource
+import com.ttnd.linksharing.ResourceRating
 import com.ttnd.linksharing.Subscription
 import com.ttnd.linksharing.Topic
 import com.ttnd.linksharing.User
@@ -18,9 +19,10 @@ class BootStrap {
         println(grailsApplication.config.grails.shalika)
         List<User> users = createUsers()
         List<Topic> topics = createTopics(users)
-        List<Resource> resources=createResources(topics)
-       subscribeTopics(topics,users)
-       // List<ReadingItem> readingItems=createReadingItems(users,resources)
+        List<Resource> resources = createResources(topics)
+        subscribeTopics(topics, users)
+        List<ReadingItem> readingItems = createReadingItems()
+        List<ResourceRating> resourceRatings = createResourceRating(users)
     }
 
     List<User> createUsers() {
@@ -61,21 +63,21 @@ class BootStrap {
         List<Topic> topics = []
         if (Topic.count == 0) {
 
-                (1..5).each {
-                    Topic topic = new Topic(name: "Topic${it}", createdBy: users[0], visiblity: Visiblity.PUBLIC)
+            (1..5).each {
+                Topic topic = new Topic(name: "Topic${it}", createdBy: users[0], visiblity: Visiblity.PUBLIC)
+                if (users[0].addToTopics(topic).save(flush: true)) {
                     topics.add(topic)
-                    if (users[0].addToTopics(topic).save(flush: true)) {
-                        topics.add(topic)
-                        log.info "topic ${topic.name} saved successfully"
-                    } else {
-                        log.error "Error saving topic : ${topic.name}"
-                    }
+                    users[0].addToTopics(topic)
+                    log.info "topic ${topic.name} saved successfully"
+                } else {
+                    log.error "Error saving topic : ${topic.name}"
                 }
+            }
             (1..5).each {
                 Topic topic = new Topic(name: "new_Topic${it}", createdBy: users[1], visiblity: Visiblity.PUBLIC)
-                topics.add(topic)
                 if (users[1].addToTopics(topic).save(flush: true)) {
                     topics.add(topic)
+                    users[1].addToTopics(topic)
                     log.info "topic ${topic.name} saved successfully"
                 } else {
                     log.error "Error saving topic : ${topic.name}"
@@ -83,42 +85,52 @@ class BootStrap {
             }
 
             topics
-        }else {
+        } else {
             log.error("table not empty")
             Topic.list()
         }
     }
-    List <Resource>createResources(List<Topic> topics) {
-        List<Resource> resources = []
-              if(!Resource.list()){
-            topics.each { Topic topic ->
 
-                LinkResource linkResource1 = new LinkResource(url: "ftp://foo.bar.com/", description: "this for topic ${topic.name} ",
+    List<Resource> createResources(List<Topic> topics) {
+        List<Resource> resources = []
+        if (!Resource.list()) {
+            topics.each { topic ->
+
+                Resource linkResource1 = new LinkResource(url: "ftp://foo.bar.com/", description: "this for topic ${topic.name} ",
                         createdBy: topic.createdBy, topic: topic)
-                if (linkResource1.save())
+                if (linkResource1.save()) {
                     resources.add(linkResource1)
-                else
+                    topic.addToResources(linkResource1)
+                    topic.createdBy.addToResources(linkResource1)
+                } else
                     log.error "Error saving resource : ${linkResource1.errors.allErrors}"
-                LinkResource linkResource2 = new LinkResource(url: "ftp://foo.bar.com/", description: "this is  for topic ${topic.name}",
+                Resource linkResource2 = new LinkResource(url: "ftp://foo.bar.com/", description: "this is  for topic ${topic.name}",
                         createdBy: topic.createdBy, topic: topic)
-                if (linkResource2.save())
+                if (linkResource2.save()) {
                     resources.add(linkResource2)
-                else
+                    topic.addToResources(linkResource2)
+                    topic.createdBy.addToResources(linkResource2)
+                } else
                     log.error "Error saving resource : ${linkResource2.errors.allErrors}"
 
-                DocumentResource documentResource1 = new DocumentResource(createdBy: topic.createdBy, topic: topic, description: "this doc for ${topic.name}",
+                Resource documentResource1 = new DocumentResource(createdBy: topic.createdBy, topic: topic, description: "this doc for ${topic.name}",
                         filepath: "hello/d2")
-                if (documentResource1.save())
+                if (documentResource1.save()) {
                     resources.add(documentResource1)
-                else
+                    topic.addToResources(documentResource1)
+                    topic.createdBy.addToResources(documentResource1)
+                } else
                     log.error "Error saving resource : ${documentResource1.errors.allErrors}"
 
-                DocumentResource documentResource2 = new DocumentResource(createdBy: topic.createdBy, topic: topic, description: "this doc is for ${topic.name}",
+                Resource documentResource2 = new DocumentResource(createdBy: topic.createdBy, topic: topic, description: "this doc is for ${topic.name}",
                         filepath: "hello/d2")
-                if (documentResource2.save())
+                if (documentResource2.save()) {
                     resources.add(documentResource2)
-                else
+                    topic.addToResources(documentResource2)
+                    topic.createdBy.addToResources(documentResource2)
+                } else
                     log.error "Error saving resource : ${documentResource2.errors.allErrors}"
+
 
             }
 
@@ -130,39 +142,93 @@ class BootStrap {
             resources
         }
     }
-   // Resouces which are not created by the topic subscribed by user should have that resource in their reading item
+    // Resouces which are not created by the topic subscribed by user should have that resource in their reading item
 
-  void  createReadingItems(List<Resource>resources,List<User>users){
+    List<ReadingItem> createReadingItems() {
+        List<User> users = User.list()
+        List<Topic> topics = Topic.list()
+        List<ReadingItem> readingItems = []
 
-       // Resource.findAllByCreatedByNotInList()
+        users.each
+                {
+                    user ->
+                        topics.each
+                                {
+                                    topic ->
+                                        if (Subscription.findByUserAndTopic(user, topic)) {
+
+                                            topic.resources.each
+                                                    {
+                                                        resource ->
+                                                            if (resource.createdBy != user && !user.readingItems?.contains(resource)) {
+                                                                ReadingItem readingItem = new ReadingItem(user: user, resource: resource, isRead: false)
+
+
+
+                                                                if (readingItem.save()) {
+                                                                    readingItems.add(readingItem)
+                                                                    user.addToReadingItems(readingItem)
+                                                                    log.info "${readingItem} saved successfully"
+                                                                } else
+                                                                    log.error "Error saving ${readingItem.errors.allErrors}"
+                                                            }
+
+                                                    }
+
+                                        }
+                                }
+
+                }
+
+        return readingItems
+    }
+
+    List<ResourceRating> createResourceRating(List<User> users) {
+        List<ReadingItem> readingItems1 = []
+        List<ResourceRating> resourceRatings = []
+        users.each { user ->
+            readingItems1 = ReadingItem.findAllByUser(user)
+            readingItems1.each { readingItems2 ->
+                if (!readingItems2.isRead) {
+                    ResourceRating resourceRating = new ResourceRating(user: readingItems2.user,resource: readingItems2.resource,
+                            score: 3)
+
+                    if (resourceRating.save()) {
+
+                        resourceRatings.add(resourceRating)
+                        user.addToResourceRatings(resourceRating)
+                        log.info $ { resourceRating } saved successfully
+                    } else
+                        log.error "Error saving ${resourceRating.errors.allErrors}"
+                }
+                }
+
+        }
+
+        resourceRatings
 
     }
 
 
 
+    void subscribeTopics(List<Topic> topics, List<User> users) {
+        List<Topic> topic2 = []
+        // List <Topic> topic3=[]
+        users.each { User user ->
+            topic2 = Topic.findAllByCreatedByNotInList([user])
+            println "***************here ${topic2}"
+            topic2.each {
+                Subscription subscription = new Subscription(topic: it, user: user, seriousness: Seriousness.VERY_SERIOUS)
+                if (subscription.save(flush: true))
+                    log.info "subscription saved succesfully"
+                else
+                    log.error "Error saving resource : ${subscription.errors.allErrors}"
 
 
+            }
+        }
 
-  void  subscribeTopics(List<Topic>topics,List<User>users) {
-      List<Topic> topic2 = []
-      // List <Topic> topic3=[]
-      users.each { User user ->
-          topic2 = Topic.findAllByCreatedByNotInList([user])
-          println "***************here ${topic2}"
-          topic2.each {
-              Subscription subscription = new Subscription(topic: it, user: user, seriousness: Seriousness.VERY_SERIOUS)
-              if (subscription.save(flush: true))
-                  log.info "subscription saved succesfully"
-              else
-                  log.error "Error saving resource : ${subscription.errors.allErrors}"
-
-
-          }
-      }
-
-  }
-
-
+    }
 
 
     def destroy = {
