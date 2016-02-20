@@ -9,4 +9,8 @@ class LinkResource extends Resource {
 
         url(url: true)
     }
+    String toString()
+    {
+        "hello this is linkresource $url"
+    }
 }

@@ -31,6 +31,10 @@ class Topic {
         } //this.addToSubscription(subscription)
 
     }
+    String toString()
+    {
+        "This is topic $name"
+    }
     static hasMany = [resources: Resource, subscription: Subscription]
 
 

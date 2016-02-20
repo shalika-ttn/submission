@@ -37,7 +37,11 @@ class User {
         [firstName, lastName].findAll { it }.join(' ')
 
     }
+    
 
+    String toString() {
+        "welcome $firstName "
+    }
     static hasMany = [topics         : Topic, subscriptions: Subscription, resources: Resource, readingItems: ReadingItem,
                       resourceRatings: ResourceRating]
 }
