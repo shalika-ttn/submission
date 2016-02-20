@@ -65,6 +65,17 @@ class TopicSpec extends Specification {
         topic2.errors.allErrors.size() == 1
         topic2.errors.getFieldErrorCount('name') == 1
     }
+    @IgnoreRest
+    def "tostring"()
+    {
+        given:
+        User user1 =new User()
+        Topic topic2 = new Topic(name: "grails", createdBy: user1, visiblity:  Visiblity.PUBLIC )
+        when:
+        String s=topic2.toString()
 
+        then:
+        s=="This is topic grails"
+    }
 
 }

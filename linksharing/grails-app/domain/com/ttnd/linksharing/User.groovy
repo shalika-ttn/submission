@@ -37,7 +37,7 @@ class User {
         [firstName, lastName].findAll { it }.join(' ')
 
     }
-    
+
 
     String toString() {
         "welcome $firstName "

@@ -5,4 +5,9 @@ class DocumentResource extends Resource {
     static constraints = {
         filepath(nullable: false, blank: false)
     }
+
+    String toString()
+    {
+        "this is $filepath"
+    }
 }

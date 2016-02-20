@@ -84,5 +84,16 @@ class UserSpec extends Specification {
         user2.errors.allErrors.size() == 1
         user2.errors.getFieldErrorCount('email') == 1
     }
+  @IgnoreRest
+    def "tostring"()
+ {
+        given:
+        User user = new User(firstName: "shalika", lastName: "Kaur", userName: "sha", email:"shalika@tothenew.com", password:"password")
 
+        when:
+        String s=user.toString()
+
+        then:
+        s=="welcome shalika "
+    }
 }

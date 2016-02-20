@@ -1,6 +1,7 @@
 package com.ttnd.linksharing
 
 import grails.test.mixin.TestFor
+import spock.lang.IgnoreRest
 import spock.lang.Specification
 
 /**
@@ -32,5 +33,17 @@ class DocumentResourceSpec extends Specification {
         new User() | new Topic() | "hello"     | null                         | false
 
 
+    }
+    @IgnoreRest
+    def "tostring"()
+    {
+        given:
+        User user1 =new User()
+        DocumentResource doc = new DocumentResource(createdBy: user1, topic:"grails", description:"hello", filepath:"f1/hello")
+        when:
+        String s=doc.toString()
+
+        then:
+        s=="this is f1/hello"
     }
 }
