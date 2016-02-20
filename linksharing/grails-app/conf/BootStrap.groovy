@@ -197,7 +197,7 @@ class BootStrap {
 
                         resourceRatings.add(resourceRating)
                         user.addToResourceRatings(resourceRating)
-                        log.info $ { resourceRating } saved successfully
+                        log.info "${resourceRating} saved successfully"
                     } else
                         log.error "Error saving ${resourceRating.errors.allErrors}"
                 }
