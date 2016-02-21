@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(LoginController)
-class LoginControllerSpec extends Specification {
+@TestFor(TopicController)
+class TopicControllerSpec extends Specification {
 
     def setup() {
     }
@@ -15,16 +15,6 @@ class LoginControllerSpec extends Specification {
     def cleanup() {
     }
 
-    def" login index"()
-    {
-        when:
-        controller.index()
-        then:
-        response.text=="failure"
-    }
-
-    def "login login test"()
-    {
-
+    void "test something"() {
     }
 }

@@ -12,7 +12,7 @@ class User {
     Boolean active
     Date DateCreated
     Date lastUpdated
-    static transients = ['name']
+    static transients = ['name','confirmPassword']
 
     static mapping = {
         photo(type: 'blob')
@@ -30,6 +30,8 @@ class User {
         active(nullable: true)
         admin(nullable: true)
 
+
+        confirmPassword(nullable: true,blank: true)
     }
 
 
