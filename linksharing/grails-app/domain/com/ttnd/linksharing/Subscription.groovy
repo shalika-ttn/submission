@@ -6,7 +6,7 @@ class Subscription {
 
     Date DateCreated
     Date lastUpdated
-    Seriousness seriousness
+    Seriousness seriousness =Seriousness.SERIOUS
     static constraints = {
         user(nullable: false)
         topic(nullable: false, unique: 'user')

@@ -5,8 +5,8 @@ class ApplicationFilters {
     def filters = {
         all(controller: '*', action: '*') {
             before = {
-//                log.info "User Controller"
-//                log.info "Login Controller"
+                log.info "User Controller"
+                log.info "Login Controller"
             }
             after = { Map model ->
 
@@ -15,15 +15,17 @@ class ApplicationFilters {
 
             }
         }
-//        sessioncheck() {}
-//        logincheck(controller: 'Login', invert: true) {
-//            before= {
-//
-//                if (!session.user)
-//                    redirect(controller: 'Login', action: 'index')
-//            }
-//
-//        }
+        sessioncheck() {}
+        logincheck(controller: 'login', invert: true) {
+            before = {
+                println "================================================"
+                if (!session.user)
+                    redirect(controller: 'login', action: 'index')
+
+
+            }
+
+        }
 
 
     }

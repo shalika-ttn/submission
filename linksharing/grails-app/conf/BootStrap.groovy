@@ -14,6 +14,8 @@ import com.ttnd.linksharing.Constants.Constant
 class BootStrap {
 
     def grailsApplication
+    def messageSource
+
     def init = { servletContext ->
 
         println(grailsApplication.config.grails.shalika)
@@ -28,21 +30,29 @@ class BootStrap {
     List<User> createUsers() {
         List<User> users = []
         if (User.count == 0) {
-            User user1 = new User(firstName: "shalika", lastName: "singhal", email: "shalika.singhal@tothenew.com",
-                    password: Constant.DEFAULT_PASSWD, userName: "sha",
-                    admin: true, active: true);
+            User user1 = new User(firstName: "shalika", lastName: "singhal",email:"shalika.singhal@tothenew.com",
+                    password: Constant.DEFAULT_PASSWD, userName: "sha", admin: true, active: true, confirmPassword: "abcd10");
+           // println "=++++++++++++++++++++++++++++++++++++ ${messageSource.getMessage('com.ttnd.linksharing.User.email.nullable', null)}"
 
             User user2 = new User(firstName: "saloni", lastName: "sharma", email: "saloni.sharma@tothenew.com",
                     password: Constant.DEFAULT_PASSWD, userName: "sal",
-                    admin: false, active: true);
+                    admin: false, active: true, confirmPassword: "abcd10");
             try {
-                if (user1.save(flush: true, failOnError: true)) {
+                if (user1.save(flush: true)) {
                     users.add(user1)
                     log.info "User ${user1} saved successfully"
+                } else {
+                    //println(it)
+                    user1.errors.allErrors.each {
+                        println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${it.defaultMessage}")
+                    }
                 }
             }
             catch (Exception e) {
                 log.error "Error saving user : ${user1.errors.allErrors}"
+                user1.errors.allErrors.each {
+                    println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${it.defaultMessage}")
+                }
             }
             try {
                 if (user2.save(flush: true, failOnError: true)) {
@@ -190,7 +200,7 @@ class BootStrap {
             readingItems1 = ReadingItem.findAllByUser(user)
             readingItems1.each { readingItems2 ->
                 if (!readingItems2.isRead) {
-                    ResourceRating resourceRating = new ResourceRating(user: readingItems2.user,resource: readingItems2.resource,
+                    ResourceRating resourceRating = new ResourceRating(user: readingItems2.user, resource: readingItems2.resource,
                             score: 3)
 
                     if (resourceRating.save()) {
@@ -201,14 +211,13 @@ class BootStrap {
                     } else
                         log.error "Error saving ${resourceRating.errors.allErrors}"
                 }
-                }
+            }
 
         }
 
         resourceRatings
 
     }
-
 
 
     void subscribeTopics(List<Topic> topics, List<User> users) {

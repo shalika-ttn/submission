@@ -12,10 +12,14 @@ class User {
     Boolean active
     Date DateCreated
     Date lastUpdated
-    static transients = ['name','confirmPassword']
+    String confirmPassword
+    long  id
+    static transients = ['name', 'confirmPassword']
 
     static mapping = {
         photo(type: 'blob')
+        sort id:'desc'
+
     }
 
     static constraints = {
@@ -31,7 +35,13 @@ class User {
         admin(nullable: true)
 
 
-        confirmPassword(nullable: true,blank: true)
+        confirmPassword bindable: true, nullable: true, blank: true, validator: { val, obj ->
+            //println "obj:${obj}******${val}"
+            if (obj.password != val) {
+                return false
+            }
+        }
+
     }
 
 
