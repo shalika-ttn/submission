@@ -9,7 +9,7 @@ class SubscriptionController {
     def save(long id) {
         Topic topic = Topic.findById(id)
         if (topic) {
-            Subscription subscription = new Subscription(user: session.user, topic:topic.createdBy)
+            Subscription subscription = new Subscription(user: session.user, topic: topic.createdBy)
 
             if (subscription.save()) {
                 flash.message = " Subscription saved ------Success "

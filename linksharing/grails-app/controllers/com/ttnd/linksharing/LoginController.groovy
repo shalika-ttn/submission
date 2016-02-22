@@ -13,17 +13,17 @@ class LoginController {
 
     def login(String username, String password) {
         User user = User.findByUserNameAndPassword(username, password)
-    if(user) {
-        if (user?.active) {
-            session.user = user
-            redirect(action: 'index')
-        }else
-            flash.message="Your accoutn is not active"
+        if (user) {
+            if (user?.active) {
+                session.user = user
+                redirect(action: 'index')
+            } else
+                flash.message = "Your accoutn is not active"
 
-    }else {
-        flash.message = "User not found"
-        render flash.message
-    }
+        } else {
+            flash.message = "User not found"
+            render flash.message
+        }
     }
 
     def logout() {

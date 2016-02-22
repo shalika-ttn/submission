@@ -13,12 +13,12 @@ class User {
     Date DateCreated
     Date lastUpdated
     String confirmPassword
-    long  id
+    long id
     static transients = ['name', 'confirmPassword']
 
     static mapping = {
         photo(type: 'blob')
-        sort id:'desc'
+        sort id: 'desc'
 
     }
 

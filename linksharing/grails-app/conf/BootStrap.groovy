@@ -30,9 +30,9 @@ class BootStrap {
     List<User> createUsers() {
         List<User> users = []
         if (User.count == 0) {
-            User user1 = new User(firstName: "shalika", lastName: "singhal",email:"shalika.singhal@tothenew.com",
+            User user1 = new User(firstName: "shalika", lastName: "singhal", email: "shalika.singhal@tothenew.com",
                     password: Constant.DEFAULT_PASSWD, userName: "sha", admin: true, active: true, confirmPassword: "abcd10");
-           // println "=++++++++++++++++++++++++++++++++++++ ${messageSource.getMessage('com.ttnd.linksharing.User.email.nullable', null)}"
+            // println "=++++++++++++++++++++++++++++++++++++ ${messageSource.getMessage('com.ttnd.linksharing.User.email.nullable', null)}"
 
             User user2 = new User(firstName: "saloni", lastName: "sharma", email: "saloni.sharma@tothenew.com",
                     password: Constant.DEFAULT_PASSWD, userName: "sal",

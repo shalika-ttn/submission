@@ -22,19 +22,20 @@ class Topic {
 
 
     }
- static  mapping = {
-     sort "name"
- }
+    static mapping = {
+        sort "name"
+    }
+
     def afterInsert() {
         Topic.withNewSession {
             Subscription subscription = new Subscription(topic: this, user: this.createdBy, seriousness: Seriousness.VERY_SERIOUS).save()
             //this.createdBy.addToSubscriptions(subscription)
-        log.info(" subscription saved  ")
+            log.info(" subscription saved  ")
         } //this.addToSubscription(subscription)
 
     }
-    String toString()
-    {
+
+    String toString() {
         "This is topic $name"
     }
     static hasMany = [resources: Resource, subscription: Subscription]
