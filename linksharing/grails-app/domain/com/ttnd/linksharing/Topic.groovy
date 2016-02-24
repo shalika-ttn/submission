@@ -2,7 +2,8 @@ package com.ttnd.linksharing
 
 import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Enum.Visiblity
-
+import com.ttnd.linksharing.VO.TopicVo
+import com.ttnd.linksharing.Resource
 
 class Topic {
 
@@ -13,6 +14,8 @@ class Topic {
     Date lastUpdated
 
     Visiblity visiblity
+
+    static hasMany = [resources: Resource, subscription: Subscription]
 
     static constraints = {
 
@@ -35,10 +38,36 @@ class Topic {
 
     }
 
-    String toString() {
-        "This is topic $name"
-    }
-    static hasMany = [resources: Resource, subscription: Subscription]
+    static TopicVo getTrendingTopics() {
+        List result = Resource.createCriteria().list() {
+
+            projections {
+                createAlias('topic', 't')
+                groupProperty('t.id')
+                property('t.name')
+                property('t.visibility')
+                count('id')
+                property('t.createdBy')
+            }
+            //order("r.id", "desc")
+            //eq('t.visiblity', Visiblity.PUBLIC)
+            order("t.name", "desc")
+            maxResults 5
+        }
+        println("=========================${result}")
+        List<TopicVo> topicVo = []
+        result.each {
+            topicVo.add(new TopicVo(id:it[0], name: it[1], visibility: it[2], count: it[3], createdBy:it[4]))
+
+        }
+        topicVo
 
 
 }
+
+        String toString() {
+            "This is topic $name"
+        }
+
+
+    }

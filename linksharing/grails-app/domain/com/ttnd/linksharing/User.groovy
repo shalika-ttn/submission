@@ -46,7 +46,7 @@ class User {
 
 
     String getName() {
-        [firstName, lastName].findAll { it }.join(' ')
+        "$firstName $lastName"
 
     }
 

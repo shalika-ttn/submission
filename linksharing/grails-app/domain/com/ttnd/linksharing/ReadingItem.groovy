@@ -14,4 +14,5 @@ class ReadingItem {
 
     }
     static belongsTo = [user: User, resource: Resource]
+
 }
