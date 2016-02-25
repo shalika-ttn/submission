@@ -16,16 +16,16 @@ class ApplicationFilters {
             }
         }
         sessioncheck() {}
-        logincheck(controller: 'login', invert: true) {
-            before = {
-                println "================================================"
-                if (!session.user)
-                    redirect(controller: 'login', action: 'index')
-
-
-            }
-
-        }
+//        logincheck(controller: 'login', invert: true) {
+//            before = {
+//                println "================================================"
+//                if (!session.user)
+//                    redirect(controller: 'login', action: 'index')
+//
+//
+//            }
+//
+//        }
 
 
     }

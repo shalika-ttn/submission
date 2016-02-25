@@ -26,6 +26,7 @@ class ResourceController {
     {   //Resource resource = Resource.findById(id)
 
         List<TopicVo> topicVo= Topic.getTrendingTopics()
+        render topicVo
 
     }
 
@@ -53,5 +54,5 @@ class ResourceController {
 
     }
 
-    
+
 }

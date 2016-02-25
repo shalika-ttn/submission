@@ -4,6 +4,7 @@ class ResourceRating {
 
 
     Integer score
+    static belongsTo = [user: User, resource: Resource]
 
 
     static constraints = {
@@ -12,6 +13,20 @@ class ResourceRating {
         resource(unique: 'user', nullable: false)
     }
 
-    static belongsTo = [user: User, resource: Resource]
+    static  List showTopPost() {
+        List result = ResourceRating.createCriteria().list() {
 
+            projections {
+                groupProperty('resource.id')
+                count('score', 'res')
+            }
+            order('res',"desc")
+            maxResults 5
+
+
+
+        }
+     result
+
+    }
 }

@@ -38,14 +38,14 @@ class Topic {
 
     }
 
-    static TopicVo getTrendingTopics() {
+    static  getTrendingTopics() {
         List result = Resource.createCriteria().list() {
 
             projections {
                 createAlias('topic', 't')
                 groupProperty('t.id')
                 property('t.name')
-                property('t.visibility')
+                property('t.visiblity')
                 count('id')
                 property('t.createdBy')
             }
@@ -58,7 +58,6 @@ class Topic {
         List<TopicVo> topicVo = []
         result.each {
             topicVo.add(new TopicVo(id:it[0], name: it[1], visibility: it[2], count: it[3], createdBy:it[4]))
-
         }
         topicVo
 
