@@ -9,6 +9,8 @@
 
 <head>
     <title></title>
+    <meta name="layout" content="main"/>
+
 </head>
 
 <body>
@@ -28,7 +30,7 @@
     <g:submitButton name="submit" value="submit"/>
 
 </g:form>
-<tl:showAdmin admin="${session.user.admin}">I am Admin</tl:showAdmin>
+%{--<tl:showAdmin admin="${session.user.admin}">I am Admin</tl:showAdmin>--}%
 
 </body>
 </html>

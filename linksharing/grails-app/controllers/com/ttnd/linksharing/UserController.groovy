@@ -12,26 +12,26 @@ class UserController {
 
     }
 
-//    def register(UserCo co) {
-//
-//        if (!session.user) {
-//            log.error("user is registered...")
-//            flash.message = "please register first!"
-//            User user = new User(firstName: co.firstname, lastName: co.lastname, email: co.email, password: co.password)
-//            if (user.validate()) {
-//                flash.message = "${user.firstName} registered successfully"
-//                render flash.message
-//
-//            } else {
-//                render(view: 'createForm', model: [user: user])
-//                //flash.message = "validations failed"
-//                //render "$flash.message  $user.properties"
-//
-//            }
-//        } else
-//            render("already registered")
-//
-//    }
+    def register(UserCo co) {
+
+        if (!session.user) {
+            log.error("user is registered...")
+            flash.message = "please register first!"
+            User user = new User(firstName: co.firstname, lastName: co.lastname, email: co.email, password: co.password)
+            if (user.validate()) {
+                flash.message = "${user.firstName} registered successfully"
+                render flash.message
+
+            } else {
+                render(view: 'createForm', model: [user: user])
+                //flash.message = "validations failed"
+                //render "$flash.message  $user.properties"
+
+            }
+        } else
+            render("already registered")
+
+    }
 
 
     def createForm() {

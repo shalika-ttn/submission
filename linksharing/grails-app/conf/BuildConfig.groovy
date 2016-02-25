@@ -51,6 +51,7 @@ grails.project.dependency.resolution = {
          runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+        //compile "org.grails.plugins:twitter-bootstrap:3.3.4"
     }
 
     plugins {
@@ -64,7 +65,8 @@ grails.project.dependency.resolution = {
         compile ":asset-pipeline:2.2.3"
         compile "org.grails.plugins:console:1.5.7"
         test "org.grails.plugins:code-coverage:2.0.3-3"
-        compile "org.grails.plugins:twitter-bootstrap:3.3.4"
+
+        runtime ':twitter-bootstrap:3.3.5'
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.10" // or ":hibernate:3.6.10.18"
