@@ -9,7 +9,7 @@ class User {
     String email
     Byte[] photo
     Boolean admin
-    Boolean active
+    Boolean active =true
     Date DateCreated
     Date lastUpdated
     String confirmPassword

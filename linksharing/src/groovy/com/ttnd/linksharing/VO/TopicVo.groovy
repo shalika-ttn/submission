@@ -10,4 +10,8 @@ class TopicVo {
     Visiblity visibility
     Integer count
     User createdBy
+    String toString()
+    {
+        "topic with id $id  name $name "
+    }
 }

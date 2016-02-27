@@ -6,17 +6,18 @@ class LoginController {
     def index() {
         if (session.user) {
             forward(controller: 'User', action: 'index')
-        } else
-            render "failure"
+        } else {
+           render(view:'Home',model:[resources:'${resources}'] )
+        }
     }
 
 
-    def login(String username, String password) {
-        User user = User.findByUserNameAndPassword(username, password)
+    def login(String userName, String password) {
+        User user = User.findByUserNameAndPassword(userName, password)
         if (user) {
             if (user.active) {
                 session.user = user
-                redirect(action: 'index')
+                redirect(controller: 'user', action: 'index')
             } else
                 flash.message = "Your accoutn is not active"
 

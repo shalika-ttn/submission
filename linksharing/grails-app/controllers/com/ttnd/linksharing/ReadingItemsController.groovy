@@ -4,7 +4,7 @@ import com.ttnd.linksharing.ReadingItem
 
 class ReadingItemsController {
 
-    def index() { }
+    def index() { render "welcome to readingitem" }
 
     def  changeIsRead(Long id,Boolean isRead)
     {

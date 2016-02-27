@@ -11,6 +11,6 @@ class LinkResource extends Resource {
     }
     String toString()
     {
-        "hello this is linkresource $url"
+        "hello this is linkresource with url: $url"
     }
 }

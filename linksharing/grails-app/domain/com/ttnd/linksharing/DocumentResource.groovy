@@ -8,6 +8,6 @@ class DocumentResource extends Resource {
 
     String toString()
     {
-        "this is $filepath"
+        "this is document resource path: $filepath"
     }
 }

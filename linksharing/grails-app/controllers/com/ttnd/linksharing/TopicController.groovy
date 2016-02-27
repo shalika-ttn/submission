@@ -5,7 +5,7 @@ import com.ttnd.linksharing.Enum.Visiblity
 
 class TopicController {
 
-    def index() {}
+    def index() {render "this is topic domain"}
 
     def show(ResourceSearchCo co) {
         //Topic topic=Topic.findById(id)
@@ -23,7 +23,7 @@ class TopicController {
                     render "sucess subscription"
                 else {
                     flash.message = "subscription not found"
-                    redirect(controller: "Login", action: "index")
+                    redirect(controller: "login", action: "index")
                 }
             }
 
@@ -32,12 +32,15 @@ class TopicController {
 
     }
 
-    def save(String name, String seriousness) {
-        Topic topic = new Topic(name: name, createdBy: session.user, visiblity: Visiblity.convert(seriousness))
+    def save(String name, String visibility) {
+        Topic topic = new Topic(name: name, createdBy: session.user, visiblity: Visiblity.convert(visibility))
 
         if (topic.save()) {
-            flash.message = "Success "
-            render flash.message
+          // flash.message = "Success "
+            //render (view: 'dashboard',controller:'user')
+              // render flash.message
+
+            render(view: 'save')
         } else {
             log.error(" Could not save Topic ${topic.name}")
             flash.message = "Topic ${topic.name} dosent satisfied constraints"

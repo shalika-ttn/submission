@@ -67,6 +67,7 @@ grails.project.dependency.resolution = {
         test "org.grails.plugins:code-coverage:2.0.3-3"
 
         runtime ':twitter-bootstrap:3.3.5'
+        runtime ':font-awesome-resources:4.3.0.1'
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.10" // or ":hibernate:3.6.10.18"

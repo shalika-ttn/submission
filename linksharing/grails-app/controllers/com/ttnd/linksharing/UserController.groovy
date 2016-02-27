@@ -7,29 +7,33 @@ class UserController {
 
     def index() {
 
-        render "User Dashboard "
-        render "${session.user.userName}"
-
     }
 
     def register(UserCo co) {
 
         if (!session.user) {
-            log.error("user is registered...")
-            flash.message = "please register first!"
-            User user = new User(firstName: co.firstname, lastName: co.lastname, email: co.email, password: co.password)
+            log.error("user is not registered...")
+            flash.message = "please register !"
+            User user = new User(firstName: co.firstName, lastName: co.lastName, email: co.email, password: co.password,
+            userName: co.userName,confirmPassword: co.confirmPassword)
             if (user.validate()) {
-                flash.message = "${user.firstName} registered successfully"
-                render flash.message
+//                flash.message = "${user.firstName} registered successfully"
+//                render flash.message
+
+                redirect(action:'index',controller:'login')
+
 
             } else {
-                render(view: 'createForm', model: [user: user])
-                //flash.message = "validations failed"
-                //render "$flash.message  $user.properties"
+                //render(view: 'createForm', model: [user: user])
+                //render (view: 'index')
+                flash.message = "validations failed"
+                render "$flash.message  $user.properties"
 
             }
+          //  render(view: 'createForm')
         } else
             render("already registered")
+          //  render(view: 'createForm')
 
     }
 
@@ -38,13 +42,15 @@ class UserController {
         render(view: 'createForm')
     }
 
-    def topPosts() {
+    def topPost() {
         if (!session.user) {
             List result = ResourceRating.showTopPost()
 
             List<Resource> resources = Resource.getAll(result)
-            render "$resources"
+            //render "$resources"
+           // render (view:'topPost',model: [resources:resources] )
+            redirect(action:'index',controller:'login',model:[resources:'resources'])
         }
-        render ""
+        else  render "hioiiii "
     }
 }
