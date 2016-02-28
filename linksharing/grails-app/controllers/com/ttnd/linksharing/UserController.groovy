@@ -7,6 +7,8 @@ class UserController {
 
     def index() {
 
+
+
     }
 
     def register(UserCo co) {
@@ -38,9 +40,11 @@ class UserController {
     }
 
 
-    def createForm() {
-        render(view: 'createForm')
-    }
+
+
+//    def createForm() {
+//        render(view: 'createForm')
+//    }
 
 
 }

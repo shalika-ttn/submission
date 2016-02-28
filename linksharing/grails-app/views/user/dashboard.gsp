@@ -14,6 +14,12 @@
 
 <body>
 
+%{--<div class="container-fluid">--}%
+    %{--<!--<div class=row>-->--}%
+    %{--<div class ="col-xs-5" style="float:left">--}%
 
+     %{--<g:render template="trendingTopic" model="topicVo"/>--}%
+    %{--</div>--}%
+    %{--</div>--}%
 </body>
 </html>

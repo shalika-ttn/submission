@@ -1,4 +1,5 @@
 package com.ttnd.linksharing
+import com.ttnd.linksharing.Resource
 
 class User {
 
@@ -14,7 +15,9 @@ class User {
     Date lastUpdated
     String confirmPassword
     long id
-    static transients = ['name', 'confirmPassword']
+    static transients = ['name', 'confirmPassword','subscribedTopics']
+    static hasMany = [topics         : Topic, subscriptions: Subscription, resources: Resource, readingItems: ReadingItem,
+                      resourceRatings: ResourceRating]
 
     static mapping = {
         photo(type: 'blob')
@@ -50,10 +53,29 @@ class User {
 
     }
 
+//    List<Subscription> getsubscribedTopics(){
+//        List  result = Subscription.createCriteria().list(){
+//            'topic' {
+//                eq('topic.id', 'subscriptions.id')
+//                projection
+//                        {
+//                            properties('name')
+//                        }
+//            }
+//            projections {
+//                   groupProperty('id')
+//
+//            }
+//
+//        }
+//
+//       result
+//
+//    }
+
 
 //    String toString() {
 //        "welcome $firstName "
 //    }
-    static hasMany = [topics         : Topic, subscriptions: Subscription, resources: Resource, readingItems: ReadingItem,
-                      resourceRatings: ResourceRating]
+
 }

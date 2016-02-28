@@ -9,7 +9,7 @@ class TopicController {
 
     def show(ResourceSearchCo co) {
         //Topic topic=Topic.findById(id)
-        Topic topic = Topic.read(id)
+        Topic topic = Topic.read(co.topicId)
         if (!topic) {
             flash.message = "topic not found"
 

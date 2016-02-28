@@ -7,7 +7,7 @@
                 <h4 class="modal-title">Share Document</h4>
             </div>
             <div class="modal-body">
-                <g:form class="form-horizontal" controller="resource" action="saveDoc" >
+                <g:form class="form-horizontal" controller="documentResource" action="saveDoc" >
                     <div class="form-group">
                         <label for="filepath" class="control-label col-xs-2">Document</label>
                         <div class="col-xs-10">

@@ -88,6 +88,13 @@ input {
     <g:render template="/topic/sendInvitation"/>
     <g:render template="/documentResource/createDocument"/>
     <g:render template="/linkResource/createLink"/>
+    <div class="container-fluid">
+     <div class ="col-xs-5" style="float:left">
+    <g:render template="/user/trendingTopic"/>
+     </div>
+    </div>
+
+
 
 </g:if>
 <g:else>

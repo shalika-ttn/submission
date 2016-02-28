@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
 
-                <g:form class="form-horizontal" controller="resource" action="saveLink">
+                <g:form class="form-horizontal" controller="linkResource" action="saveLink">
                     <div class="form-group">
                         <label for="url" class="control-label col-xs-2">Link</label>
                         <div class="col-xs-10">
