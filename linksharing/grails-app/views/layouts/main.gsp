@@ -85,6 +85,9 @@ input {
         </nav>
     </div>
     <g:render template="/topic/createTopic"/>
+    <g:render template="/topic/sendInvitation"/>
+    <g:render template="/documentResource/createDocument"/>
+    <g:render template="/linkResource/createLink"/>
 
 </g:if>
 <g:else>

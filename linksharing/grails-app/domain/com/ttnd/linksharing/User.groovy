@@ -51,9 +51,9 @@ class User {
     }
 
 
-    String toString() {
-        "welcome $firstName "
-    }
+//    String toString() {
+//        "welcome $firstName "
+//    }
     static hasMany = [topics         : Topic, subscriptions: Subscription, resources: Resource, readingItems: ReadingItem,
                       resourceRatings: ResourceRating]
 }

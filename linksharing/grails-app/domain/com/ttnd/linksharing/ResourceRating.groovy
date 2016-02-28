@@ -4,6 +4,8 @@ class ResourceRating {
 
 
     Integer score
+    Date DateCreated
+    Date lastUpdated
     static belongsTo = [user: User, resource: Resource]
 
 
@@ -29,4 +31,21 @@ class ResourceRating {
      result
 
     }
+    static  List showRecentPost() {
+        List result = ResourceRating.createCriteria().list() {
+
+            projections {
+                groupProperty('resource.id')
+
+            }
+            order('id',"desc")
+            maxResults 5
+
+
+
+        }
+        result
+
+    }
+
 }

@@ -9,9 +9,8 @@
                 <a href="#" class="inline" style="float:right">Grails</a>
 
                 <g:each in="${resources}" var="res">
-                    <p>
-                        ${res}
-                    </p>
+                    ${res}<br>
+
                 </g:each>
                 %{--<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta                 felis--}%
                 %{--</p>--}%

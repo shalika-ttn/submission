@@ -64,9 +64,9 @@ class Topic {
 
 }
 
-        String toString() {
-            "This is topic $name"
-        }
+//        String toString() {
+//            "This is topic $name"
+//        }
 
 
     }

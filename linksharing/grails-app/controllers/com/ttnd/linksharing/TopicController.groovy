@@ -49,4 +49,25 @@ class TopicController {
         }
 
     }
+
+    def sent(String email,String name)
+    {
+      User user= User.findByEmail(email)
+      Topic topic =Topic.findByName(name)
+
+         if(user&&topic) {
+             Subscription subscription = new Subscription(user:user, topic: topic)
+
+             if (subscription.save()) {
+                 flash.message = " Subscription saved ------Success "
+                 render flash.message
+             } else {
+                 log.error(" Could not save subscription ${subscription}")
+                 flash.message = "Topic ${subscription.properties} dosent satisfied constraints"
+                 render flash.message
+
+             }
+         }else render " Either user email or topic name invalid"
+
+    }
 }

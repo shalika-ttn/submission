@@ -42,15 +42,5 @@ class UserController {
         render(view: 'createForm')
     }
 
-    def topPost() {
-        if (!session.user) {
-            List result = ResourceRating.showTopPost()
 
-            List<Resource> resources = Resource.getAll(result)
-            //render "$resources"
-           // render (view:'topPost',model: [resources:resources] )
-            redirect(action:'index',controller:'login',model:[resources:'resources'])
-        }
-        else  render "hioiiii "
-    }
 }

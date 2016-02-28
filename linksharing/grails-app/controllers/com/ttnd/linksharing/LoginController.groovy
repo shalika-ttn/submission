@@ -1,5 +1,6 @@
 package com.ttnd.linksharing
-
+import com.ttnd.linksharing.Resource
+import com.ttnd.linksharing.ResourceRating
 
 class LoginController {
 
@@ -7,10 +8,36 @@ class LoginController {
         if (session.user) {
             forward(controller: 'User', action: 'index')
         } else {
-           render(view:'Home',model:[resources:'${resources}'] )
+
+           render(view:'Home',model:[resources:'resources'] )
         }
     }
 
+    def topPost() {
+        if (!session.user) {
+            List result = ResourceRating.showTopPost()
+
+            List<Resource> resources = Resource.getAll(result)
+            //render "$resources"
+           // render (view:'topPost',model: [resources:resources] )
+            redirect(action:'index',controller:'login')
+        }
+        else  render "hioiiii "
+    }
+  def  recentPost()
+  {
+      if (!session.user) {
+          List result = ResourceRating.showRecentPost()
+
+          List<Resource> resources = Resource.getAll(result)
+          //render "$resources"
+           render (view:'recentPost',model: [resources:resources] )
+          //redirect(action:'index',controller:'login')
+      }
+      else  render "hioiiii "
+
+
+  }
 
     def login(String userName, String password) {
         User user = User.findByUserNameAndPassword(userName, password)

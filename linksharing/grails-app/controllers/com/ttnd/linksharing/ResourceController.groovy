@@ -13,26 +13,29 @@ class ResourceController {
     }
 
 
+
+
+
     def show(Long id) {
         Resource resource = Resource.findById(id)
-       // Topic topic=Topic.findById(id)
+        // Topic topic=Topic.findById(id)
 
 
-        RatingInfoVo ratingInfoVo= resource.ratingInfo
+        RatingInfoVo ratingInfoVo = resource.ratingInfo
         render "Total score= $ratingInfoVo.totalScore Total votes= $ratingInfoVo.totalVotes average score= $ratingInfoVo.averageScore "
 
     }
-    def showtopics()
-    {   //Resource resource = Resource.findById(id)
 
-        List<TopicVo> topicVo= Topic.getTrendingTopics()
+    def showtopics() {   //Resource resource = Resource.findById(id)
+
+        List<TopicVo> topicVo = Topic.getTrendingTopics()
         render topicVo
 
     }
 
     def search(ResourceSearchCo co) {
-         if (co.q)
-            co.visiblity=Visiblity.PUBLIC
+        if (co.q)
+            co.visiblity = Visiblity.PUBLIC
         println("co:${co.properties}")
         List<Resource> resources = Resource.search(co).list()
         render "resources $resources"
