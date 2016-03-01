@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<g:render template="recentPost" model="resources"/>
+<g:render template="recentPost" model="resources1"/>
 
 </body>
 </html>

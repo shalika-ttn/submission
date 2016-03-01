@@ -13,6 +13,6 @@
 </head>
 
 <body>
-
+<g:render template="createLink" model="[listOfTopics:session.user.subscribedTopics]"/>
 </body>
 </html>

@@ -32,6 +32,15 @@ class TopicController {
 
     }
 
+
+    def show1()
+    {    User user=session.user
+         Topic topic=Topic.findByCreatedBy(user)
+         render(view: 'show1',model:[userlist:topic.subscribedUser] )
+
+
+    }
+
     def save(String name, String visibility) {
         Topic topic = new Topic(name: name, createdBy: session.user, visiblity: Visiblity.convert(visibility))
 

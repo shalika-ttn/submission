@@ -25,7 +25,9 @@
                     <div class="form-group">
                         <label for="inputText" class="control-label col-xs-2">Topic</label>
                         <div class="col-xs-10">
-                            <g:textField name="name" class="form-control" id="inputText" placeholder="topic name"/>
+
+                            <g:select name="name" from="${listOfTopics}" optionKey="id"
+                                      noSelection="['': '-Select topic-']"/>
                         </div>
                     </div>
 

@@ -7,22 +7,22 @@ class UserController {
 
     def index() {
 
-
+        render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics])
 
     }
 
     def register(UserCo co) {
-
+        println "===========================+${co.properties}"
         if (!session.user) {
             log.error("user is not registered...")
             flash.message = "please register !"
             User user = new User(firstName: co.firstName, lastName: co.lastName, email: co.email, password: co.password,
-            userName: co.userName,confirmPassword: co.confirmPassword)
-            if (user.validate()) {
+                    userName: co.userName, confirmPassword: co.confirmPassword)
+            if (user.save(flush: true)) {
 //                flash.message = "${user.firstName} registered successfully"
 //                render flash.message
 
-                redirect(action:'index',controller:'login')
+                redirect(action: 'index', controller: 'login')
 
 
             } else {
@@ -32,18 +32,17 @@ class UserController {
                 render "$flash.message  $user.properties"
 
             }
-          //  render(view: 'createForm')
+            //  render(view: 'createForm')
         } else
             render("already registered")
-          //  render(view: 'createForm')
+        //  render(view: 'createForm')
 
     }
 
-
-
-
 //    def createForm() {
-//        render(view: 'createForm')
+//        //render(view: 'createForm')
+//       // render "hiiiiiiiiiiiii"
+//        [a:1]
 //    }
 
 

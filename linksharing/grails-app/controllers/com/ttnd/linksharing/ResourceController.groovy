@@ -31,7 +31,7 @@ class ResourceController {
         List<TopicVo> topicVo = Topic.getTrendingTopics()
 
        //render(template: "/user/trendingTopic", model:[topicVo:"topicVo"] )
-       // render topicVo
+        render topicVo
 
     }
 

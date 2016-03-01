@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<g:render template="topPost" model="resources"/>
+<g:render template="topPost" model="[resources: resource]"/>
 
 </body>
 </html>

@@ -32,10 +32,10 @@ class ResourceRating {
 
     }
     static  List showRecentPost() {
-        List result = ResourceRating.createCriteria().list() {
+        List result = Resource.createCriteria().list() {
 
             projections {
-                groupProperty('resource.id')
+                groupProperty('id')
 
             }
             order('id',"desc")

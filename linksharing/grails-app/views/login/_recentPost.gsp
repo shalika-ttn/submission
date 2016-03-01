@@ -9,7 +9,7 @@
                 <a href="#" class="inline" style="float:right">Grails</a>
 
 
-                <g:each in="${resources}" var="res">
+                <g:each in="${resources1}" var="res">
                     ${res}<br>
 
                 </g:each>
@@ -29,7 +29,7 @@
                 Shalika singhal<span class="text-muted inline"> @shalika</span>
                 <a href="#" class="inline" style="float:right">Grails</a>
 
-                <g:each in="${resources}" var="res">
+                <g:each in="${resources1}" var="res">
                     ${res}<br>
 
                 </g:each>

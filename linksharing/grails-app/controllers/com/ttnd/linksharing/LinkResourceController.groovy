@@ -4,8 +4,8 @@ class LinkResourceController {
 
     def index() { }
 
-    def saveLink(String url,String name, String description) {
-        Topic topic = Topic.findByName(name)
+    def saveLink(String url,int name, String description) {
+        Topic topic = Topic.findById(name)
         LinkResource link = new LinkResource(url: url, description:description, createdBy:session.user, topic:topic)
 
 

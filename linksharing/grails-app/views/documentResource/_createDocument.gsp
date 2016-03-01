@@ -23,9 +23,12 @@
                     </div>
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-2">Topic</label>
-                        <div class="col-xs-10">
-                            <g:textField name="name" class="form-control" id="topic" placeholder="topic name"/>
-                        </div>
+                        %{--<div class="col-xs-10">--}%
+                            %{--<g:textField name="name" class="form-control" id="topic" placeholder="topic name"/>--}%
+                        %{--</div>--}%
+                        <g:select name="name" from="${listOfTopics}" optionKey="id"
+                                  noSelection="['': '-Select topic-']"/>
+
                     </div>
 
                     <div class="form-group">

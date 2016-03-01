@@ -14,5 +14,7 @@
 
 <body>
 
+<g:render template="createDocument" model="[listOfTopics:session.user.subscribedTopics]"/>
+
 </body>
 </html>

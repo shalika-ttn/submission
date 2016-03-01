@@ -5,7 +5,7 @@
   Time: 5:04 PM
 --%>
 
-<%@ page contentType=" text/html;charset=UTF-8 %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <title></title>
@@ -17,11 +17,11 @@
 
     <div class="col-xs-7" style="float:left">
         <div class="row">
-            <g:render template="/login/recentPost" model="resources"/>
+            <g:render template="/login/recentPost" />
         </div>
 
         <div class="row">
-            <g:render template="/login/topPost" model="resources"/>
+            <g:render template="/login/topPost" model="[resources:resources]"/>
         </div>
     </div>
 

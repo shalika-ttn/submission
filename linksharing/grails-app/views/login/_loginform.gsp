@@ -13,7 +13,7 @@
                         <div class="form-group" style="padding:10px">
                             <label for="password" class="control-label col-xs-4">Password</label>
                             <div class="col-xs-8">
-                                <g:textField name="password" class="form-control" id="password" placeholder="password"/>
+                                <g:passwordField name="password" class="form-control" id="password" placeholder="password"/>
                            </div>
                         </div>
                         <div class="form-group">

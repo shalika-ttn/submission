@@ -14,7 +14,7 @@ class Topic {
     Date lastUpdated
 
     Visiblity visiblity
-
+     static  transients =['subscribedUsers']
     static hasMany = [resources: Resource, subscription: Subscription]
 
     static constraints = {
@@ -38,7 +38,7 @@ class Topic {
 
     }
 
-    static  getTrendingTopics() {
+    static  List<TopicVo> getTrendingTopics() {
         List result = Resource.createCriteria().list() {
 
             projections {
@@ -50,7 +50,7 @@ class Topic {
                 property('t.createdBy')
             }
             //order("r.id", "desc")
-            //eq('t.visiblity', Visiblity.PUBLIC)
+            eq('t.visiblity', Visiblity.PUBLIC)
             order("t.name", "desc")
             maxResults 5
         }
@@ -64,9 +64,25 @@ class Topic {
 
 }
 
-//        String toString() {
-//            "This is topic $name"
-//        }
+    List<Topic> getsubscribedUser() {
+        List<Topic> result = Subscription.createCriteria().list() {
+
+
+            projections {
+                property('user')
+            }
+
+
+               eq('topic.id',this.id )
+        }
+
+        result
+
+    }
+
+        String toString() {
+            "This is topic $name"
+        }
 
 
     }

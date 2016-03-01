@@ -11,40 +11,40 @@ abstract class Resource {
     Date DateCreated
     Date lastUpdated
     String ratingInfo
-   static transients=['ratingInfo']
+    static transients = ['ratingInfo']
     static mapping = {
         description(type: 'text')
+
+
     }
 
-    static constraints ={
+    static constraints = {
     }
 
     static namedQueries = {
         search { ResourceSearchCo co ->
-            if(co.topicId)
-               {
-                   //eq(co.topicId=id)
+            if (co.topicId) {
+                //eq(co.topicId=id)
 
-                   topic{
-                       eq('id',co.topicId)
-                       eq('visiblity',co.visiblity)
-                   }
-                   // resources= Resource.findAllById(co.topicId)
-               }
-
-        }
+                topic {
+                    eq('id', co.topicId)
+                    eq('visiblity', co.visiblity)
+                }
+                // resources= Resource.findAllById(co.topicId)
+            }
 
         }
 
+    }
 
-    String toString()
-    {
+
+    String toString() {
         "This $topic.name and description $description"
     }
 
 
     RatingInfoVo getRatingInfo() {
-        List  result = ResourceRating.createCriteria().get(){
+        List result = ResourceRating.createCriteria().get() {
             'resource' {
                 eq('id', this.id)
             }
@@ -57,9 +57,18 @@ abstract class Resource {
             }
 
         }
-        RatingInfoVo ratingInfoVo=new RatingInfoVo(totalVotes: result[0],averageScore: result[1],totalScore: result[2])
+        RatingInfoVo ratingInfoVo = new RatingInfoVo(totalVotes: result[0], averageScore: result[1], totalScore: result[2])
         ratingInfoVo
     }
     static belongsTo = [topic: Topic]
     static hasMany = [resourcesRatings: ResourceRating, readingItems: ReadingItem]
+
+
+   static List<Resource> resourcePost ( )
+    {
+        List result1 = ResourceRating.showTopPost()
+        List<Resource> resources = Resource.getAll(result1)
+
+        resources
+    }
 }

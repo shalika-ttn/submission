@@ -4,8 +4,8 @@ class DocumentResourceController {
 
     def index() { }
 
-    def saveDoc(String filepath,String name, String description) {
-        Topic topic = Topic.findByName(name)
+    def saveDoc(String filepath,int name, String description) {
+        Topic topic = Topic.findById(name)
 
         DocumentResource doc = new DocumentResource(createdBy: session.user, topic: topic, description: description, filepath: filepath)
 

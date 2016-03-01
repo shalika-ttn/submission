@@ -6,6 +6,7 @@ class DocumentResource extends Resource {
         filepath(nullable: false, blank: false)
     }
 
+
     String toString()
     {
         "this is document resource path: $filepath"

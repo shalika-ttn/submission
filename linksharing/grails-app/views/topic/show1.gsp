@@ -14,5 +14,19 @@
 
 <body>
 
+<div class ="col-xs-5" style="float:left">
+
+    <g:render template="topicshow"/>
+    <g:render template="usershow" />
+
+
+
+</div>
+
+<div class ="col-xs-6" style="float:right" >
+
+
+    <g:render template="posttopic"/>
+</div>
 </body>
 </html>

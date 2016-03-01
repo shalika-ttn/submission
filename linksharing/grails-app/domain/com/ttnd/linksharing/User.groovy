@@ -1,4 +1,5 @@
 package com.ttnd.linksharing
+
 import com.ttnd.linksharing.Resource
 
 class User {
@@ -10,12 +11,12 @@ class User {
     String email
     Byte[] photo
     Boolean admin
-    Boolean active =true
+    Boolean active = true
     Date DateCreated
     Date lastUpdated
     String confirmPassword
     long id
-    static transients = ['name', 'confirmPassword','subscribedTopics']
+    static transients = ['name', 'confirmPassword', 'subscribedTopics']
     static hasMany = [topics         : Topic, subscriptions: Subscription, resources: Resource, readingItems: ReadingItem,
                       resourceRatings: ResourceRating]
 
@@ -53,29 +54,25 @@ class User {
 
     }
 
-//    List<Subscription> getsubscribedTopics(){
-//        List  result = Subscription.createCriteria().list(){
-//            'topic' {
-//                eq('topic.id', 'subscriptions.id')
-//                projection
-//                        {
-//                            properties('name')
-//                        }
-//            }
-//            projections {
-//                   groupProperty('id')
-//
-//            }
-//
-//        }
-//
-//       result
-//
-//    }
+    List<Topic> getsubscribedTopics() {
+        List<Topic> result = Subscription.createCriteria().list() {
 
 
-//    String toString() {
-//        "welcome $firstName "
-//    }
+            projections {
+                property('topic')
+            }
+
+
+            eq('user.id', this.id)
+        }
+
+        result
+
+    }
+
+
+    String toString() {
+        "$firstName "
+    }
 
 }
