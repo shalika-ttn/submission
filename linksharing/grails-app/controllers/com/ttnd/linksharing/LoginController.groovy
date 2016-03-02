@@ -1,8 +1,5 @@
 package com.ttnd.linksharing
 
-import com.ttnd.linksharing.Resource
-import com.ttnd.linksharing.ResourceRating
-
 class LoginController {
 
     def index() {
@@ -23,7 +20,7 @@ class LoginController {
              List<Resource>resources= Resource.resourcePost()
             //render "$resources"
             // render (view:'topPost',model: [resources:resources] )
-            render (view: 'Home', model: [resources: resources,resources1:resources1])
+            render (view: 'home', model: [resources: resources, resources1:resources1])
             //render(view: 'Home',model: [])
         }
     }
@@ -75,5 +72,11 @@ class LoginController {
         redirect(controller: 'Login', action: 'index')
 
         render "Logged out"
+    }
+
+    def forgotPassword()
+
+    {
+
     }
 }

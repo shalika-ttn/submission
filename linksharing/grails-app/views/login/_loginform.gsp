@@ -17,7 +17,8 @@
                            </div>
                         </div>
                         <div class="form-group">
-                            <label  class="col-xs-4" style="padding:10px"><a>Forgot Password</a></label>
+                            %{--<label  class="col-xs-4" style="padding:10px"><a>Forgot Password</a></label>--}%
+                            <g:link action="forgotPassword" controller="login">Forgot Password</g:link>
                             <div class="col-xs-8">
                                 <g:actionSubmit value="login" action="login" controller="login" class="btn btn-primary">Login</g:actionSubmit>
                             </div>

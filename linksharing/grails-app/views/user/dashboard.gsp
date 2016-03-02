@@ -22,6 +22,10 @@
     <g:render template="trendingTopic"/>
 </div>
 
+<div class ="col-xs-6" style="float:right" >
+    <g:render template="inbox"/>
+</div>
+
 
 
 %{--<div class="container-fluid">--}%

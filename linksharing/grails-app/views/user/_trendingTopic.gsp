@@ -17,7 +17,8 @@
 
                     <div class="col-xs-9">
                         <div class="row">
-                            <a href="#">${trend}</a>
+
+                                <g:link action="show" controller="topic" params='[topicId:"${trend.id}"]' >${trend}</g:link>
                         </div>
                         <br/><br/>
 

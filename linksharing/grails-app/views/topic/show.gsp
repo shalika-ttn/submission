@@ -16,7 +16,7 @@
 
 <div class ="col-xs-5" style="float:left">
 
-    <g:render template="topicshow"/>
+    <g:render template="topicshow" model="${topics}"/>
     <g:render template="usershow" />
 
 
@@ -26,7 +26,7 @@
 <div class ="col-xs-6" style="float:right" >
 
 
-    <g:render template="posttopic"/>
+    <g:render template="posttopic" model="${topics}"/>
 </div>
 </body>
 </html>

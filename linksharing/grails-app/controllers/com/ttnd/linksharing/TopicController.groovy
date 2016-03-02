@@ -5,7 +5,11 @@ import com.ttnd.linksharing.Enum.Visiblity
 
 class TopicController {
 
-    def index() {render "this is topic domain"}
+    def index() {
+       render "this is topic domain"
+
+
+    }
 
     def show(ResourceSearchCo co) {
         //Topic topic=Topic.findById(id)
@@ -17,7 +21,11 @@ class TopicController {
 
         } else {
             if (topic.visiblity == Visiblity.PUBLIC) {
-                render "success"
+//                render "success"
+                User user=session.user
+                Topic topic1=Topic.findByCreatedBy(user)
+                render(view: 'show',model:[userlist:topic1.subscribedUser,topics:topic1 ] )
+
             } else if (topic.visiblity == Visiblity.PRIVATE) {
                 if (Subscription.findByUserAndTopic(topic.createdBy, topic))
                     render "sucess subscription"
@@ -33,13 +41,6 @@ class TopicController {
     }
 
 
-    def show1()
-    {    User user=session.user
-         Topic topic=Topic.findByCreatedBy(user)
-         render(view: 'show1',model:[userlist:topic.subscribedUser] )
-
-
-    }
 
     def save(String name, String visibility) {
         Topic topic = new Topic(name: name, createdBy: session.user, visiblity: Visiblity.convert(visibility))
