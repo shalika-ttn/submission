@@ -32,7 +32,7 @@ class ResourceRating {
 
     }
     static  List showRecentPost() {
-        List result = Resource.createCriteria().list() {
+        List result = Resource.createCriteria().list([sort:'dateCreated',max:3]) {
 
             projections {
                 groupProperty('id')

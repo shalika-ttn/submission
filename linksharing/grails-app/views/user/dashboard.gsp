@@ -14,10 +14,12 @@
 
 <body>
 
+
 <div class ="col-xs-5" style="float:left">
 
     <g:render template="usershow"/>
-    <g:render template="/user/trendingTopic"/>
+    %{--<g:render template="/user/trendingTopic" model="[trendingTopics:trendingTopics]" />--}%
+    <g:render template="trendingTopic"/>
 </div>
 
 

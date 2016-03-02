@@ -38,7 +38,7 @@ class Topic {
 
     }
 
-    static  List<TopicVo> getTrendingTopics() {
+    static  List<TopicVo> trendingTopics() {
         List result = Resource.createCriteria().list() {
 
             projections {

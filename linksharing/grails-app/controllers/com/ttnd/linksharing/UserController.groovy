@@ -2,12 +2,16 @@ package com.ttnd.linksharing
 
 import com.ttnd.linksharing.CO.UserCo
 import com.ttnd.linksharing.ResourceRating
+import com.ttnd.linksharing.VO.TopicVo
+import com.ttnd.linksharing.Topic
 
 class UserController {
 
     def index() {
-
-        render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics])
+//
+        List<TopicVo> topicVos = Topic.trendingTopics()
+        render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics, trendingTopics: topicVos])
+//        render(view: 'dashboard')
 
     }
 

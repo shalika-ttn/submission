@@ -12,6 +12,6 @@ class TopicVo {
     User createdBy
     String toString()
     {
-        "topic with id $id  name $name "
+        "topic  name $name "
     }
 }
