@@ -21,10 +21,8 @@ class TopicController {
 
         } else {
             if (topic.visiblity == Visiblity.PUBLIC) {
-//                render "success"
-                User user=session.user
-                Topic topic1=Topic.findByCreatedBy(user)
-                render(view: 'show',model:[userlist:topic1.subscribedUser,topics:topic1 ] )
+
+                render(view: 'show',model:[userlist:topic.subscribedUser,topics:topic ] )
 
             } else if (topic.visiblity == Visiblity.PRIVATE) {
                 if (Subscription.findByUserAndTopic(topic.createdBy, topic))

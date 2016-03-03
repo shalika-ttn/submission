@@ -10,7 +10,9 @@ class UserController {
     def index() {
 //
         List<TopicVo> topicVos = Topic.trendingTopics()
-        render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics, trendingTopics: topicVos])
+        List<ReadingItem> readingItems=ReadingItem.findAllByUser(session.user,[max:5])
+        render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics, trendingTopics: topicVos,
+        readingItems:readingItems])
 //        render(view: 'dashboard')
 
     }
@@ -43,6 +45,17 @@ class UserController {
 
     }
 
+
+     def search()
+     {
+
+     }
+
+    def post(Long postId)
+    {
+              Resource resource= Resource.get(postId)
+            render(view: "post",model: [post:resource] )
+    }
 //    def createForm() {
 //        //render(view: 'createForm')
 //       // render "hiiiiiiiiiiiii"

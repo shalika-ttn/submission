@@ -3,7 +3,7 @@
         <div class="panel-heading">Inbox</div>
 
         <div class="panel-body">
-            <g:each in="${readingItems}" var="read">
+
 
                 <li class="list-group-item" style="height:110px;">
                     <div class="glyphicon glyphicon-user" style="font-size:70px;float:left;padding:10px"></div>
@@ -11,8 +11,8 @@
                     <div>
                         <a href=# style="float:right">Post</a>
 
-                        <p >${read.user.firstName}  ${read.isRead}</p>
-                        <p>${read.resource.description}</p>
+                        <p > ${post.createdBy}</p>
+                        <p>${post.description}</p>
                         <a href="#"><span class="fa fa-facebook-official"></span></a>   <a href="#"><i
                             class="fa fa-tumblr-square"></i></a>
                         <a href="#"><i class="fa fa-google-plus"></i></a>
@@ -25,16 +25,16 @@
                             %{--<g:if test="${read.isRead}">--}%
                             %{--<a href="#">mark as Unread</a>--}%
                             %{--</g:if>--}%
-                            <ls:checkIsRead isRead="${read.isRead}">hiii
+                            <ls:checkIsRead isRead="${post}">hiii
 
                             </ls:checkIsRead>
-                            <g:link  controller="user" action="post" params="[postId:read.resource?.id]">view post</g:link>
+                            %{--<g:link  controller="user" action="post" params="[postId:read.resource?.id]">view post</g:link>--}%
 
                         </p>
                         </div>
                     </div>
                 </li>
-            </g:each>
+
         %{--<li class="list-group-item" style="height:100px">--}%
         %{--<div class="glyphicon glyphicon-user " style="font-size:70px;float:left;padding:10px"></div>--}%
 

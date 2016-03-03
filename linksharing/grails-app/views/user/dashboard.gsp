@@ -19,11 +19,12 @@
 
     <g:render template="usershow"/>
     %{--<g:render template="/user/trendingTopic" model="[trendingTopics:trendingTopics]" />--}%
-    <g:render template="trendingTopic"/>
+    %{--<g:render template="trendingTopic"/>--}%
+    <ls:trendingTopics> </ls:trendingTopics>
 </div>
 
 <div class ="col-xs-6" style="float:right" >
-    <g:render template="inbox"/>
+    <g:render template="inbox" model="[readingItems:readingItems]"/>
 </div>
 
 
