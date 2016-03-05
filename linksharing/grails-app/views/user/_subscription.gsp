@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading">Subscription
         <a href="#" style="float:right">View All</a>
     </div>
@@ -28,17 +28,18 @@
 
                     <div style="float:left"><p style="color:#d3d3d3">subscription <br></p>
                         %{--<a href="#">50</a>--}%
-                       %{--<ls:subscriptionCount />--}%
+
+                     <g:link>   <ls:subscriptionCount/>  </g:link>
 
                     </div>
 
 
                     <div>
                         <p style="color:#d3d3d3">Post</p>
-                        <a href="#">30</a></div>
+                        %{--<a href="#">30</a></div>--}%
 
-                    %{--<ls:resourceCount topicId="${subscription.topic?.id}"> </ls:resourceCount>--}%
-
+                   <g:link> <ls:resourceCount topicId="${subscription.topic.id}"> </ls:resourceCount> </g:link>
+                    </div>
                 </div>
             </div>
 

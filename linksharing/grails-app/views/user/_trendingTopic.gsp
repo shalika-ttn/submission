@@ -4,12 +4,10 @@
     </div>
     <g:each in="${trendingTopics}" var="trend">
 
-        <div class="panel-body tending-topic-panel-body">
+        <div class="panel-body ">
             <div>
                 <div class="row">
                     <div class="list-group  col-xs-3">
-
-                        %{--<img class="img-thumbnail" src="images/user.png" height="100" width="100">--}%
                         <div class="img-thumbnail" style="float:left">
                             <span class="glyphicon glyphicon-user" style="font-size:80px"></span>
                         </div>
@@ -18,7 +16,7 @@
                     <div class="col-xs-9">
                         <div class="row">
 
-                                <g:link action="show" controller="topic" params='[topicId:"${trend.id}"]' >${trend}</g:link>
+                            <g:link action="show" controller="topic" params='[topicId: "${trend.id}"]'>${trend}</g:link>
                         </div>
                         <br/><br/>
 
@@ -29,13 +27,15 @@
                             </div>
 
                             <div class="col-xs-4">
-                                <small class="col-xs-12">Subscriptions</small>
-                                <small class="col-xs-12">50</small>
+                                <small class="col-xs-12" style="color:#d3d3d3">Subscriptions</small>
+                                <small class="col-xs-12"><g:link><ls:subscriptionCount/></g:link></small>
+
                             </div>
 
                             <div class="col-xs-4">
-                                <small class="col-xs-12">Topics</small>
-                                <small class="col-xs-12">10</small>
+                                <small class="col-xs-12" style="color:#d3d3d3 ">Topics</small>
+                                %{--<small class="col-xs-12">10</small>--}%
+                                <small class="col-xs-12"><g:link><ls:topicCount/></g:link></small>
                             </div>
                         </div>
                     </div>
@@ -76,8 +76,8 @@
                         </div>
 
                         <div class="col-xs-4">
-                            <small class="col-xs-12">Subscriptions</small>
-                            <small class="col-xs-12">50</small>
+                            <small class="col-xs-12" style="color:#d3d3d3">Subscriptions</small>
+                            <small class="col-xs-12"><g:link><ls:subscriptionCount/></g:link></small>
                         </div>
 
                         <div class="col-xs-4">
@@ -99,9 +99,12 @@
                     <g:select name="seriousness" from="${com.ttnd.linksharing.Enum.Seriousness.values()}"
                               noSelection="['': '-Select seriousness-']"/>
                 </div>
-                <i class="fa fa-envelope-o nav_icon "></i>
-                <span class="glyphicon glyphicon-edit nav_icon "></span>
-                <span class="glyphicon glyphicon-trash nav_icon "></span>
+
+                <div class="col-xs-3">
+                    <i class="fa fa-envelope-o nav_icon "></i>
+                    <span class="glyphicon glyphicon-edit nav_icon "></span>
+                    <span class="glyphicon glyphicon-trash nav_icon "></span>
+                </div>
             </div>
             <hr/>
         </div>

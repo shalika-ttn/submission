@@ -21,7 +21,7 @@
         </div>
 
         <div class="row">
-            <ls:topPost></ls:topPost>
+            <ls:topPost> </ls:topPost>
             %{--<g:render template="/login/topPost" model="[resources:resources]"/>--}%
         </div>
     </div>

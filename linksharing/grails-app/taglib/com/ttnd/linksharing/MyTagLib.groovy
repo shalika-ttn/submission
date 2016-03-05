@@ -90,25 +90,36 @@ class MyTagLib {
         }
     }
 
-//
-    def subscriptionCount = { body->
+    def subscriptionCount = {
         if (session.user) {
             Integer subscriptioncount = Subscription.findAllByUser(session.user).size()
-            out << body() << subscriptioncount
+            out << subscriptioncount
 
         }
 
     }
-//
-////    def resourceCount={attrs,body->
-//        if(session.user)
-//        {
-//             Topic topic=Topic.findById(attrs.topicId)
-//            Integer resourcecount= Resource.findAllByTopic(topic).size()
-//            out<< resourcecount
-//
-//        }
-//
-//    }
+
+    def resourceCount = { attrs ->
+        if(session.user)
+        {
+             Topic topic=Topic.findById(attrs.topicId)
+            Integer resourcecount= Resource.findAllByTopic(topic).size()
+            out<< resourcecount
+
+        }
+
+    }
+
+
+    def topicCount = { attrs ->
+        if(session.user)
+        {
+            Integer topiccount=Topic.findAllByCreatedBy(session.user).size()
+            out<< topiccount
+
+        }
+
+    }
+
 
 }

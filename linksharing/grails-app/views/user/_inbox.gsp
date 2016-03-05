@@ -1,5 +1,5 @@
 <div class=row>
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
         <div class="panel-heading">Inbox</div>
 
         <div class="panel-body">
@@ -11,7 +11,8 @@
                     <div>
                         <a href=# style="float:right">Post</a>
 
-                        <p >${read.user.firstName}  ${read.isRead}</p>
+                        <p>${read.user.firstName}  ${read.isRead}</p>
+
                         <p>${read.resource.description}</p>
                         <a href="#"><span class="fa fa-facebook-official"></span></a>   <a href="#"><i
                             class="fa fa-tumblr-square"></i></a>
@@ -28,7 +29,8 @@
                             <ls:checkIsRead isRead="${read.isRead}">hiii
 
                             </ls:checkIsRead>
-                            <g:link  controller="user" action="post" params="[postId:read.resource?.id]">view post</g:link>
+                            <g:link controller="user" action="post"
+                                    params="[postId: read.resource?.id]">view post</g:link>
 
                         </p>
                         </div>

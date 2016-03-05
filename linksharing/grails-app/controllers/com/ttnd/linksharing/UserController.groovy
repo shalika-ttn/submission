@@ -11,11 +11,9 @@ class UserController {
     def index() {
         User u = session.user
         List<Subscription> subscriptions = Subscription.findAllByUser(u)
-//        List <Subscription> subscriptions = Subscription.findAllByUser(session.user)
         println "------------------------------${subscriptions}-----------------------"
-        List<TopicVo> topicVos = Topic.trendingTopics()
         List<ReadingItem> readingItems = ReadingItem.findAllByUser(session.user, [max: 5])
-        render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics, trendingTopics: topicVos,
+        render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics,
                                           readingItems  : readingItems, subscriptions: subscriptions])
 
     }
@@ -28,9 +26,6 @@ class UserController {
             User user = new User(firstName: co.firstName, lastName: co.lastName, email: co.email, password: co.password,
                     userName: co.userName, confirmPassword: co.confirmPassword)
             if (user.save(flush: true)) {
-//                flash.message = "${user.firstName} registered successfully"
-//                render flash.message
-
                 redirect(action: 'index', controller: 'login')
 
 
@@ -41,10 +36,8 @@ class UserController {
                 render "$flash.message  $user.properties"
 
             }
-            //  render(view: 'createForm')
         } else
             render("already registered")
-        //  render(view: 'createForm')
 
     }
 

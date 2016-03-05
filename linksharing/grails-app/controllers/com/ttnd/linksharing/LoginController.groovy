@@ -17,11 +17,7 @@ class LoginController {
 //            params.max = params.max?:2
 //            params.offset = params.offset?:0
 //            List result1 = ResourceRating.showTopPost(params)
-             List<Resource>resources= Resource.resourcePost()
-            //render "$resources"
-            // render (view:'topPost',model: [resources:resources] )
-            render (view: 'home', model: [resources: resources, resources1:resources1])
-            //render(view: 'Home',model: [])
+            render (view: 'home', model: [ resources1:resources1])
         }
     }
 
