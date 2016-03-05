@@ -15,7 +15,7 @@
 
                 <div class="col-xs-4">
                     ${res.createdBy}<span class="text-muted inline">@shalika</span>
-                    
+
 
                     <p>${res.description}</p>
                     %{--<g:paginate  maxsteps="1" total="${resourceCount}" controller="login" action="topPost"/>--}%

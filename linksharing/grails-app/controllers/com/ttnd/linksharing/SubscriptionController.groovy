@@ -53,7 +53,8 @@ class SubscriptionController {
 
         if (subscription) {
             subscription.delete()
-            render "sucesss in deleting subscription"
+            redirect(action: 'index',controller: 'user')
+//            render "sucesss in deleting subscription"
         } else
             render "Failure in deleting subscription"
 
