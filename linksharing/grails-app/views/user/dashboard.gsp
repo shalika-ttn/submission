@@ -14,29 +14,18 @@
 
 <body>
 
-
-<div class ="col-xs-5" style="float:left">
+<div class="col-xs-5" style="float:left">
 
     <g:render template="usershow"/>
     %{--<g:render template="/user/trendingTopic" model="[trendingTopics:trendingTopics]" />--}%
     %{--<g:render template="trendingTopic"/>--}%
+    <g:render template="subscription" model="[subscriptions: subscriptions]"/>
     <ls:trendingTopics> </ls:trendingTopics>
 </div>
 
-<div class ="col-xs-6" style="float:right" >
-    <g:render template="inbox" model="[readingItems:readingItems]"/>
+<div class="col-xs-6" style="float:right">
+    <g:render template="inbox" model="[readingItems: readingItems]"/>
 </div>
-
-
-
-%{--<div class="container-fluid">--}%
-    %{--<!--<div class=row>-->--}%
-    %{--<div class ="col-xs-5" style="float:left">--}%
-
-     %{--<g:render template="trendingTopic" model="topicVo"/>--}%
-    %{--</div>--}%
-    %{--</div>--}%
-
 
 
 </body>

@@ -70,6 +70,31 @@ class User {
 
     }
 
+    Boolean canDeleteResource(Long resourceId) {
+        Resource resource = Resource.findById(resourceId)
+
+        if ((resource.createdBy == this) || this?.admin)
+            true
+        else
+            false
+
+    }
+
+    Boolean isSubscribed(Long topicId) {
+        Integer subscriptionsCount = Subscription.createCriteria().count() {
+
+            eq('user', this)
+            eq('topic', topicId)
+
+        }
+
+        if (subscriptionsCount)
+            true
+        else
+            false
+
+    }
+
 
     String toString() {
         "$firstName "

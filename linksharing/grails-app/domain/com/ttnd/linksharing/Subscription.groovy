@@ -4,7 +4,7 @@ import com.ttnd.linksharing.Enum.Seriousness
 
 class Subscription {
 
-    Date DateCreated
+    Date dateCreated
     Date lastUpdated
     Seriousness seriousness =Seriousness.SERIOUS
     static constraints = {

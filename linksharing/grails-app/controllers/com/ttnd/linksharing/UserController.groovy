@@ -4,16 +4,19 @@ import com.ttnd.linksharing.CO.UserCo
 import com.ttnd.linksharing.ResourceRating
 import com.ttnd.linksharing.VO.TopicVo
 import com.ttnd.linksharing.Topic
+import com.ttnd.linksharing.Subscription
 
 class UserController {
 
     def index() {
-//
+        User u = session.user
+        List<Subscription> subscriptions = Subscription.findAllByUser(u)
+//        List <Subscription> subscriptions = Subscription.findAllByUser(session.user)
+        println "------------------------------${subscriptions}-----------------------"
         List<TopicVo> topicVos = Topic.trendingTopics()
-        List<ReadingItem> readingItems=ReadingItem.findAllByUser(session.user,[max:5])
+        List<ReadingItem> readingItems = ReadingItem.findAllByUser(session.user, [max: 5])
         render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics, trendingTopics: topicVos,
-        readingItems:readingItems])
-//        render(view: 'dashboard')
+                                          readingItems  : readingItems, subscriptions: subscriptions])
 
     }
 
@@ -46,20 +49,24 @@ class UserController {
     }
 
 
-     def search()
-     {
+    def search() {
 
-     }
-
-    def post(Long postId)
-    {
-              Resource resource= Resource.get(postId)
-            render(view: "post",model: [post:resource] )
     }
-//    def createForm() {
-//        //render(view: 'createForm')
-//       // render "hiiiiiiiiiiiii"
-//        [a:1]
+
+    def post(Long postId) {
+        Resource resource = Resource.get(postId);
+        if (resource.canViewByResource(postId))
+            render(view: "post", model: [post: resource])
+
+
+    }
+//    def canDeleteResource(Long postId)
+//    {
+//        Resource resource= Resource.get(postId)
+//        if(resource.createdBy==session.user||(session.user?.admin==true)) {
+//            resource.delete()
+//
+//        }
 //    }
 
 

@@ -14,7 +14,7 @@ class Topic {
     Date lastUpdated
 
     Visiblity visiblity
-     static  transients =['subscribedUsers']
+    static transients = ['subscribedUsers']
     static hasMany = [resources: Resource, subscription: Subscription]
 
     static constraints = {
@@ -38,8 +38,8 @@ class Topic {
 
     }
 
-    static  List<TopicVo> trendingTopics() {
-        List result = Resource.createCriteria().list([max:2]) {
+    static List<TopicVo> trendingTopics() {
+        List result = Resource.createCriteria().list([max: 2]) {
 
             projections {
                 createAlias('topic', 't')
@@ -57,12 +57,12 @@ class Topic {
         println("=========================${result}")
         List<TopicVo> topicVo = []
         result.each {
-            topicVo.add(new TopicVo(id:it[0], name: it[1], visibility: it[2], count: it[3], createdBy:it[4]))
+            topicVo.add(new TopicVo(id: it[0], name: it[1], visibility: it[2], count: it[3], createdBy: it[4]))
         }
         topicVo
 
 
-}
+    }
 
     List<Topic> getsubscribedUser() {
         List<Topic> result = Subscription.createCriteria().list() {
@@ -73,16 +73,37 @@ class Topic {
             }
 
 
-               eq('topic.id',this.id )
+            eq('topic.id', this.id)
         }
 
         result
 
     }
 
-        String toString() {
-            "This is topic $name"
-        }
+     Boolean isPublic(Long id) {
+        Topic topic = Topic.findById(id)
 
+        if (topic.visiblity == Visiblity.PUBLIC)
+            true
+        else
+            false
+    }
+
+     Boolean canViewBy(Long id) {
+        Topic topic = Topic.findById(id)
+      List<User> user= topic.subscribedUser
+
+        if (isPublic(id) || this.contains(user)||user.admin)
+            true
+        else
+            false
 
     }
+
+
+    String toString() {
+        "This is topic $name"
+    }
+
+
+}

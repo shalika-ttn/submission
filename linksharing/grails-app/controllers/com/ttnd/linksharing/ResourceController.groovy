@@ -13,9 +13,6 @@ class ResourceController {
     }
 
 
-
-
-
     def show(Long id) {
         Resource resource = Resource.findById(id)
         // Topic topic=Topic.findById(id)
@@ -30,7 +27,7 @@ class ResourceController {
 
         List<TopicVo> topicVo = Topic.getTrendingTopics()
 
-       //render(template: "/user/trendingTopic", model:[topicVo:"topicVo"] )
+        //render(template: "/user/trendingTopic", model:[topicVo:"topicVo"] )
         render topicVo
 
     }
@@ -50,8 +47,14 @@ class ResourceController {
 
 
         if (resource) {
+
             try {
-                resource.delete(flush: true)
+
+//                if (resource.createdBy == session.user || (session.user?.admin == true)) {
+
+                    resource.delete(flush: true)
+                    redirect (controller: "user",action:"index" )
+//                } else render "cant delete resource"
             } catch (Exception e) {
                 render "$e resource could not be found hence could not be deleted"
             }

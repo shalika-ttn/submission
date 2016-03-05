@@ -6,7 +6,7 @@ import com.ttnd.linksharing.Enum.Visiblity
 class TopicController {
 
     def index() {
-       render "this is topic domain"
+        render "this is topic domain"
 
 
     }
@@ -22,7 +22,7 @@ class TopicController {
         } else {
             if (topic.visiblity == Visiblity.PUBLIC) {
 
-                render(view: 'show',model:[userlist:topic.subscribedUser,topics:topic ] )
+                render(view: 'show', model: [userlist: topic.subscribedUser, topics: topic])
 
             } else if (topic.visiblity == Visiblity.PRIVATE) {
                 if (Subscription.findByUserAndTopic(topic.createdBy, topic))
@@ -39,14 +39,13 @@ class TopicController {
     }
 
 
-
     def save(String name, String visibility) {
         Topic topic = new Topic(name: name, createdBy: session.user, visiblity: Visiblity.convert(visibility))
 
         if (topic.save()) {
-          // flash.message = "Success "
+            // flash.message = "Success "
             //render (view: 'dashboard',controller:'user')
-              // render flash.message
+            // render flash.message
 
             render(view: 'save')
         } else {
@@ -58,24 +57,28 @@ class TopicController {
 
     }
 
-    def sent(String email,String name)
-    {
-      User user= User.findByEmail(email)
-      Topic topic =Topic.findByName(name)
+    def sent(String email, String name) {
+        User user = User.findByEmail(email)
+        Topic topic = Topic.findByName(name)
 
-         if(user&&topic) {
-             Subscription subscription = new Subscription(user:user, topic: topic)
+        if (user && topic) {
+            Subscription subscription = new Subscription(user: user, topic: topic)
 
-             if (subscription.save()) {
-                 flash.message = " Subscription saved ------Success "
-                 render flash.message
-             } else {
-                 log.error(" Could not save subscription ${subscription}")
-                 flash.message = "Topic ${subscription.properties} dosent satisfied constraints"
-                 render flash.message
+            if (subscription.save()) {
+                flash.message = " Subscription saved ------Success "
+                render flash.message
+            } else {
+                log.error(" Could not save subscription ${subscription}")
+                flash.message = "Topic ${subscription.properties} dosent satisfied constraints"
+                render flash.message
 
-             }
-         }else render " Either user email or topic name invalid"
+            }
+        } else render " Either user email or topic name invalid"
 
     }
+
+
+
+
+
 }

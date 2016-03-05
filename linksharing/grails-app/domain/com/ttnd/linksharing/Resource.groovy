@@ -12,6 +12,9 @@ abstract class Resource {
     Date lastUpdated
     String ratingInfo
     static transients = ['ratingInfo']
+    static belongsTo = [topic: Topic]
+    static hasMany = [resourcesRatings: ResourceRating, readingItems: ReadingItem]
+
     static mapping = {
         description(type: 'text')
 
@@ -32,14 +35,7 @@ abstract class Resource {
                 }
                 // resources= Resource.findAllById(co.topicId)
             }
-
         }
-
-    }
-
-
-    String toString() {
-        "This $topic.name and description $description"
     }
 
 
@@ -60,15 +56,26 @@ abstract class Resource {
         RatingInfoVo ratingInfoVo = new RatingInfoVo(totalVotes: result[0], averageScore: result[1], totalScore: result[2])
         ratingInfoVo
     }
-    static belongsTo = [topic: Topic]
-    static hasMany = [resourcesRatings: ResourceRating, readingItems: ReadingItem]
 
 
-   static List<Resource> resourcePost ( )
-    {
+    static List<Resource> resourcePost() {
         List result1 = ResourceRating.showTopPost()
         List<Resource> resources = Resource.getAll(result1)
 
         resources
     }
+
+    Boolean canViewByResource(Long id) {
+        Resource resource = Resource.findById(id)
+
+        if (resource.topic.canViewBy(topic.id))
+            true
+        else
+            false
+    }
+
+    String toString() {
+        "This $topic.name and description $description"
+    }
+
 }

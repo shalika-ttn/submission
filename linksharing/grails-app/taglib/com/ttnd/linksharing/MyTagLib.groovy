@@ -13,40 +13,102 @@ class MyTagLib {
 
         if (session.user) {
 
-            if(attrs.isrRead)
-            out<< "<a href='#'>Mark as unread </a>"
+            if (attrs.isrRead)
+                out << "<a href='#'>Mark as unread </a>"
             else
-                out<< "<a href='#'>Mark  as read</a>"
+                out << "<a href='#'>Mark  as read</a>"
         }
     }
 
- def topPost={
+    def topPost = {
 
-         List<Resource>resources= Resource.resourcePost()
+        List<Resource> resources = Resource.resourcePost()
 
-          out<< render(template:"/login/topPost" , model: [resources: resources])
+        out << render(template: "/login/topPost", model: [resources: resources])
 
- }
-    def trendingTopics={
-        if(session.user)
-        {
-             List<TopicVo> topicVos = Topic.trendingTopics()
+    }
+    def trendingTopics = {
+        if (session.user) {
+            List<TopicVo> topicVos = Topic.trendingTopics()
 
-            out<< render(template:"/user/trendingTopic" , model: [trendingTopics: topicVos])
+            out << render(template: "/user/trendingTopic", model: [trendingTopics: topicVos])
         }
 
     }
-//    def viewPost = { attrs, body ->
+    def canDeleteResources ={ attrs, body ->
+
+        Closure c = {
+
+            "Delete"
+        }
+        Closure e = {
+
+            "edit"
+        }
+        if (session.user) {
+            User user = session.user
+            if (user.canDeleteResource(attrs.resourceId)) {
+                println "--------------in if--------------"
+                out << g.link(controller: "resource", action: "delete", params: [id: attrs.resourceId], c())
+            }
+
+
+        }
+    }
+
+
+    def checkResourceType = { attrs ->
+        Resource resource = Resource.read(attrs.resource)
+        if (resource instanceof LinkResource) {
+            out << " <a href=\"#\" class=\"inline\" style=\"float:right;padding: 2px\"><u>View Full Site</u></a>"
+
+        } else if (resource instanceof DocumentResource) {
+            out << "<a href=\"#\" class=\"inline\" style=\"float:right;padding: 2px\"><u>Download</u></a>"
+        }
+
+    }
+
+
+    def unSubscribed = { attrs, body ->
+        if (session.user) {
+            User user = session.user
+            if (user.isSubscribed(attrs.topicId))
+                out << body()
+
+
+        }
+    }
+    def subscriptioncheck = { attrs, body ->
+        Subscription subscription = attrs.subscription as Subscription
+        if (session.user) {
+            if (subscription.topic.createdBy.id == session.user.id) {
+                out << render(template: '/user/mySubscribedAndCreatedTopics', model: [subscriptionId: subscription.id])
+            } else {
+                out << render(template: '/user/mySubscribedTopics')
+
+            }
+        }
+    }
+
 //
+    def subscriptionCount = { body->
+        if (session.user) {
+            Integer subscriptioncount = Subscription.findAllByUser(session.user).size()
+            out << body() << subscriptioncount
+
+        }
+
+    }
 //
-//        if (session.user) {
+////    def resourceCount={attrs,body->
+//        if(session.user)
+//        {
+//             Topic topic=Topic.findById(attrs.topicId)
+//            Integer resourcecount= Resource.findAllByTopic(topic).size()
+//            out<< resourcecount
 //
-//            if(attrs.resource)
-//                out<< render[view :""]
-//            else
-//                out<< "<a href='#'>Mark  as read</a>"
 //        }
+//
 //    }
-
 
 }
