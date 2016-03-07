@@ -9,7 +9,8 @@
                 <div class="row">
                     <div class="list-group  col-xs-3">
                         <div class="img-thumbnail" style="float:left">
-                            <span class="glyphicon glyphicon-user" style="font-size:80px"></span>
+                            %{--<span class="glyphicon glyphicon-user" style="font-size:80px"></span>--}%
+                            <ls:userImage id="${trend.createdBy?.id}"/>
                         </div>
                     </div>
 
@@ -51,8 +52,10 @@
 
                     %{--<img class="img-thumbnail" src="images/user.png" height="100" width="100">--}%
                     <div class="img-thumbnail" style="float:left">
-                        <span class="glyphicon glyphicon-user" style="font-size:80px"></span>
-                    </div>
+                        %{--<span class="glyphicon glyphicon-user" style="font-size:80px"></span>--}%
+                    <ls:userImage id="${trend.createdBy?.id}"/>
+
+                </div>
                 </div>
 
                 <div class="col-xs-9">

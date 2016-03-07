@@ -8,6 +8,8 @@ import com.ttnd.linksharing.Subscription
 
 class UserController {
 
+    def assetResourceLocator
+
     def index() {
         User u = session.user
         List<Subscription> subscriptions = Subscription.findAllByUser(u)
@@ -30,10 +32,11 @@ class UserController {
 
 
             } else {
-                //render(view: 'createForm', model: [user: user])
-                //render (view: 'index')
-                flash.message = "validations failed"
-                render "$flash.message  $user.properties"
+                render(template: '/user/createForm', model: [user: user])
+//                render (view: 'index')
+//                flash.message = "validations failed"
+//                render flash.message
+                // render "$flash.message  $user.properties"
 
             }
         } else
@@ -50,6 +53,24 @@ class UserController {
         Resource resource = Resource.get(postId);
         if (resource.canViewByResource(postId))
             render(view: "post", model: [post: resource])
+
+
+    }
+
+    def image(Long id) {
+        User user = User.findById(id)
+        byte[] image
+        if (user.photo) {
+            image = user.photo
+        } else {
+            image = assetResourceLocator.findAssetForURI('userImage.jpeg').byteArray
+        }
+        OutputStream out = response.getOutputStream()
+        out.write(image)
+        out.flush()
+        out.close()
+        // g.include(params: params.id)
+//        render asset.image([src: '/image/userImage.jpeg', height: '64', width: '62'])
 
 
     }

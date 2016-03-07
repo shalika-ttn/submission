@@ -39,6 +39,7 @@ grails.mime.types = [ // the first one is the default format
 grails.views.default.codec = "html"
 
 grails.shalika="hello internal config"
+linksharing.documents.folderPath =" /var/www/linksharing"
 
 // The default scope for controllers. May be prototype, session or singleton.
 // If unspecified, controllers are prototype scoped.

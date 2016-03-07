@@ -6,7 +6,8 @@
             <div class="panel-body">
 
                 <li class="list-group-item" style="height:130px;">
-                    <div class="glyphicon glyphicon-user" style="font-size:70px;float:left;padding:10px"></div>
+                    %{--<div class="glyphicon glyphicon-user" style="font-size:70px;float:left;padding:10px"></div>--}%
+                    <div class="col-xs-2" style="float: left" ><ls:userImage id="${post.createdBy?.id}"/></div>
 
                     <div>
                         <a href=# style="float:right">Post</a>
@@ -34,6 +35,7 @@
                             <ls:canDeleteResources resourceId="${post.id}"/>
                             %{--<a href="#">edit</a>--}%
 
+                            <ls:caneditResources />
                             <a href="#">download</a>
                             <a href="#">fullsize</a>
 

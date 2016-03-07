@@ -7,7 +7,9 @@
 
         <div class="col-xs-7">
             <div class="img-thumbnail" style="float:left">
-                <span class="glyphicon glyphicon-user" style="font-size:80px"></span>
+                %{--<span class="glyphicon glyphicon-user" style="font-size:80px"></span>--}%
+                <ls:userImage id="${topics.createdBy?.id}"/>
+
             </div>
 
             <div style="padding:10px">${topics.name}:${topics.visiblity}
@@ -29,9 +31,14 @@
             <div>
                 <p style="color:#d3d3d3">Post</p>
 
-                <a href="#">30</a></div>
+                <a href="#">30</a>
+            </div>
 
         </div>
+    </div>
+
+    <div class="row">
+       <ls:topicshow />
     </div>
 
 </div>

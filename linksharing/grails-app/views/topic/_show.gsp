@@ -2,7 +2,7 @@
 
     <div class = "panel panel-default">
         <div class ="panel-heading" style="height:40px"> Topics
-            <span class="glyphicon glyphicon-search" style="float:right"><span>
+            <span class="glyphicon glyphicon-search" style="float:right"></span>
                 <input type="text" class="form-control" style="float:right;height:20px;width:100px" placeholder="Search"/>
 
         </div>
@@ -10,6 +10,7 @@
             <div class=row>
                 <div class="col-xs-4">
                     <div class="glyphicon glyphicon-user "style="font-size:60px;float:left"></div>
+
                 </div>
                 <div class="col-xs-7">
                     <div class=row>

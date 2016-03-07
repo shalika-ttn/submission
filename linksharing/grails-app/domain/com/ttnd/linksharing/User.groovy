@@ -12,7 +12,7 @@ class User {
     Byte[] photo
     Boolean admin
     Boolean active = true
-    Date DateCreated
+    Date dateCreated
     Date lastUpdated
     String confirmPassword
     long id
@@ -37,6 +37,7 @@ class User {
         lastName(nullable: false, blank: false)
         active(nullable: true)
         admin(nullable: true)
+        userName(nullable:false,blank: false,unique: true )
 
 
         confirmPassword bindable: true, nullable: true, blank: true, validator: { val, obj ->
@@ -94,6 +95,8 @@ class User {
             false
 
     }
+
+
 
 
     String toString() {

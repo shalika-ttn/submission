@@ -35,20 +35,16 @@ class MyTagLib {
         }
 
     }
-    def canDeleteResources ={ attrs, body ->
+    def canDeleteResources = { attrs, body ->
 
         Closure c = {
 
             "Delete"
         }
-        Closure e = {
 
-            "edit"
-        }
         if (session.user) {
             User user = session.user
             if (user.canDeleteResource(attrs.resourceId)) {
-                println "--------------in if--------------"
                 out << g.link(controller: "resource", action: "delete", params: [id: attrs.resourceId], c())
             }
 
@@ -100,11 +96,10 @@ class MyTagLib {
     }
 
     def resourceCount = { attrs ->
-        if(session.user)
-        {
-             Topic topic=Topic.findById(attrs.topicId)
-            Integer resourcecount= Resource.findAllByTopic(topic).size()
-            out<< resourcecount
+        if (session.user) {
+            Topic topic = Topic.findById(attrs.topicId)
+            Integer resourcecount = Resource.findAllByTopic(topic).size()
+            out << resourcecount
 
         }
 
@@ -112,14 +107,36 @@ class MyTagLib {
 
 
     def topicCount = { attrs ->
-        if(session.user)
-        {
-            Integer topiccount=Topic.findAllByCreatedBy(session.user).size()
-            out<< topiccount
+        if (session.user) {
+            Integer topiccount = Topic.findAllByCreatedBy(session.user).size()
+            out << topiccount
 
         }
 
     }
 
+
+    def caneditResources = {
+        if (session.user) {
+            out << "<a>Edit</a>"
+        }
+    }
+
+
+    def topicshow = {
+        if (session.user) {
+            out << render(template: '/user/mySubscribedTopics')
+        }
+    }
+
+    def userImage = { attrs, body ->
+        User user = User.findById(attrs.id)
+        if (user.photo)
+            out << ""
+        else
+      out<< "<img src=\"/user/image/${attrs.id}\" width=\"64\" height\"64\"/>"
+
+
+    }
 
 }

@@ -8,7 +8,7 @@ abstract class Resource {
     String description
     User createdBy
 
-    Date DateCreated
+    Date dateCreated
     Date lastUpdated
     String ratingInfo
     static transients = ['ratingInfo']

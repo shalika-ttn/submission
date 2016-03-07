@@ -7,7 +7,9 @@
 
             <div class="col-xs-7">
                 <div class="img-thumbnail" style="float:left">
-                    <span class="glyphicon glyphicon-user" style="font-size:80px"></span>
+                    %{--<span class="glyphicon glyphicon-user" style="font-size:80px"></span>--}%
+                    <ls:userImage id="${user?.id}"/>
+
                 </div>
 
                 <div style="padding:10px"><h3>${user}</h3>

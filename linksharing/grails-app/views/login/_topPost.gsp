@@ -7,8 +7,8 @@
 
             <div class="row">
                 <div class="col-xs-4">
-                    <div class="img-thumbnail" >
-                        <span class="glyphicon glyphicon-user" style="font-size:80px"></span>
+                    <div class="img-thumbnail">
+                        <ls:userImage id="${res.createdBy?.id}"/>
                     </div>
                 </div>
 
@@ -31,10 +31,13 @@
                     <div class="row">
                         <a href="#" class="inline" style="float:right">${res.topic}</a>
                     </div>
-                     <div class="row"> <br/> <br/></div>
+
+                    <div class="row"><br/> <br/></div>
+
                     <div class="row">
 
-                        <a href="#" class="inline" style="float:right"><u>View Post</u></a>
+                        %{--<a href="#" class="inline" style="float:right"><u>View Post</u></a>--}%
+                        <g:link  controller="resource" action="post2" params="[id:res.id]">view post</g:link>
                     </div>
                 </div>
             </div>

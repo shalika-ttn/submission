@@ -17,7 +17,7 @@
 
     <div class="col-xs-6" style="float:left">
         <div class="row">
-            <g:render template="resource" model="{post:post}"/>
+            <g:render template="/user/resource" model="[post:post]"/>
         </div>
     </div>
 

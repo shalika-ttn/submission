@@ -15,7 +15,6 @@ class ResourceController {
 
     def show(Long id) {
         Resource resource = Resource.findById(id)
-        // Topic topic=Topic.findById(id)
 
 
         RatingInfoVo ratingInfoVo = resource.ratingInfo
@@ -42,23 +41,29 @@ class ResourceController {
 
     }
 
-    def delete(long id) {
+    def delete(Long id) {
         Resource resource = Resource.load(id)
 
 
         if (resource) {
 
             try {
-
-//                if (resource.createdBy == session.user || (session.user?.admin == true)) {
-
-                    resource.delete(flush: true)
-                    redirect (controller: "user",action:"index" )
-//                } else render "cant delete resource"
+                resource.delete(flush: true)
+                redirect(controller: "user", action: "index")
             } catch (Exception e) {
                 render "$e resource could not be found hence could not be deleted"
             }
         }
+
+    }
+
+    def post2(Long id) {
+        Resource resource = Resource.findById(id)
+        if (resource)
+            render(view: "/user/post", model: [post: resource])
+        else
+            render "failure in getting resource id"
+
 
     }
 

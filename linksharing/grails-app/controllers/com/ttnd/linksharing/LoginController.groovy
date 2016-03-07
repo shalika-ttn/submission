@@ -67,7 +67,7 @@ class LoginController {
         session.invalidate()
         redirect(controller: 'Login', action: 'index')
 
-        render "Logged out"
+//        render "Logged out"
     }
 
     def forgotPassword()

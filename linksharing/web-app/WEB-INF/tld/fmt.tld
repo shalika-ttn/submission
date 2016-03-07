@@ -309,7 +309,7 @@ percentage.
     </attribute>
     <attribute>
         <description>
-Custom formatting pattern.
+MyCustomBean formatting pattern.
         </description>
         <name>pattern</name>
         <required>false</required>
@@ -427,7 +427,7 @@ currency, or percentage.
     </attribute>
     <attribute>
         <description>
-Custom formatting pattern that determines
+MyCustomBean formatting pattern that determines
 how the string in the value attribute is to be
 parsed.
         </description>
@@ -530,7 +530,7 @@ ignored otherwise.
     </attribute>
     <attribute>
         <description>
-Custom formatting style for dates and times.
+MyCustomBean formatting style for dates and times.
         </description>
         <name>pattern</name>
         <required>false</required>
@@ -619,7 +619,7 @@ otherwise.
     </attribute>
     <attribute>
         <description>
-Custom formatting pattern which
+MyCustomBean formatting pattern which
 determines how the date string is to be
 parsed.
         </description>

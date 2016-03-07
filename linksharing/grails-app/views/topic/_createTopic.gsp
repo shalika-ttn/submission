@@ -17,15 +17,18 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputText" class="control-label col-xs-2">visiblity</label>
+                            <label for="visibility" class="control-label col-xs-2">visiblity</label>
                             <div class="col-xs-10">
-                                <g:textField name="visibility" class="form-control" id="inputText" placeholder="topic"/>
-                            </div>
+                                %{--<g:textField name="visibility" class="form-control" id="inputText" placeholder="topic"/>--}%
+
+                            <g:select name="visibility" from="${com.ttnd.linksharing.Enum.Visiblity.values()}"
+                                      noSelection="['': '-Select visibility-']"/>
+                        </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-offset-2 col-xs-10" style="float:left">
-                                <g:actionSubmit value="submit" action="save" class="btn btn-primary">save</g:actionSubmit>
+                                <g:actionSubmit value="save" action="save" class="btn btn-primary">save</g:actionSubmit>
                             </div>
                         </div>
                         <div class="form-group">

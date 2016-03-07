@@ -7,13 +7,14 @@ class Subscription {
     Date dateCreated
     Date lastUpdated
     Seriousness seriousness =Seriousness.SERIOUS
+    static belongsTo = [user: User, topic: Topic]
     static constraints = {
         user(nullable: false)
         topic(nullable: false, unique: 'user')
 
 
     }
-    static belongsTo = [user: User, topic: Topic]
+
 
     def afterInsert()
     {

@@ -5,23 +5,25 @@
   Time: 5:04 PM
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title></title>
     <meta name="layout" content="main">
+
 </head>
 
 <body>
+
 <div class="container-fluid">
 
     <div class="col-xs-7" style="float:left">
         <div class="row">
-            <g:render template="/login/recentPost" />
+            <g:render template="/login/recentPost"/>
         </div>
 
         <div class="row">
-            <ls:topPost> </ls:topPost>
+            <ls:topPost></ls:topPost>
             %{--<g:render template="/login/topPost" model="[resources:resources]"/>--}%
         </div>
     </div>
@@ -32,6 +34,12 @@
         </div>
 
         <div class="row">
+            <g:hasErrors bean="${user}">
+                <div class="alert alert-danger">
+                    <g:eachError><g:message error="${it}"/></g:eachError>
+                </div>
+            </g:hasErrors>
+            <g:renderErrors bean="${user}"/>
             <g:render template="/user/createForm"/>
         </div>
     </div>

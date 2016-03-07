@@ -3,7 +3,8 @@
         <div class="panel-heading">Post:${topics.name}</div>
 
         <li class="list-group-item" style="height:110px;">
-            <div class="glyphicon glyphicon-user" style="font-size:70px;float:left;padding:10px"></div>
+            %{--<div class="glyphicon glyphicon-user" style="font-size:70px;float:left;padding:10px"></div>--}%
+            <div class="col-xs-2" style="float: left" ><ls:userImage id="${topics.createdBy?.id}"/></div>
 
             <div>Uday Pratap Singh
                 <a href=# style="float:right">Post:${topics.name}</a>
@@ -19,7 +20,9 @@
             </div>
         </li>
         <li class="list-group-item" style="height:100px">
-            <div class="glyphicon glyphicon-user " style="font-size:70px;float:left;padding:10px"></div>
+            %{--<div class="glyphicon glyphicon-user " style="font-size:70px;float:left;padding:10px"></div>--}%
+            <div class="col-xs-2" style="float: left" ><ls:userImage id="${topics.createdBy?.id}"/></div>
+
 
             <div>Uday Pratap Singh
                 <p style="font:" Lorem
