@@ -159,37 +159,23 @@ class BootStrap {
         List<Topic> topics = Topic.list()
         List<ReadingItem> readingItems = []
 
-        users.each
-                {
-                    user ->
-                        topics.each
-                                {
-                                    topic ->
-                                        if (Subscription.findByUserAndTopic(user, topic)) {
-
-                                            topic.resources.each
-                                                    {
-                                                        resource ->
-                                                            if (resource.createdBy != user && !user.readingItems?.contains(resource)) {
-                                                                ReadingItem readingItem = new ReadingItem(user: user, resource: resource, isRead: false)
-
-
-
-                                                                if (readingItem.save()) {
-                                                                    readingItems.add(readingItem)
-                                                                    user.addToReadingItems(readingItem)
-                                                                    log.info "${readingItem} saved successfully"
-                                                                } else
-                                                                    log.error "Error saving ${readingItem.errors.allErrors}"
-                                                            }
-
-                                                    }
-
-                                        }
-                                }
-
+        users.each { user ->
+            topics.each { topic ->
+                if (Subscription.findByUserAndTopic(user, topic)) {
+                    topic.resources.each { resource ->
+                        if (resource.createdBy != user && !user.readingItems?.contains(resource)) {
+                            ReadingItem readingItem = new ReadingItem(user: user, resource: resource, isRead: false)
+                            if (readingItem.save()) {
+                                readingItems.add(readingItem)
+                                user.addToReadingItems(readingItem)
+                                log.info "${readingItem} saved successfully"
+                            } else
+                                log.error "Error saving ${readingItem.errors.allErrors}"
+                        }
+                    }
                 }
-
+            }
+        }
         return readingItems
     }
 
