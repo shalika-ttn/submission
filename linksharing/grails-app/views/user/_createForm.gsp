@@ -1,22 +1,25 @@
-
-
 <div class="panel panel-default">
     <div class="panel panel-heading">Register</div>
 
     <div class="panel-body">
-        <g:hasErrors bean="${user}">
-            <div class="alert alert-danger">
-                <g:eachError><g:message error="${it}"/> </g:eachError>
-            </div>
-        </g:hasErrors>
-        <g:renderErrors  bean="${user}"/>
+        %{-- <g:hasErrors bean="${user}">
+             <div class="alert alert-danger">
+                 <g:eachError><g:message error="${it}"/></g:eachError>
+             </div>
+         </g:hasErrors>
+         <g:renderErrors bean="${user}"/>--}%
+        <div>
+            <g:if test="${flash.error}">
+                ${flash.error}
+            </g:if>
+        </div>
         <g:form class="form-horizontal" action="register" controller="user">
             <div class="form-group">
                 <label for="firstName" class="control-label col-xs-5">First Name*</label>
 
                 <div class="col-xs-7">
                     <g:textField name="firstName" class="form-control" id="inputFname" value="${user?.firstName}"
-                                 placeholder="firstName" />
+                                 placeholder="firstName"/>
                     <div class="alert-danger" role="alert">
                         <g:fieldError field="firstName" bean="${user}"/>
                     </div>
@@ -29,7 +32,7 @@
 
                 <div class="col-xs-7">
                     <g:textField name="lastName" class="form-control" id="lastName" value="${user?.lastName}"
-                     placeholder="lastName" />
+                                 placeholder="lastName"/>
                     <div class="alert-danger" role="alert">
                         <g:fieldError field="lastName" bean="${user}"/>
                     </div>
@@ -40,7 +43,8 @@
                 <label for="email" class="control-label col-xs-5">Email*</label>
 
                 <div class="col-xs-7">
-                    <g:textField name="email" class="form-control" id="inputEmail" value="${user?.email}" placeholder="Email"/>
+                    <g:textField name="email" class="form-control" id="inputEmail" value="${user?.email}"
+                                 placeholder="Email"/>
                     <div class="alert-danger" role="alert">
                         <g:fieldError field="email" bean="${user}"/>
                     </div>
@@ -51,7 +55,8 @@
                 <label for="userName" class="control-label col-xs-5">Username*</label>
 
                 <div class="col-xs-7">
-                    <g:textField name="userName" class="form-control" id="userName" value="${user?.userName}" placeholder="userName"/>
+                    <g:textField name="userName" class="form-control" id="userName" value="${user?.userName}"
+                                 placeholder="userName"/>
                     <div class="alert-danger" role="alert">
                         <g:fieldError field="userName" bean="${user}"/>
                     </div>

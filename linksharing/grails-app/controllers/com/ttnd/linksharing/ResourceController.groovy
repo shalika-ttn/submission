@@ -6,6 +6,7 @@ import com.ttnd.linksharing.VO.RatingInfoVo
 import com.ttnd.linksharing.VO.TopicVo
 import com.ttnd.linksharing.Topic
 
+
 class ResourceController {
 
     def index() {
@@ -49,6 +50,7 @@ class ResourceController {
 
             try {
                 resource.delete(flush: true)
+                resource.deleteFile()
                 redirect(controller: "user", action: "index")
             } catch (Exception e) {
                 render "$e resource could not be found hence could not be deleted"
@@ -66,6 +68,9 @@ class ResourceController {
 
 
     }
+
+
+
 
 
 }

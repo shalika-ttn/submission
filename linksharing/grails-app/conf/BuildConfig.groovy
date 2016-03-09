@@ -64,6 +64,9 @@ grails.project.dependency.resolution = {
         // asset-pipeline 2.0+ requires Java 7, use version 1.9.x with Java 6
         compile ":asset-pipeline:2.2.3"
         compile "org.grails.plugins:console:1.5.7"
+        compile "org.grails.plugins:mail:1.0.7"
+
+
         test "org.grails.plugins:code-coverage:2.0.3-3"
 
         runtime ':twitter-bootstrap:3.3.5'

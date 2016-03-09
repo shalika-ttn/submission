@@ -1,15 +1,15 @@
 package com.ttnd.linksharing
 
-class LinkResourceController {
+class LinkResourceController extends ResourceController {
 
-    def index() { }
+    def index() {}
 
-    def saveLink(String url,int name, String description) {
+    def saveLink(String url, int name, String description) {
         Topic topic = Topic.findById(name)
-        LinkResource link = new LinkResource(url: url, description:description, createdBy:session.user, topic:topic)
+        LinkResource link = new LinkResource(url: url, description: description, createdBy: session.user, topic: topic)
 
 
-        if(link){
+        if (link) {
             if (link.save(flush: true)) {
                 flash.message = " Link saved ------Success "
                 render flash.message
@@ -20,10 +20,9 @@ class LinkResourceController {
                 render flash.message
 
 
-            }}else render" error creating link"
+            }
+        } else render " error creating link"
 
 
     }
-
-
 }

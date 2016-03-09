@@ -74,6 +74,13 @@ abstract class Resource {
             false
     }
 
+
+    void deleteFile()
+    {
+        File file = new File(this.filepath)
+        file.delete()
+    }
+
     String toString() {
         "This $topic.name and description $description"
     }

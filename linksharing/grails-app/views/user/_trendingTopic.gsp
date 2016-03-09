@@ -24,7 +24,10 @@
                         <div class="row">
                             <div class="col-xs-4">
                                 <small class="col-xs-12">@shalika</small>
-                                <small class="col-xs-12"><a>Subscribe</a></small>
+        <g:link name="${trend.id}" onclick="subscribe(${trend.id})"><small class="col-xs-12">Subscribe</small></g:link>
+
+
+
                             </div>
 
                             <div class="col-xs-4">

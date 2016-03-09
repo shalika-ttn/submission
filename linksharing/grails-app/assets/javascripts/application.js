@@ -13,11 +13,72 @@
 
 
 if (typeof jQuery !== 'undefined') {
-	(function($) {
-		$('#spinner').ajaxStart(function() {
-			$(this).fadeIn();
-		}).ajaxStop(function() {
-			$(this).fadeOut();
-		});
-	})(jQuery);
+    (function ($) {
+        $('#spinner').ajaxStart(function () {
+            $(this).fadeIn();
+        }).ajaxStop(function () {
+            $(this).fadeOut();
+        });
+    })(jQuery);
+}
+
+
+function unsubscribe(id) {
+    event.preventDefault();
+    $.ajax({
+        url: '/subscription/delete',
+        data: {id: id},
+        method: 'post',
+        success: function (data) {
+            alert(data.message);
+            $("#" + id).remove();
+            $("#alert").html(data.message);
+
+            var messageAlert = $(".messageAlert");
+            for (item in data) {
+                if (item === "message") {
+                    messageAlert.text(data[item]);
+                    messageAlert.addClass("alert-success");
+                }
+                else {
+                    messageAlert.text(data[item]);
+                    messageAlert.addClass("alert-danger");
+                }
+            }
+
+        },
+        error: function (data) {
+            alert(data.error)
+        }
+    })
+}
+
+function subscribe(id) {
+    event.preventDefault();
+    $.ajax({
+        url: '/subscription/save',
+        data: {id: id},
+        method: 'post',
+        success: function (data) {
+            alert(data);
+            //	$("#"+id).remove();
+            //	$("#alert").html(data.message);
+
+            //var messageAlert = $(".messageAlert");
+            //for (item in data) {
+            //	if (item === "message") {
+            //		messageAlert.text(data[item]);
+            //		messageAlert.addClass("alert-success");
+            //	}
+            //	else {
+            //		messageAlert.text(data[item]);
+            //		messageAlert.addClass("alert-danger");
+            //	}
+            //}
+
+        },
+        error: function () {
+            alert("some error occured")
+        }
+    })
 }

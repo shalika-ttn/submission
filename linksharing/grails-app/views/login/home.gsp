@@ -34,12 +34,12 @@
         </div>
 
         <div class="row">
-            <g:hasErrors bean="${user}">
-                <div class="alert alert-danger">
-                    <g:eachError><g:message error="${it}"/></g:eachError>
-                </div>
-            </g:hasErrors>
-            <g:renderErrors bean="${user}"/>
+            %{--<g:hasErrors bean="${user}">--}%
+                %{--<div class="alert alert-danger">--}%
+                    %{--<g:eachError><g:message error="${it}"/></g:eachError>--}%
+                %{--</div>--}%
+            %{--</g:hasErrors>--}%
+            %{--<g:renderErrors bean="${user}"/>--}%
             <g:render template="/user/createForm"/>
         </div>
     </div>
