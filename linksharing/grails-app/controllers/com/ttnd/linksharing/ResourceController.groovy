@@ -25,7 +25,7 @@ class ResourceController {
 
     def showtopics() {   //Resource resource = Resource.findById(id)
 
-        List<TopicVo> topicVo = Topic.getTrendingTopics()
+        List<TopicVo> topicVo = Topic.trendingTopics()
 
         //render(template: "/user/trendingTopic", model:[topicVo:"topicVo"] )
         render topicVo

@@ -37,7 +37,7 @@ class User {
         lastName(nullable: false, blank: false)
         active(nullable: true)
         admin(nullable: true)
-        userName(nullable:false,blank: false,unique: true )
+        userName(nullable: false, blank: false, unique: true)
 
 
         confirmPassword bindable: true, nullable: true, blank: true, validator: { val, obj ->
@@ -83,10 +83,10 @@ class User {
 
     Boolean isSubscribed(Long topicId) {
         Integer subscriptionsCount = Subscription.createCriteria().count() {
-
             eq('user', this)
-            eq('topic', topicId)
-
+            'topic' {
+                eq('id', topicId)
+            }
         }
 
         if (subscriptionsCount)
@@ -96,8 +96,18 @@ class User {
 
     }
 
+    Subscription getSubscription(Long id)
+    {
+        Topic topic =Topic.findById(id)
+        Subscription subscription=Subscription.findByUserAndTopic(this,topic)
+        subscription
 
+    }
 
+    Boolean equals(User user)
+    {
+        this.id==user.id
+    }
 
     String toString() {
         "$firstName "

@@ -22,6 +22,25 @@ if (typeof jQuery !== 'undefined') {
     })(jQuery);
 }
 
+function success(data,id)
+{
+    alert(data.message);
+
+    $("#alert").html(data.message);
+
+    var messageAlert = $(".messageAlert");
+    for (item in data) {
+        if (item === "message") {
+            messageAlert.text(data[item]);
+            messageAlert.addClass("alert-success");
+            //$("#" + id).remove();
+        }
+        else {
+            messageAlert.text(data[item]);
+            messageAlert.addClass("alert-danger");
+        }
+    }
+}
 
 function unsubscribe(id) {
     event.preventDefault();
@@ -29,29 +48,17 @@ function unsubscribe(id) {
         url: '/subscription/delete',
         data: {id: id},
         method: 'post',
-        success: function (data) {
-            alert(data.message);
-            $("#" + id).remove();
-            $("#alert").html(data.message);
-
-            var messageAlert = $(".messageAlert");
-            for (item in data) {
-                if (item === "message") {
-                    messageAlert.text(data[item]);
-                    messageAlert.addClass("alert-success");
-                }
-                else {
-                    messageAlert.text(data[item]);
-                    messageAlert.addClass("alert-danger");
-                }
-            }
-
+        success: function(data)
+        {
+            success(data,id)
         },
         error: function (data) {
             alert(data.error)
         }
     })
 }
+
+
 
 function subscribe(id) {
     event.preventDefault();
@@ -81,4 +88,19 @@ function subscribe(id) {
             alert("some error occured")
         }
     })
+}
+
+$(document).ready(function () {
+
+    $(".seriousness").change(function () {
+        $.ajax({
+            url: "/subscription/update",
+            data: {id: $(this).attr('topicId'), seriousness: $(this).val()},
+            success: function(data)
+            {
+                success(data,id)
+            },
+
+        });
+    });
 }

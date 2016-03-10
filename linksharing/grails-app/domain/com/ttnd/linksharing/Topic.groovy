@@ -3,7 +3,6 @@ package com.ttnd.linksharing
 import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Enum.Visiblity
 import com.ttnd.linksharing.VO.TopicVo
-import com.ttnd.linksharing.Resource
 
 class Topic {
 
@@ -57,7 +56,7 @@ class Topic {
         println("=========================${result}")
         List<TopicVo> topicVo = []
         result.each {
-            topicVo.add(new TopicVo(id: it[0], name: it[1], visibility: it[2], count: it[3], createdBy: it[4]))
+            topicVo.add(new TopicVo(id: it[0], name: it[1], visiblity: it[2], count: it[3], createdBy: it[4]))
         }
         topicVo
 

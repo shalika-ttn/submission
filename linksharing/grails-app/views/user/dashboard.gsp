@@ -13,8 +13,6 @@
 </head>
 
 <body>
-<div class="alert messageAlert" id="alert">
-</div>
 
 <div class="col-xs-5" style="float:left">
 

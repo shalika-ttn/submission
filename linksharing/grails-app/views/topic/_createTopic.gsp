@@ -19,10 +19,10 @@
                         <div class="form-group">
                             <label for="visibility" class="control-label col-xs-2">visiblity</label>
                             <div class="col-xs-10">
-                                %{--<g:textField name="visibility" class="form-control" id="inputText" placeholder="topic"/>--}%
+                                %{--<g:textField name="visiblity" class="form-control" id="inputText" placeholder="topic"/>--}%
 
                             <g:select name="visibility" from="${com.ttnd.linksharing.Enum.Visiblity.values()}"
-                                      noSelection="['': '-Select visibility-']"/>
+                                      noSelection="['': '-Select visiblity-']"/>
                         </div>
                         </div>
 

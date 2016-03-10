@@ -5,13 +5,13 @@ import com.ttnd.linksharing.User
 
 
 class TopicVo {
-    Integer id
+    Long id
     String name
-    Visiblity visibility
+    Visiblity visiblity
     Integer count
     User createdBy
     String toString()
     {
-        "topic  name $name "
+        "$name "
     }
 }

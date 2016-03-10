@@ -68,7 +68,7 @@
 
         <div class="dropdown" style="float:right">
             <button class="btn" data-toggle="dropdown">${session.user.firstName}<span class="caret"
-                                                                                                  style="font-size:20px">
+                                                                                      style="font-size:20px">
 </span></button>
     <ul class="dropdown-menu">
         <li><a href="#">profile</a></li>
@@ -112,6 +112,9 @@
     </div>
 
 </g:else>
+
+<div class="alert messageAlert" id="alert">
+</div>
 <g:layoutBody/>
 
 </body>

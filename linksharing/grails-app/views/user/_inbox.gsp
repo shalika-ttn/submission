@@ -28,8 +28,7 @@
                             %{--<g:if test="${read.isRead}">--}%
                             %{--<a href="#">mark as Unread</a>--}%
                             %{--</g:if>--}%
-                            <ls:checkIsRead isRead="${read.isRead}">hiii
-
+                            <ls:checkIsRead isRead="${read.isRead}">
                             </ls:checkIsRead>
                             <g:link controller="user" action="post"
                                     params="[postId: read.resource?.id]">view post</g:link>

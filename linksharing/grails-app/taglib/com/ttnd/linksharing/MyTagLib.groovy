@@ -1,5 +1,7 @@
 package com.ttnd.linksharing
 
+import com.ttnd.linksharing.Enum.Seriousness
+import com.ttnd.linksharing.Enum.Visiblity
 import com.ttnd.linksharing.VO.TopicVo
 
 class MyTagLib {
@@ -9,14 +11,25 @@ class MyTagLib {
     static namespace = "ls"
 
     def checkIsRead = { attrs, body ->
+        Closure u = {
 
+            "Mark as unread"
+        }
+
+        Closure m = {
+
+            "Mark as read"
+        }
 
         if (session.user) {
 
             if (attrs.isrRead)
-                out << "<a href='#'>Mark as unread </a>"
+//                out << "<a href='#'>Mark as unread </a>"
+                out << g.link(controller: "readingItems", action: "changeIsRead", params: [id: attrs.resourceId, isRead: false], u())
             else
-                out << "<a href='#'>Mark  as read</a>"
+//                out << "<a href='#'>Mark  as read</a>"
+                out << g.link(controller: "readingItems", action: "changeIsRead", params: [id: attrs.resourceId, isRead: true], m())
+
         }
     }
 
@@ -66,24 +79,68 @@ class MyTagLib {
 
 
     def unSubscribed = { attrs, body ->
+        println("************************************************************************")
         if (session.user) {
             User user = session.user
-            if (user.isSubscribed(attrs.topicId))
-                out << body()
-
-
+            if (user.isSubscribed(attrs.long('topicId'))) {
+                out << "unsubscribe"
+            } else {
+                out << g.link(controller: "subscription", action: "save", params: [id: attrs.long('topicId')], {
+                    "subscribe"
+                })
+            }
         }
     }
-    def subscriptioncheck = { attrs, body ->
-        Subscription subscription = attrs.subscription as Subscription
+    def canUpdateTopic = { attrs, body ->
+        Topic topic=Topic.findById(attrs.long('topicId'))
+//        Topic topic= attrs.topic as Topic
         if (session.user) {
-            if (subscription.topic.createdBy.id == session.user.id) {
-                out << render(template: '/user/mySubscribedAndCreatedTopics', model: [subscriptionId: subscription.id])
+            if (topic.createdBy.id == session.user.id || session.user.admin) {
+                out << render(template: '/user/mySubscribedAndCreatedTopics', model: [topicId:topic.id])
             } else {
                 out << render(template: '/user/mySubscribedTopics')
 
             }
         }
+    }
+
+
+    def showSeriousness ={ attrs ->
+
+        Long topicId= attrs.topicId
+        User user=session.user
+
+        if(user)
+        {
+
+            Subscription subscription= user.getSubscription(topicId)
+            if(subscription)
+                out<<g.select(class: 'seriousness', topicId: topicId, name: 'seriousness', from: Seriousness.values(),
+                        value: subscription.seriousness)
+             else
+            flash.error = "User not subscribed to topic"
+        }
+        else
+            flash.error = "Either topic or user not available."
+
+    }
+
+    def showVisiblity ={ attrs ->
+
+        User user=session.user
+
+        if(user)
+        {
+          Topic topic=Topic.get(attrs.topicId)
+            if(topic)
+                out<<g.select(class: 'visibility', topicId: attrs.topicId, name: 'visiblity', from: Visiblity.values(),
+                        value: topic.visiblity)
+            else
+                flash.error = "topic not found by given topicId"
+        }
+        else
+            flash.error = "Either  user not available."
+
     }
 
     def subscriptionCount = {
@@ -94,6 +151,14 @@ class MyTagLib {
         }
 
     }
+
+//    def subscriptionCount = { attrs ->
+//        Topic topic = Topic.get(attrs.topicId)
+//        Integer count = topic.subscriptions.size()
+//        //        out << "<small class=\"col-xs-12\">${count}</small>"
+//        out << count
+//    }
+
 
     def resourceCount = { attrs ->
         if (session.user) {
@@ -134,7 +199,7 @@ class MyTagLib {
         if (user.photo)
             out << ""
         else
-      out<< "<img src=\"/user/image/${attrs.id}\" width=\"64\" height\"64\"/>"
+            out << "<img src=\"/user/image/${attrs.id}\" width=\"64\" height\"64\"/>"
 
 
     }

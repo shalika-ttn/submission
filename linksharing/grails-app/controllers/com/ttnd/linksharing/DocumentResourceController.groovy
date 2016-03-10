@@ -65,7 +65,6 @@ class DocumentResourceController extends ResourceController {
             Topic topic = resource.topic
             if (topic.canViewBy(session.user.id)) {
                 File file1 = new File(resource.filepath)
-                println("........................${file1.properties}")
                 response.setHeader("Content-disposition", "attachment; filename=" + resource.fileName)
                 response.contentType = Constant.DOCUMENT_CONTENT_TYPE
                 response.contentLength = file1.bytes.length

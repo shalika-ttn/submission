@@ -11,28 +11,31 @@ class SubscriptionController {
         Topic topic = Topic.findById(id)
         println("==============${topic.properties}===================")
         if (topic) {
-            Subscription subscription = new Subscription(user: session.user, topic: topic,seriousness:Seriousness.SERIOUS )
+            Subscription.withNewSession {
 
-            if (subscription.save(flush: true)) {
+                Subscription subscription = new Subscription(user: session.user, topic: topic,seriousness:Seriousness.SERIOUS )
+
+                if (subscription.save(flush: true,failOnError: true)) {
 //                flash.message = " Subscription saved ------Success "
-                render "Subscription saved ------Success"
-//                render ([message:"subscribed successfully"] as JSON)
+//                render "Subscription saved ------Success"
+                    render ([message:"subscribed successfully"] as JSON)
 
-            } else {
+                } else {
 //                log.error(" Could not save subscription ${subscription}")
 //                flash.message = "Topic ${subscription} dosent satisfied constraints"
 //                render flash.message
-                println("==============${subscription.properties}===================")
-                render "Subscription not saved ------Success"
+                    println("==============${subscription.properties}===================")
+                    render "Subscription not saved ------Success"
 
-//                render ([error:"subscrition failed"] as JSON)
+                    render ([error:"subscrition failed"] as JSON)
 
+                }
             }
 
         }
     }
 
-    def update(long id, String seriousness) {
+    def update(Long id, String seriousness) {
         Topic topic = Topic.findById(id)
 
         if (topic) {
@@ -40,8 +43,10 @@ class SubscriptionController {
                 Subscription subscription = new Subscription(user: session.user, topic: topic.createdBy, seriousness: Seriousness.convert(seriousness))
 
                 if (subscription.save()) {
-                    flash.message = " Subscription saved ------Success "
-                    render flash.message
+//                    flash.message = " Subscription saved ------Success "
+//                    render flash.message
+                    render ([message:"subscribed  saved successfully"] as JSON)
+
                 } else {
                     flash.message = "Topic ${subscription} dosent satisfied constraints----"
                     render flash.message
@@ -60,8 +65,8 @@ class SubscriptionController {
         Map result=[:]
         Subscription subscription = Subscription.findById(id)
 
-        if (subscription) {
-            subscription.delete()
+        if (subscription&&subscription.topic.createdBy!=session.user) {
+            subscription.delete(flush: true)
 //            redirect(action: 'index',controller: 'user')
 //            render "sucesss in deleting subscription"
 //            render ([message:"subscription deleted successfully"] as JSON)
