@@ -22,42 +22,56 @@ if (typeof jQuery !== 'undefined') {
     })(jQuery);
 }
 
-function success(data,id)
-{
-    alert(data.message);
-
+function success(data, id) {
     $("#alert").html(data.message);
+
 
     var messageAlert = $(".messageAlert");
     for (item in data) {
         if (item === "message") {
             messageAlert.text(data[item]);
             messageAlert.addClass("alert-success");
-            //$("#" + id).remove();
+            $("#" + id).remove();
+            messageAlert.css({'display':'block'});
         }
         else {
             messageAlert.text(data[item]);
             messageAlert.addClass("alert-danger");
+            messageAlert.css({'display':'block'});
         }
     }
 }
 
+function subscriptionsuccess(data) {
+    var messageAlert = $(".messageAlert");
+    alert(data.message)
+    for (item in data) {
+        if (item === "message") {
+            messageAlert.text(data[item]);
+            messageAlert.addClass("alert-success");
+            messageAlert.css({'display':'block'});
+        }
+        else {
+            messageAlert.text(data[item]);
+            messageAlert.addClass("alert-danger");
+            messageAlert.css({'display':'block'});
+        }
+    }
+}
 function unsubscribe(id) {
     event.preventDefault();
     $.ajax({
         url: '/subscription/delete',
         data: {id: id},
         method: 'post',
-        success: function(data)
-        {
-            success(data,id)
+        success: function (data) {
+            success(data, id)
         },
         error: function (data) {
             alert(data.error)
         }
     })
 }
-
 
 
 function subscribe(id) {
@@ -93,14 +107,65 @@ function subscribe(id) {
 $(document).ready(function () {
 
     $(".seriousness").change(function () {
+        console.log("............."+$(this).attr('topicId')+"---------"+$(this).val());
         $.ajax({
             url: "/subscription/update",
             data: {id: $(this).attr('topicId'), seriousness: $(this).val()},
-            success: function(data)
-            {
-                success(data,id)
-            },
+            success: subscriptionsuccess
 
         });
     });
-}
+});
+
+
+$(function () {
+
+    $('#registerForm').validate({
+        rules: {
+            'firstName': {
+                required: true
+            },
+            'lastName': {
+                required: true
+            },
+            'password': {
+                required: true,
+                minlength: 5
+            },
+            'confirmPassword': {
+                required: true,
+                confirm: true
+            },
+            'userName': {
+                required: true,
+                remote: {
+                    url: "/login/validateUserName",
+                    type: "post"
+                }
+            },
+            'emailID': {
+                required: true,
+                email: true,
+                remote: {
+                    url: "/login/validateEmail",
+                    type: "post"
+                }
+            }
+        },
+        submitHandler: function (form) {
+            form.submit();
+        }
+
+    });
+
+    jQuery.validator.addMethod("confirm", function (value, element) {
+        var result = false;
+        var password = $('#registerForm input[id=password]').val();
+
+        if (password === value) {
+            result = true;
+        }
+        return result;
+    }, "Confirm password not matched with password");
+
+})

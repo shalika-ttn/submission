@@ -115,8 +115,8 @@ class MyTagLib {
 
             Subscription subscription= user.getSubscription(topicId)
             if(subscription)
-                out<<g.select(class: 'seriousness', topicId: topicId, name: 'seriousness', from: Seriousness.values(),
-                        value: subscription.seriousness)
+                out<<g.select(class:'seriousness', topicId: topicId, name: 'seriousness', from: Seriousness.values(),
+                        value: subscription.seriousness,id:topicId )
              else
             flash.error = "User not subscribed to topic"
         }

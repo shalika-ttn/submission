@@ -13,12 +13,12 @@ class SubscriptionController {
         if (topic) {
             Subscription.withNewSession {
 
-                Subscription subscription = new Subscription(user: session.user, topic: topic,seriousness:Seriousness.SERIOUS )
+                Subscription subscription = new Subscription(user: session.user, topic: topic, seriousness: Seriousness.SERIOUS)
 
-                if (subscription.save(flush: true,failOnError: true)) {
+                if (subscription.save(flush: true, failOnError: true)) {
 //                flash.message = " Subscription saved ------Success "
 //                render "Subscription saved ------Success"
-                    render ([message:"subscribed successfully"] as JSON)
+                    render([message: "subscribed successfully"] as JSON)
 
                 } else {
 //                log.error(" Could not save subscription ${subscription}")
@@ -27,7 +27,7 @@ class SubscriptionController {
                     println("==============${subscription.properties}===================")
                     render "Subscription not saved ------Success"
 
-                    render ([error:"subscrition failed"] as JSON)
+                    render([error: "subscrition failed"] as JSON)
 
                 }
             }
@@ -36,41 +36,36 @@ class SubscriptionController {
     }
 
     def update(Long id, String seriousness) {
-        Topic topic = Topic.findById(id)
-
-        if (topic) {
-            if (Seriousness.convert(seriousness)) {
-                Subscription subscription = new Subscription(user: session.user, topic: topic.createdBy, seriousness: Seriousness.convert(seriousness))
-
-                if (subscription.save()) {
-//                    flash.message = " Subscription saved ------Success "
-//                    render flash.message
-                    render ([message:"subscribed  saved successfully"] as JSON)
-
-                } else {
-                    flash.message = "Topic ${subscription} dosent satisfied constraints----"
-                    render flash.message
-
-                }
+        Map result = [:]
+        println("#################${id},,,,,,,,${seriousness}")
+        Subscription subscription1 = Subscription.get(id)
+        println("******************811111111111111111111${subscription1}")
+        if (subscription1) {
+            subscription1.seriousness = seriousness as Seriousness
+            println("***************22222222222222222222222${subscription1.seriousness}")
+            if (subscription1.save(flush: true)) {
+                println("in if")
+                result.message = "supscription seriousness updated is saved succesfully"
             } else {
-                flash.message = "seriousness provided could not match"
-                render flash.message
+                println("in else")
+                result.error = "subscription seriousness updated is not saved succesfully"
             }
-        } else render "Topic could not be found by particular id"
-
+        }
+        println(".............>>${result}")
+        render result as JSON
 
     }
 
     def delete(long id) {
-        Map result=[:]
+        Map result = [:]
         Subscription subscription = Subscription.findById(id)
 
-        if (subscription&&subscription.topic.createdBy!=session.user) {
+        if (subscription && subscription.topic.createdBy != session.user) {
             subscription.delete(flush: true)
 //            redirect(action: 'index',controller: 'user')
 //            render "sucesss in deleting subscription"
 //            render ([message:"subscription deleted successfully"] as JSON)
-           result.message="subscription is delted"
+            result.message = "subscription is delted"
         } else {
 //            render "Failure in deleting subscription"
 //            render([error: "subscription not deletd successfully"] as JSON)

@@ -8,12 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <asset:javascript src="application.js"/>
-    <asset:stylesheet href="application.css"/>
-    <asset:javascript src="jquery-2.2.1.min.js"/>
-
-
-
+    %{--<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>--}%
     <style>
     input {
         text-align: center;
@@ -113,9 +108,15 @@
 
 </g:else>
 
-<div class="alert messageAlert" id="alert">
+<div class="alert messageAlert" id="alert" style="display:none">
 </div>
+
 <g:layoutBody/>
+<asset:javascript src="application.js"/>
+<asset:stylesheet href="application.css"/>
+<asset:javascript src="jquery-2.2.1.min.js"/>
+<asset:javascript src="jquery.validate.min.js"/>
+<asset:javascript src="additional-methods.min.js"/>
 
 </body>
 </html>

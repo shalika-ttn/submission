@@ -20,7 +20,8 @@ class DocumentResourceController extends ResourceController {
 
         DocumentResource doc = new DocumentResource(createdBy: session.user, topic: topic, description: documentResourceCo.description, filepath: filepath,
                 contentType: documentResourceCo.contentType)
-
+         User user =session.user
+        user.refresh()
 
         if (doc.validate()) {
             println("........${documentResourceCo.myFile}")
@@ -30,6 +31,10 @@ class DocumentResourceController extends ResourceController {
                 flash.message = " document saved ------Success "
                 render flash.message
                 readingItem(doc)
+                ResourceRating resourceRating=new ResourceRating(user:user,resource: doc,score: 4)
+                resourceRating.save(flush: true)
+                user.addToResourceRatings(resourceRating)
+
             } else {
                 log.error(" Could not save document ${doc}")
                 flash.message = "Document ${doc.properties} dosent satisfied constraints"

@@ -13,7 +13,7 @@
                 ${flash.error}
             </g:if>
         </div>
-        <g:form class="form-horizontal" action="register" controller="user">
+        <g:form class="form-horizontal" name="registerForm" id="registerForm" action="register" controller="user">
             <div class="form-group">
                 <label for="firstName" class="control-label col-xs-5">First Name*</label>
 
@@ -67,7 +67,7 @@
                 <label for="password" class="control-label col-xs-5">Password*</label>
 
                 <div class="col-xs-7">
-                    <g:passwordField name="password" type="password" class="form-control" id="inputPass"
+                    <g:passwordField name="password" type="password" class="form-control" id="password"
                                      placeholder="******"/>
                     <div class="alert-danger" role="alert">
                         <g:fieldError field="password" bean="${user}"/>

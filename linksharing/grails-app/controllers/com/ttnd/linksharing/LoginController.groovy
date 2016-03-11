@@ -70,6 +70,19 @@ class LoginController {
 //        render "Logged out"
     }
 
+    def validateUserName()
+    {
+       Integer count= User.countByUserName(params.userName)
+
+        return count?false:true
+    }
+
+
+    def validateEmail()
+    {
+      Integer count= User.countByEmail(params.email)
+        return count?false:true
+    }
     def forgotPassword()
 
     {
