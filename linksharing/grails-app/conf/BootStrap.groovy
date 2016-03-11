@@ -124,7 +124,7 @@ class BootStrap {
                     log.error "Error saving resource : ${linkResource2.errors.allErrors}"
 
                 Resource documentResource1 = new DocumentResource(createdBy: topic.createdBy, topic: topic, description: "this doc for ${topic.name}",
-                        filepath: "hello/d2")
+                        filepath: "hello/d2", contentType: Constant.DOCUMENT_CONTENT_TYPE)
                 if (documentResource1.save()) {
                     resources.add(documentResource1)
                     topic.addToResources(documentResource1)
@@ -133,7 +133,7 @@ class BootStrap {
                     log.error "Error saving resource : ${documentResource1.errors.allErrors}"
 
                 Resource documentResource2 = new DocumentResource(createdBy: topic.createdBy, topic: topic, description: "this doc is for ${topic.name}",
-                        filepath: "hello/d2")
+                        filepath: "hello/d2",contentType: Constant.DOCUMENT_CONTENT_TYPE)
                 if (documentResource2.save()) {
                     resources.add(documentResource2)
                     topic.addToResources(documentResource2)

@@ -9,14 +9,11 @@ class DocumentResource extends Resource {
     static transients = ['contentType', 'fileName']
     static constraints = {
         filepath(nullable: false, blank: false)
-        contentType(bindable: true,nullable: true, validator: { val, obj ->
-
+        contentType(bindable: true, nullable: true, validator: { val, obj ->
             if (val != Constant.DOCUMENT_CONTENT_TYPE)
-                false
-                //"com.ttnd.linksharing.Resource.contentType.validator"
-                 else   true
+                return 'com.ttnd.linksharing.Resource.contentType.validator'
         })
-        fileName(bindable:true,nullable: true)
+        fileName(bindable: true, nullable: true)
     }
 
     String getFileName() {
