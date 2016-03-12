@@ -203,8 +203,6 @@ class MyTagLib {
             out << "<img src=\"/user/image/${attrs.id}\" width=\"64\" height\"64\"/> "
         else
             out << "<img src=\"/user/image/${attrs.id}\" width=\"64\" height\"64\"/>"
-
-
     }
 
 }
