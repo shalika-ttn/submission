@@ -17,8 +17,6 @@ abstract class Resource {
 
     static mapping = {
         description(type: 'text')
-
-
     }
 
     static constraints = {
@@ -35,6 +33,10 @@ abstract class Resource {
                 }
                 // resources= Resource.findAllById(co.topicId)
             }
+        }
+            resourceSearch{ User user->
+                eq('createdBy',user)
+
         }
     }
 

@@ -1,5 +1,7 @@
 package com.ttnd.linksharing
 
+import com.ttnd.linksharing.CO.ResourceSearchCo
+import com.ttnd.linksharing.CO.TopicSearchCo
 import com.ttnd.linksharing.CO.UserCo
 import com.ttnd.linksharing.ResourceRating
 import com.ttnd.linksharing.VO.TopicVo
@@ -10,6 +12,9 @@ class UserController {
 
     def assetResourceLocator
     def mailService
+    def topicService
+    def subscriptionService
+    def resourceService
 
     def index() {
         User u = session.user
@@ -26,18 +31,18 @@ class UserController {
         if (!session.user) {
             log.error("user is not registered...")
             flash.message = "please register !"
+
             User user = new User(firstName: co.firstName, lastName: co.lastName, email: co.email, password: co.password,
                     userName: co.userName, confirmPassword: co.confirmPassword)
+
+            if (!params.pic.empty)
+                user.photo = co.pic
+
             if (user.save(flush: true)) {
                 flash.message = "user saved successfully"
                 redirect(action: 'index', controller: 'login')
             } else {
-                flash.error = "user cant eb saved"
-                render(template: "createForm", model: [user: user])
-//                render (view: 'index')
-//                flash.message = "validations failed"
-//                render flash.message
-                // render "$flash.message  $user.properties"
+                render(view: "/login/home", model: [user: user])
             }
         } else
             render("already registered")
@@ -69,7 +74,6 @@ class UserController {
         out.write(image)
         out.flush()
         out.close()
-//        render asset.image([src: '/image/userImage.jpeg', height: '64', width: '62'])
 
 
     }
@@ -95,5 +99,18 @@ class UserController {
             render "failure"
     }
 
+
+    def profile(ResourceSearchCo co) {
+        TopicSearchCo topicSearchCo = new TopicSearchCo(id: co.id, visiblity: co.visiblity)
+
+        List<Topic> topic = topicService.search(topicSearchCo)
+
+        List<Topic> subscriptionTopic = subscriptionService.search(topicSearchCo)
+        List<Resource> resourceList = resourceService.search(co)
+        println("=========${resourceList.size()}=================")
+
+
+        render(view: "/user/profile", model: [topics: topic, subscriptions: subscriptionTopic, resources: resourceList])
+    }
 
 }

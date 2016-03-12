@@ -12,8 +12,7 @@ class ReadingItemsController {
         if (ReadingItem.executeUpdate("update ReadingItem set isRead=${isRead} where id=${id}")) {
             render ([message:"successfully changed isRead"]as JSON)
         } else {
-            flash.message = "updation unsuccessful!"
-            render flash.message
+            render ([error:"updation unsuccessful!"]as JSON)
         }
 
     }

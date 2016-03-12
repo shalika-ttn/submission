@@ -92,11 +92,11 @@ class MyTagLib {
         }
     }
     def canUpdateTopic = { attrs, body ->
-        Topic topic=Topic.findById(attrs.long('topicId'))
+        Topic topic = Topic.findById(attrs.long('topicId'))
 //        Topic topic= attrs.topic as Topic
         if (session.user) {
             if (topic.createdBy.id == session.user.id || session.user.admin) {
-                out << render(template: '/user/mySubscribedAndCreatedTopics', model: [topicId:topic.id])
+                out << render(template: '/user/mySubscribedAndCreatedTopics', model: [topicId: topic.id])
             } else {
                 out << render(template: '/user/mySubscribedTopics')
 
@@ -105,40 +105,36 @@ class MyTagLib {
     }
 
 
-    def showSeriousness ={ attrs ->
+    def showSeriousness = { attrs ->
 
-        Long topicId= attrs.topicId
-        User user=session.user
+        Long topicId = attrs.topicId
+        User user = session.user
 
-        if(user)
-        {
+        if (user) {
 
-            Subscription subscription= user.getSubscription(topicId)
-            if(subscription)
-                out<<g.select(class:'seriousness', topicId: topicId, name: 'seriousness', from: Seriousness.values(),
-                        value: subscription.seriousness,id:topicId )
-             else
-            flash.error = "User not subscribed to topic"
-        }
-        else
+            Subscription subscription = user.getSubscription(topicId)
+            if (subscription)
+                out << g.select(class: 'seriousness', topicId: topicId, name: 'seriousness', from: Seriousness.values(),
+                        value: subscription.seriousness, id: topicId)
+            else
+                flash.error = "User not subscribed to topic"
+        } else
             flash.error = "Either topic or user not available."
 
     }
 
-    def showVisiblity ={ attrs ->
+    def showVisiblity = { attrs ->
 
-        User user=session.user
+        User user = session.user
 
-        if(user)
-        {
-          Topic topic=Topic.get(attrs.topicId)
-            if(topic)
-                out<<g.select(class: 'visibility', topicId: attrs.topicId, name: 'visiblity', from: Visiblity.values(),
+        if (user) {
+            Topic topic = Topic.get(attrs.topicId)
+            if (topic)
+                out << g.select(class: 'visibility', topicId: attrs.topicId, name: 'visiblity', from: Visiblity.values(),
                         value: topic.visiblity)
             else
                 flash.error = "topic not found by given topicId"
-        }
-        else
+        } else
             flash.error = "Either  user not available."
 
     }
@@ -194,10 +190,17 @@ class MyTagLib {
         }
     }
 
+    def topicLinkShow = {
+
+        if (session.user) {
+            out << render(template: '/topic/topicLinkShow')
+        }
+    }
+
     def userImage = { attrs, body ->
         User user = User.findById(attrs.id)
         if (user.photo)
-            out << ""
+            out << "<img src=\"/user/image/${attrs.id}\" width=\"64\" height\"64\"/> "
         else
             out << "<img src=\"/user/image/${attrs.id}\" width=\"64\" height\"64\"/>"
 

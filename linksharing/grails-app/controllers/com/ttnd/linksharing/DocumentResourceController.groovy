@@ -47,22 +47,22 @@ class DocumentResourceController extends ResourceController {
     }
 
 
-    private  def readingItem(DocumentResource resource) {
-        Topic topic = resource.topic
-
-        List<User> user = topic.getsubscribedUser()
-
-        user.each {
-            ReadingItem readingItem
-            if (it == session.user)
-                readingItem = new ReadingItem(resource: resource, user: it, isRead: true)
-            else
-                readingItem = new ReadingItem(resource: resource, user: it, isRead: false)
-
-            it.addToReadingItems(readingItem)
-        }
-    }
-
+//    private  def readingItem(DocumentResource resource) {
+//        Topic topic = resource.topic
+//
+//        List<User> user = topic.getsubscribedUser()
+//
+//        user.each {
+//            ReadingItem readingItem
+//            if (it == session.user)
+//                readingItem = new ReadingItem(resource: resource, user: it, isRead: true)
+//            else
+//                readingItem = new ReadingItem(resource: resource, user: it, isRead: false)
+//
+//            it.addToReadingItems(readingItem)
+//        }
+//    }
+//
 
     def download(Long id) {
         DocumentResource resource = DocumentResource.findById(id)

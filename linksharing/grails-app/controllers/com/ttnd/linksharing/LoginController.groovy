@@ -35,18 +35,7 @@ class LoginController {
 //        } else render "hioiiii "
 //    }
 
-//    def recentPost() {
-//        if (!session.user) {
-//            List result = ResourceRating.showRecentPost()
-//
-//            List<Resource> resources1 = Resource.getAll(result)
-//            //render "$resources"
-//            render(view: 'recentPost', model: [resources1: resources1])
-//            //redirect(action:'index',controller:'login')
-//        } else render "hioiiii "
-//
-//
-//    }
+
 
     def login(String userName, String password) {
         User user = User.findByUserNameAndPassword(userName, password)
@@ -66,8 +55,6 @@ class LoginController {
     def logout() {
         session.invalidate()
         redirect(controller: 'Login', action: 'index')
-
-//        render "Logged out"
     }
 
     def validateUserName()

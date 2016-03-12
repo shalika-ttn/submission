@@ -16,8 +16,7 @@ class SubscriptionController {
                 Subscription subscription = new Subscription(user: session.user, topic: topic, seriousness: Seriousness.SERIOUS)
 
                 if (subscription.save(flush: true, failOnError: true)) {
-//                flash.message = " Subscription saved ------Success "
-//                render "Subscription saved ------Success"
+
                     render([message: "subscribed successfully"] as JSON)
 
                 } else {

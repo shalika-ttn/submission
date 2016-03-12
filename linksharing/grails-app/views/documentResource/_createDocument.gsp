@@ -8,9 +8,9 @@
             </div>
 
             <div class="modal-body">
-                <g:uploadForm class="form-horizontal" controller="documentResource" action="saveDoc" method="post">
+                <g:uploadForm  class="form-horizontal" controller="documentResource" action="saveDoc" method="post">
                     <div class="form-group">
-                        <label for="myFile" class="control-label col-xs-2">Document</label>
+                        <label  class="control-label col-xs-2">Document</label>
                         <input type="file" name="myFile"/>
                         %{--<div class="col-xs-10">--}%
                         %{--<g:textField name="filepath" class="form-control" id="inputText" placeholder="Document"/>--}%

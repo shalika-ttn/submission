@@ -1,3 +1,4 @@
+<%@ page import="com.ttnd.linksharing.Enum.Visiblity" %>
 <!DOCTYPE HTML>
 <html lang="en">
 
@@ -66,7 +67,7 @@
                                                                                       style="font-size:20px">
 </span></button>
     <ul class="dropdown-menu">
-        <li><a href="#">profile</a></li>
+        <li><g:link controller="user" action="profile" params="[id:session.user.id,topicId:0,visiblity:com.ttnd.linksharing.Enum.Visiblity.PUBLIC]">profile</g:link></li>
         <li><a href="#">user</a></li>
         <li><a href="#">topic</a></li>
         <li><a href="#">Post</a></li>

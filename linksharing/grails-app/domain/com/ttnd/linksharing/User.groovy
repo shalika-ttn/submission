@@ -21,7 +21,8 @@ class User {
                       resourceRatings: ResourceRating]
 
     static mapping = {
-        photo(type: 'blob')
+//        photo(type: 'blob')
+        photo (sqlType: 'longblob')
         sort id: 'desc'
 
     }
@@ -50,10 +51,15 @@ class User {
     }
 
 
+
     String getName() {
         "$firstName $lastName"
 
     }
+
+
+
+
 
     List<Topic> getsubscribedTopics() {
         List<Topic> result = Subscription.createCriteria().list() {

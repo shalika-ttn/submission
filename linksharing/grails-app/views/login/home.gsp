@@ -24,23 +24,16 @@
 
         <div class="row">
             <ls:topPost></ls:topPost>
-            %{--<g:render template="/login/topPost" model="[resources:resources]"/>--}%
         </div>
     </div>
 
     <div class="col-xs-4" style="float:right">
         <div class="row">
-            <g:render template="loginform"/>
+            <g:render template="/login/loginform"/>
         </div>
 
         <div class="row">
-            %{--<g:hasErrors bean="${user}">--}%
-                %{--<div class="alert alert-danger">--}%
-                    %{--<g:eachError><g:message error="${it}"/></g:eachError>--}%
-                %{--</div>--}%
-            %{--</g:hasErrors>--}%
-            %{--<g:renderErrors bean="${user}"/>--}%
-            <g:render template="/user/createForm"/>
+            <g:render template="/user/createForm" model="[user: user]"/>
         </div>
     </div>
 </div>

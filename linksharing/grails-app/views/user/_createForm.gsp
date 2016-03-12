@@ -2,18 +2,18 @@
     <div class="panel panel-heading">Register</div>
 
     <div class="panel-body">
-        %{-- <g:hasErrors bean="${user}">
+         <g:hasErrors bean="${user}">
              <div class="alert alert-danger">
                  <g:eachError><g:message error="${it}"/></g:eachError>
              </div>
          </g:hasErrors>
-         <g:renderErrors bean="${user}"/>--}%
+         <g:renderErrors bean="${user}"/>
         <div>
             <g:if test="${flash.error}">
                 ${flash.error}
             </g:if>
         </div>
-        <g:form class="form-horizontal" name="registerForm" id="registerForm" action="register" controller="user">
+        <g:uploadForm class="form-horizontal" name="registerForm" id="registerForm" action="register" controller="user">
             <div class="form-group">
                 <label for="firstName" class="control-label col-xs-5">First Name*</label>
 
@@ -89,6 +89,15 @@
             </div>
 
             <div class="form-group">
+                <label class="control-label col-xs-5">photo*</label>
+
+                <div class="col-xs-7">
+                    <input type="file" id="pic" name="pic"/>
+                </div>
+
+            </div>
+
+            <div class="form-group">
                 <div class="col-xs-9"></div>
 
                 <div class="col-xs-3">
@@ -96,7 +105,7 @@
 
                 </div>
             </div>
-        </g:form>
+        </g:uploadForm>
     </div>
 </div>
 

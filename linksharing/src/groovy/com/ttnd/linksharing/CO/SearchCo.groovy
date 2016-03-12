@@ -5,8 +5,8 @@ import grails.validation.Validateable
 class SearchCo {
 
     String q
-    Integer max
-    Integer offset
+    Integer max =5
+    Integer offset =0
     String order
     String sort
 }

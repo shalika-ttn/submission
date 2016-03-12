@@ -29,7 +29,9 @@
 
                 <div class="col-xs-3" style="float: right">
                     <div class="row">
-                        <a href="#" class="inline" style="float:right">${res.topic}</a>
+                        <g:link action="show" controller="topic" params='[topicId: "${res.topic.id}"]'>${res.topic.name}</g:link>
+
+                        %{--<a href="#" class="inline" style="float:right">${res.topic}</a>--}%
                     </div>
 
                     <div class="row"><br/> <br/></div>
