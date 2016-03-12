@@ -8,6 +8,7 @@ class SubscriptionController {
     def index() {}
 
     def save(Long id) {
+        Map result = [:]
         Topic topic = Topic.findById(id)
         println("==============${topic.properties}===================")
         if (topic) {
@@ -17,21 +18,22 @@ class SubscriptionController {
 
                 if (subscription.save(flush: true, failOnError: true)) {
 
-                    render([message: "subscribed successfully"] as JSON)
+                    result.message="subscribed successfully"
 
                 } else {
 //                log.error(" Could not save subscription ${subscription}")
 //                flash.message = "Topic ${subscription} dosent satisfied constraints"
 //                render flash.message
-                    println("==============${subscription.properties}===================")
-                    render "Subscription not saved ------Success"
+//                    println("==============${subscription.properties}===================")
+//                    render "Subscription not saved ------Success"
 
-                    render([error: "subscrition failed"] as JSON)
+
+                    result.error="subscribed not saved successfully"
 
                 }
             }
-
         }
+        render result as JSON
     }
 
     def update(Long id, String seriousness) {

@@ -32,12 +32,12 @@ function success(data, id) {
             messageAlert.text(data[item]);
             messageAlert.addClass("alert-success");
             $("#" + id).remove();
-            messageAlert.css({'display':'block'});
+            messageAlert.css({'display': 'block'});
         }
         else {
             messageAlert.text(data[item]);
             messageAlert.addClass("alert-danger");
-            messageAlert.css({'display':'block'});
+            messageAlert.css({'display': 'block'});
         }
     }
 }
@@ -49,12 +49,12 @@ function subscriptionsuccess(data) {
         if (item === "message") {
             messageAlert.text(data[item]);
             messageAlert.addClass("alert-success");
-            messageAlert.css({'display':'block'});
+            messageAlert.css({'display': 'block'});
         }
         else {
             messageAlert.text(data[item]);
             messageAlert.addClass("alert-danger");
-            messageAlert.css({'display':'block'});
+            messageAlert.css({'display': 'block'});
         }
     }
 }
@@ -74,40 +74,12 @@ function unsubscribe(id) {
 }
 
 
-function subscribe(id) {
-    event.preventDefault();
-    $.ajax({
-        url: '/subscription/save',
-        data: {id: id},
-        method: 'post',
-        success: function (data) {
-            alert(data);
-            //	$("#"+id).remove();
-            //	$("#alert").html(data.message);
 
-            //var messageAlert = $(".messageAlert");
-            //for (item in data) {
-            //	if (item === "message") {
-            //		messageAlert.text(data[item]);
-            //		messageAlert.addClass("alert-success");
-            //	}
-            //	else {
-            //		messageAlert.text(data[item]);
-            //		messageAlert.addClass("alert-danger");
-            //	}
-            //}
-
-        },
-        error: function () {
-            alert("some error occured")
-        }
-    })
-}
 
 $(document).ready(function () {
 
     $(".seriousness").change(function () {
-        console.log("............."+$(this).attr('topicId')+"---------"+$(this).val());
+        console.log("............." + $(this).attr('topicId') + "---------" + $(this).val());
         $.ajax({
             url: "/subscription/update",
             data: {id: $(this).attr('topicId'), seriousness: $(this).val()},
@@ -115,6 +87,35 @@ $(document).ready(function () {
 
         });
     });
+
+
+    $(".visibility").change(function () {
+        console.log("............." + $(this).attr('topicId') + "---------" + $(this).val());
+        $.ajax({
+            url: "/topic/update",
+            data: {id: $(this).attr('topicId'), visiblity: $(this).val()},
+            success: subscriptionsuccess
+
+        });
+    });
+
+   $(".subscribe").click(function(event){
+       alert("hello");
+
+       event.preventDefault();
+       $.ajax({
+           url: '/subscription/save',
+           data: {id: $(this).attr('id')},
+           method: 'post',
+           success: subscriptionsuccess,
+           error: function () {
+               alert("some error occured")
+           }
+       });
+   });
+
+
+
 });
 
 //

@@ -38,7 +38,7 @@ class Topic {
     }
 
     static List<TopicVo> trendingTopics() {
-        List result = Resource.createCriteria().list([sort:'dateCreated',max:3]) {
+        List result = Resource.createCriteria().list([sort:'dateCreated',max:10]) {
 
             projections {
                 createAlias('topic', 't')

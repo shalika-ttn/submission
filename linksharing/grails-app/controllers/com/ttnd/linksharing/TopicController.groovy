@@ -1,7 +1,9 @@
 package com.ttnd.linksharing
 
 import com.ttnd.linksharing.CO.ResourceSearchCo
+import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Enum.Visiblity
+import grails.converters.JSON
 
 class TopicController {
 
@@ -77,6 +79,30 @@ class TopicController {
 
     }
 
+    def update(Long id, String visiblity) {
+        Map result = [:]
+//        println("#################${id},,,,,,,,${seriousness}")
+//        Subscription subscription1 = Subscription.get(id)
+        Topic topic=Topic.get(id)
+
+//        println("******************811111111111111111111${subscription1}")
+
+        if (topic) {
+            topic.visiblity=visiblity as Visiblity
+
+//            println("***************22222222222222222222222${subscription1.seriousness}")
+            if (topic.save(flush: true)) {
+                println("in if")
+                result.message = "topic visiblity updated  saved succesfully"
+            } else {
+                println("in else")
+                result.error = "topic visiblity updated not succesfully"
+            }
+        }
+        println(".............>>${result}")
+        render result as JSON
+
+    }
 
 
 

@@ -79,17 +79,18 @@ class MyTagLib {
 
 
     def unSubscribed = { attrs, body ->
-        println("************************************************************************")
         if (session.user) {
             User user = session.user
             if (user.isSubscribed(attrs.long('topicId'))) {
                 out << "unsubscribe"
             } else {
-                out << g.link(controller: "subscription", action: "save", params: [id: attrs.long('topicId')], {
-                    "subscribe"
-                })
+                Long id=attrs.long('topicId')
+                String subscribe = "${createLink(controller: 'subscription', action: 'save', params: [id: attrs.long('topicId')])}"
+                out << "<a href=$subscribe class='subscribe' id=\"${id}\">Subscribe</a>"
             }
-        }
+
+            }
+
     }
     def canUpdateTopic = { attrs, body ->
         Topic topic = Topic.findById(attrs.long('topicId'))
