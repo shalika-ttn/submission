@@ -21,7 +21,6 @@ class User {
                       resourceRatings: ResourceRating]
 
     static mapping = {
-//        photo(type: 'blob')
         photo (sqlType: 'longblob')
         sort id: 'desc'
 

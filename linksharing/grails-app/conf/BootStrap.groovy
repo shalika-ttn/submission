@@ -158,24 +158,25 @@ class BootStrap {
         List<User> users = User.list()
         List<Topic> topics = Topic.list()
         List<ReadingItem> readingItems = []
-
-        users.each { user ->
-            topics.each { topic ->
-                if (Subscription.findByUserAndTopic(user, topic)) {
-                    topic.resources.each { resource ->
-                        if (resource.createdBy != user && !user.readingItems?.contains(resource)) {
-                            ReadingItem readingItem = new ReadingItem(user: user, resource: resource, isRead: false)
-                            if (readingItem.save()) {
-                                readingItems.add(readingItem)
-                                user.addToReadingItems(readingItem)
-                                log.info "${readingItem} saved successfully"
-                            } else
-                                log.error "Error saving ${readingItem.errors.allErrors}"
-                        }
-                    }
-                }
-            }
-        }
+       if(!ReadingItem.count) {
+           users.each { user ->
+               topics.each { topic ->
+                   if (Subscription.findByUserAndTopic(user, topic)) {
+                       topic.resources.each { resource ->
+                           if (resource.createdBy != user && !user.readingItems?.contains(resource)) {
+                               ReadingItem readingItem = new ReadingItem(user: user, resource: resource, isRead: false)
+                               if (readingItem.save()) {
+                                   readingItems.add(readingItem)
+                                   user.addToReadingItems(readingItem)
+                                   log.info "${readingItem} saved successfully"
+                               } else
+                                   log.error "Error saving ${readingItem.errors.allErrors}"
+                           }
+                       }
+                   }
+               }
+           }
+       }
         return readingItems
     }
 
@@ -209,22 +210,29 @@ class BootStrap {
     void subscribeTopics(List<Topic> topics, List<User> users) {
         List<Topic> topic2 = []
         // List <Topic> topic3=[]
-        users.each { User user ->
-            topic2 = Topic.findAllByCreatedByNotInList([user])
-            println "***************here ${topic2}"
-            topic2.each {
-                Subscription subscription = new Subscription(topic: it, user: user, seriousness: Seriousness.VERY_SERIOUS)
-                if (subscription.save(flush: true))
-                    log.info "subscription saved succesfully"
-                else
-                    log.error "Error saving resource : ${subscription.errors.allErrors}"
+//        if (users.size() <= 2) {
+        if (!Subscription.count) {
+
+            users.each { User user ->
 
 
+                topic2 = Topic.findAllByCreatedByNotInList([user])
+                println "***************here ${topic2}"
+                topic2.each {
+
+                    Subscription subscription = new Subscription(topic: it, user: user, seriousness: Seriousness.VERY_SERIOUS)
+                    if (subscription.save(flush: true))
+                        log.info "subscription saved succesfully"
+                    else
+                        log.error "Error saving resource : ${subscription.errors.allErrors}"
+
+
+                }
             }
+
+//        }
         }
-
     }
-
 
     def destroy = {
     }
