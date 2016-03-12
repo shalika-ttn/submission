@@ -5,12 +5,9 @@
 
     <div class="col-xs-3">
         <div class="row">
-
-            <g:select name="seriousness" from="${com.ttnd.linksharing.Enum.Seriousness.values()}"
-                      noSelection="['': '-Select seriousness-']"/>
+            <ls:showSeriousness topicId="${topicId}"/>
         </div>
     </div>
-
     <div class="col-xs-1">
 
     </div>

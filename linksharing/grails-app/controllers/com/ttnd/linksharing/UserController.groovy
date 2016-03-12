@@ -20,7 +20,7 @@ class UserController {
         User u = session.user
         List<Subscription> subscriptions = Subscription.findAllByUser(u)
         println "------------------------------${subscriptions}-----------------------"
-        List<ReadingItem> readingItems = ReadingItem.findAllByUser(session.user, [sort: 'dateCreated', order: 'desc', max: 3])
+        List<ReadingItem> readingItems = ReadingItem.findAllByUser(session.user, [sort: 'dateCreated', order: 'desc',max:10])
         render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics,
                                           readingItems  : readingItems, subscriptions: subscriptions])
 

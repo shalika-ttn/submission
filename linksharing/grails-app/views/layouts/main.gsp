@@ -56,7 +56,7 @@
             </li>
             <li>
                 <button type="button" data-toggle="modal" data-target="#myModal4">
-                    <span class="glyphicon glyphicon-inbox" style="font-size:20px"></span>
+                    <span class="glyphicon glyphicon-file" style="font-size:20px"></span>
                 </button>
             </li>
 

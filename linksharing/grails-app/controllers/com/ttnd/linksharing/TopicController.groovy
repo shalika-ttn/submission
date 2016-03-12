@@ -104,7 +104,18 @@ class TopicController {
 
     }
 
+   def delete(Long id)
+   {
+       Topic topic=Topic.findById(id)
+       if(topic)
+       {
+          topic.delete(flush: true)
+           render "deleted sucessfully"
+       }
+       else
+       render "cant delete topic"
 
+   }
 
 
 }

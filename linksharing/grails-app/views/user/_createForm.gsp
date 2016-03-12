@@ -2,12 +2,7 @@
     <div class="panel panel-heading">Register</div>
 
     <div class="panel-body">
-         <g:hasErrors bean="${user}">
-             <div class="alert alert-danger">
-                 <g:eachError><g:message error="${it}"/></g:eachError>
-             </div>
-         </g:hasErrors>
-         <g:renderErrors bean="${user}"/>
+
         <div>
             <g:if test="${flash.error}">
                 ${flash.error}

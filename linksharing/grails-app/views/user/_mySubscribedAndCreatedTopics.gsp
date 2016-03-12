@@ -20,7 +20,7 @@
         <div class="col-xs-3">
             <button><i class="glyphicon glyphicon-envelope" style="font-size:15px"></i></button>
             <button><i class="glyphicon glyphicon-file" style="font-size:15px"></i></button>
-            <g:link action="delete" controller="subscription" params="[id: topicId]"><i
+            <g:link action="delete" controller="topic" params="[id: topicId]"><i
                     class="glyphicon glyphicon-trash" style="font-size:15px"></i></g:link>
 
         </div>

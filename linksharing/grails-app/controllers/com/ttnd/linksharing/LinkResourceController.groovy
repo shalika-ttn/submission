@@ -11,6 +11,7 @@ class LinkResourceController extends ResourceController {
 
         if (link) {
             if (link.save(flush: true)) {
+                readingItem(link)
                 flash.message = " Link saved ------Success "
                 render flash.message
                 // render(view: 'save')
@@ -25,4 +26,18 @@ class LinkResourceController extends ResourceController {
 
 
     }
+
+def viewFullSite(Long id)
+
+{
+    LinkResource linkResource =LinkResource.findById(id)
+
+    if(linkResource)
+         redirect(url:linkResource.url )
+    else
+      render "cant view full site"
+
+
+
+}
 }

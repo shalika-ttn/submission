@@ -21,9 +21,10 @@
                         <a href="#"><i class="fa fa-google-plus"></i></a>
 
                         <div style="float:right">
-                           <g:link controller="documentResource" action="download" params="[id:read.resource.id]">download </g:link>
+                            <ls:checkResourceType resource="${read.resource.id}"/>
+
+                            %{--<g:link controller="documentResource" action="download" params="[id:read.resource.id]">download </g:link>--}%
                             %{--<a href="#">download</a>--}%
-                            <a href="#">fullsize</a>
 
                             %{--<g:if test="${read.isRead}">--}%
                             %{--<a href="#">mark as Unread</a>--}%

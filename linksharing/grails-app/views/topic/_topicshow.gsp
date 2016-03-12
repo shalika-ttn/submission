@@ -38,7 +38,7 @@
     </div>
 
     <div class="row">
-       <ls:topicshow />
+       <ls:topicshow id="${topics.id}"/>
     </div>
 
 </div>

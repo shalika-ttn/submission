@@ -69,10 +69,12 @@ class MyTagLib {
     def checkResourceType = { attrs ->
         Resource resource = Resource.read(attrs.resource)
         if (resource instanceof LinkResource) {
-            out << " <a href=\"#\" class=\"inline\" style=\"float:right;padding: 2px\"><u>View Full Site</u></a>"
+            out<<g.link(controller:'linkResource',action:'viewFullSite',params: [id:attrs.resource],{"ViewFullSite "}  )
+
 
         } else if (resource instanceof DocumentResource) {
-            out << "<a href=\"#\" class=\"inline\" style=\"float:right;padding: 2px\"><u>Download</u></a>"
+            out<<g.link(controller:'documentResource',action:'download',params: [id:attrs.resource],{"Download "}  )
+
         }
 
     }
@@ -99,7 +101,7 @@ class MyTagLib {
             if (topic.createdBy.id == session.user.id || session.user.admin) {
                 out << render(template: '/user/mySubscribedAndCreatedTopics', model: [topicId: topic.id])
             } else {
-                out << render(template: '/user/mySubscribedTopics')
+                out << render(template: '/user/mySubscribedTopics',model:[topicId: topic.id] )
 
             }
         }
@@ -185,9 +187,9 @@ class MyTagLib {
     }
 
 
-    def topicshow = {
+    def topicshow = {attrs->
         if (session.user) {
-            out << render(template: '/user/mySubscribedTopics')
+            out << render(template: '/user/mySubscribedTopics' ,model: [topicId: attrs.id])
         }
     }
 
