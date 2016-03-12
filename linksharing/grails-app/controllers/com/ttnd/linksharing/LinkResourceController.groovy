@@ -1,7 +1,7 @@
 package com.ttnd.linksharing
 
 class LinkResourceController extends ResourceController {
-
+   @Override
     def index() {}
 
     def saveLink(String url, int name, String description) {

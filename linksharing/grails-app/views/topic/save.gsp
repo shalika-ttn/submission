@@ -16,5 +16,10 @@
 
 <p> topic saved succesfully </p>
 
+<a href="${createLink(uri: '/')}" class="btn btn-primary">
+    <i class="ace-icon fa fa-tachometer"></i>
+    Dashboard
+</a>
+
 </body>
 </html>

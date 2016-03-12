@@ -3,8 +3,6 @@ package com.ttnd.linksharing
 import com.ttnd.linksharing.CO.ResourceSearchCo
 import com.ttnd.linksharing.CO.TopicSearchCo
 import com.ttnd.linksharing.CO.UserCo
-import com.ttnd.linksharing.ResourceRating
-import com.ttnd.linksharing.VO.TopicVo
 import com.ttnd.linksharing.Topic
 import com.ttnd.linksharing.Subscription
 
@@ -39,10 +37,11 @@ class UserController {
                 user.photo = co.pic
 
             if (user.save(flush: true)) {
-                flash.message = "user saved successfully"
-                redirect(action: 'index', controller: 'login')
+//                flash.message = "user saved successfully"
+//                redirect(action: 'index', controller: 'login')
+                 render (view: "register")
             } else {
-                render(view: "/login/home", model: [user: user])
+                  render(view: "/login/home", model: [user: user])
             }
         } else
             render("already registered")

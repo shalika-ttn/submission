@@ -1,6 +1,6 @@
 package com.ttnd.linksharing
 
-import com.ttnd.linksharing.ReadingItem
+
 import grails.converters.JSON
 
 class ReadingItemsController {

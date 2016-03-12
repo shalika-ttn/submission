@@ -46,8 +46,6 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
     }
-
-
     codenarc {
 
         ruleSetFiles = "file:grails-app/conf/CodeNarcRules.groovy"

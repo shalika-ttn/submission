@@ -8,7 +8,7 @@ import com.ttnd.linksharing.Constants.Constant
 
 
 class DocumentResourceController extends ResourceController {
-
+    @Override
     def index() {}
 
     @Transactional

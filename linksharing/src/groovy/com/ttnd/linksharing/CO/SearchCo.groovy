@@ -1,7 +1,7 @@
 package com.ttnd.linksharing.CO
 
 import grails.validation.Validateable
-
+@Validateable
 class SearchCo {
 
     String q

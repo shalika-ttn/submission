@@ -83,12 +83,12 @@ class TopicController {
         Map result = [:]
 //        println("#################${id},,,,,,,,${seriousness}")
 //        Subscription subscription1 = Subscription.get(id)
-        Topic topic=Topic.get(id)
+        Topic topic = Topic.get(id)
 
 //        println("******************811111111111111111111${subscription1}")
 
         if (topic) {
-            topic.visiblity=visiblity as Visiblity
+            topic.visiblity = visiblity as Visiblity
 
 //            println("***************22222222222222222222222${subscription1.seriousness}")
             if (topic.save(flush: true)) {
@@ -104,18 +104,15 @@ class TopicController {
 
     }
 
-   def delete(Long id)
-   {
-       Topic topic=Topic.findById(id)
-       if(topic)
-       {
-          topic.delete(flush: true)
-           render "deleted sucessfully"
-       }
-       else
-       render "cant delete topic"
+    def delete(Long id) {
+        Topic topic = Topic.findById(id)
+        if (topic) {
+            topic.delete(flush: true)
+            render(view: "delete")
+        } else
+            render "cant delete topic"
 
-   }
+    }
 
 
 }

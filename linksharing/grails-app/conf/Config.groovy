@@ -11,6 +11,7 @@ grails.config.locations =
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
+//https://drive.google.com/a/tothenew.com/file/d/0B3z1Eq2lcmE0dHRqcTJtOEZNSTA/view?usp=sharing
 
 grails.project.groupId = "com.ttnd.linksharing" // change this to alter the default package name and Maven publishing destination
 println "changing"
