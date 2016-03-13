@@ -13,13 +13,9 @@
                             class="btn btn-primary glyphicon-searchphicon glyphicon-remove searchButtons">
                     </button></span></div>
 
-
-
-
         </div>
-
-        <div id ="topicPosts" class="panel-body">
-                <g:render template = "/topic/resourceSearch" model = "[posts : posts]" />
+        <div id="topicPosts" class="panel-body">
+            <g:render template="/topic/resourceSearch" model="[posts: posts]"/>
 
         </div>
     </div>

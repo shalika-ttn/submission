@@ -85,7 +85,7 @@
 </nav>
 </div>
     <g:render template="/topic/createTopic"/>
-    <g:render template="/topic/sendInvitation"/>
+    <g:render template="/topic/sendInvitation" model="[listOfTopics:session.user.subscribedTopics]"/>
     <g:render template="/documentResource/createDocument"/>
     <g:render template="/linkResource/createLink"/>
     </div>

@@ -10,7 +10,7 @@
 
                 <div class="modal-body">
 
-                    <g:form class="form-horizontal" controller="topic" action="sent">
+                    <g:form class="form-horizontal" controller="topic" action="invite">
                         <div class="form-group">
                             <label for="email" class="control-label col-xs-2">Email</label>
 
@@ -20,16 +20,19 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="name" class="control-label col-xs-2">Topic</label>
+                            <label for="id" class="control-label col-xs-2">Topic</label>
 
                             <div class="col-xs-10">
-                                <g:textField name="name" class="form-control" id="inputText" placeholder="topic"/>
+                                %{--<g:textField name="name" class="form-control" id="inputText" placeholder="topic"/>--}%
+
+                                <g:select name="id" from="${listOfTopics}" optionKey="id"
+                                          noSelection="['': '-Select topic-']"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-offset-2 col-xs-10" style="float:left">
-                                <g:actionSubmit value="invite" action="sent"
+                                <g:actionSubmit value="invite" action="invite"
                                                 class="btn btn-primary">invite</g:actionSubmit>
                             </div>
                         </div>

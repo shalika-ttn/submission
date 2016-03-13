@@ -16,17 +16,8 @@
 
 
         <a href="#" class="inline" style="float:right;padding: 2px"><u>Download</u></a>
-        <a href="#" class="inline" style="float:right;padding: 2px"><u>Full size</u></a>
-        %{--<ls:checkIsRead isRead="${post.isRead}">--}%
-        %{--<g:link class="inline" style="float:right;padding: 2px"><u>Mark As Unread</u></g:link>--}%
-        %{--</ls:checkIsRead>--}%
+        <a href="#" class="inline" style="float:right;padding: 2px"><u>Full site</u></a>
 
-        %{--<ls:checkIsUnRead isRead="${post.isRead}">--}%
-        %{--<a href="#" class="inline" style="float:right;padding: 2px"><u>Mark As read</u></a>--}%
-        %{--</ls:checkIsUnRead>--}%
-        %{--<g:link controller="user" action="post" class="inline"--}%
-        %{--style="float:right;padding: 2px"--}%
-        %{--params="[postId: post.id]"><u>View Post</u></g:link>--}%
     </div>
 
 </div>

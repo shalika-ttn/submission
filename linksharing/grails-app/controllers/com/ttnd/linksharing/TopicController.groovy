@@ -1,11 +1,15 @@
 package com.ttnd.linksharing
 
 import com.ttnd.linksharing.CO.ResourceSearchCo
+import com.ttnd.linksharing.DTO.EmailDTO
 import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Enum.Visiblity
+import com.ttnd.linksharing.VO.TopicVo
 import grails.converters.JSON
 
+
 class TopicController {
+    def emailService
 
     def index() {
         render "this is topic domain"
@@ -13,20 +17,49 @@ class TopicController {
 
     }
 
-    def join(Long id)
+    def join(Long topicId)
     {
+        User user = session.user
+        if (user) {
+            Topic topic = Topic.get(topicId)
+            if (topic) {
+                Subscription subscription = new Subscription(topic: topic, user: user, seriousness: Seriousness.SERIOUS)
+                if (subscription?.save(flush: true)) {
+                    flash.message = "Subscription save successfully"
+                } else {
+                    flash.error = "Subscription not save successfully"
+                }
+            } else {
 
-       Topic topic= Topic.findById(id)
-        Subscription subscription=new Subscription(user: session.user,topic: topic,seriousness: Seriousness.VERY_SERIOUS)
-        if(!subscription)
-            flash.error="subscription not found"
+                flash.error = "Topic not exist"
+            }
+        }
+        redirect(controller: "login", action: 'index')
+
+
     }
 
     def invite(Long id,String email)
     {
-       Topic topic= Topic.findById(id)
-           if(!topic)
-               flash.error="Topic not found"
+       Topic topic= Topic.get(id)
+//           if(!topic)
+//               flash.error="Topic not found"
+//
+        if (topic) {
+            TopicVo topicVO = new TopicVo(id: topic.id, name: topic.name, visiblity:topic.visiblity,
+                    createdBy: topic.createdBy)
+            EmailDTO emailDTO = new EmailDTO(to: [email], subject: "Invitations for topic from linksharing",
+                    view: '/email/_invite', model: [currentUser: session.user, topic: topicVO])
+            emailService.sendMail(emailDTO)
+            flash.message = "Successfully send invitation"
+            println("---------------inside if--------------------")
+        } else {
+            flash.error = "Can't sent invitation"
+            println("---------------inside else--------------------")
+        }
+
+        redirect(controller: "user", action:"index")
+
 
     }
 
