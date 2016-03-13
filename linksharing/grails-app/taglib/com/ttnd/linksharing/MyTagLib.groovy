@@ -82,11 +82,13 @@ class MyTagLib {
 
     def unSubscribed = { attrs, body ->
         if (session.user) {
+            Long id=attrs.long('topicId')
+
             User user = session.user
             if (user.isSubscribed(attrs.long('topicId'))) {
-                out << "unsubscribe"
+                out <<  g.link(class:'unsubscribe',onclick:"unsubscribe(${id})",id:"${id}" ,{"Unsubscribe"})
+
             } else {
-                Long id=attrs.long('topicId')
                 String subscribe = "${createLink(controller: 'subscription', action: 'save', params: [id: attrs.long('topicId')])}"
                 out << "<a href=$subscribe class='subscribe' id=\"${id}\">Subscribe</a>"
             }

@@ -73,6 +73,20 @@ function unsubscribe(id) {
     })
 }
 
+function deleteTopic(id){
+    event.preventDefault();
+    alert("Do you want Topic to get delete");
+    $.ajax({
+
+        url: '/topic/delete',
+        data: {id:id},
+        method: 'post',
+        success: subscriptionsuccess,
+        error: function () {
+            alert("some error occured")
+        }
+    });
+}
 
 
 
@@ -115,22 +129,6 @@ $(document).ready(function () {
    });
 
 
-    //$(".subscriptionDelete").click(function(event){
-    //    alert("Do you want Topic to get delete");
-    //
-    //    event.preventDefault();
-    //    $.ajax({
-    //
-    //        url: '/topic/delete',
-    //        data: {id:$(this).attr('id')},
-    //        method: 'post',
-    //        success: subscriptionsuccess,
-    //        error: function () {
-    //            alert("some error occured")
-    //        }
-    //    });
-    //});
-
 
     $("#clearSearchPostBox").click(function () {
         $("#searchPostBox").val("")
@@ -143,66 +141,76 @@ $(document).ready(function () {
             url: "/resource/search",
             data: {q: $('#searchPostBox').val(), topicId: topicId},
             method:'post',
+            type:'html',
             success: function (result) {
-                alert(result)
-                //$("#topicPosts").html(result)
+                //alert(result)
+                $("#topicPosts").html(result)
             }
         });
     });
 
-
-
 });
+
+
 
 //
 //$(function () {
-//
-//    $('#registerForm').validate({
-//        rules: {
-//            'firstName': {
-//                required: true
-//            },
-//            'lastName': {
-//                required: true
-//            },
-//            'password': {
-//                required: true,
-//                minlength: 5
-//            },
-//            'confirmPassword': {
-//                required: true,
-//                confirm: true
-//            },
-//            'userName': {
-//                required: true,
-//                remote: {
-//                    url: "/login/validateUserName",
-//                    type: "post"
-//                }
-//            },
-//            'emailID': {
-//                required: true,
-//                email: true,
-//                remote: {
-//                    url: "/login/validateEmail",
-//                    type: "post"
-//                }
-//            }
-//        },
-//        submitHandler: function (form) {
-//            form.submit();
-//        }
-//
-//    });
-//
-//    jQuery.validator.addMethod("confirm", function (value, element) {
-//        var result = false;
-//        var password = $('#registerForm input[id=password]').val();
-//
-//        if (password === value) {
-//            result = true;
-//        }
-//        return result;
-//    }, "Confirm password not matched with password");
-//
-//})
+
+    $('#registerForm').validate({
+        rules: {
+            'firstName': {
+                required: true
+            },
+            'lastName': {
+                required: true
+            },
+            'password': {
+                required: true,
+                minlength: 5
+            },
+            'confirmPassword': {
+                required: true,
+                confirm: true
+            },
+            'userName': {
+                required: true,
+                remote: {
+                    url: "/login/validateUserName",
+                    type: "post"
+                }
+            },
+            'email': {
+                required: true,
+                email: true,
+                remote: {
+                    url: "/login/validateEmail",
+                    type: "post"
+                }
+            }
+        },
+        submitHandler: function (form) {
+            form.submit();
+        },
+        messages:{
+            'firstName':{
+                required:"firstName is a required Field"
+            },
+            'lastName':{
+                required:"please provide a LastName "
+            }
+        }
+
+    });
+
+    jQuery.validator.addMethod("confirm", function (value, element) {
+        var result = false;
+        var password = $('#registerForm input[id=password]').val();
+
+        if (password === value) {
+            result = true;
+        }
+        return result;
+    }, "Confirm password not matched with password");
+
+
+

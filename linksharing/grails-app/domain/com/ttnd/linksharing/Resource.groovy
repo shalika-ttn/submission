@@ -24,23 +24,26 @@ abstract class Resource {
 
     static namedQueries = {
         search { ResourceSearchCo co ->
-            if (co.topicId&&co.q) {
+            if (co.topicId && co.q) {
                 //eq(co.topicId=id)
 
                 topic {
                     eq('id', co.topicId)
                     eq('visiblity', co.visiblity)
-//                    ilike('description',"%${co.q}%")
+//                                    }
+                    // resources= Resource.findAllById(co.topicId)
+
                 }
-                // resources= Resource.findAllById(co.topicId)
+                ilike('description', "%${co.q}%")
+
             }
         }
-            resourceSearch{ User user->
-                eq('createdBy',user)
+            resourceSearch { User user ->
+                eq('createdBy', user)
 
-        }
+            }
+
     }
-
 
     RatingInfoVo getRatingInfo() {
         List result = ResourceRating.createCriteria().get() {

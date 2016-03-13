@@ -11,6 +11,7 @@ class UserCo {
     String userName
     String password
     String confirmPassword
+    Boolean active
 
 
 

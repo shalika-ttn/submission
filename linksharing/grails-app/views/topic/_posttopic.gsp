@@ -18,12 +18,9 @@
 
         </div>
 
-        <div id = "topicPosts" class="panel-body">
-            <g:each in = "${posts}" var = "post">
-                <g:render template = "/topic/resourceSearch" model = "[post : post]" />
-            </g:each>
+        <div id ="topicPosts" class="panel-body">
+                <g:render template = "/topic/resourceSearch" model = "[posts : posts]" />
 
-             %{--<g:paginate total = "${topicPosts.size()}" controller = "user" action = "index" max = "${pagination.max}" offset = "${pagination.offset}" />--}%
         </div>
     </div>
 </div>

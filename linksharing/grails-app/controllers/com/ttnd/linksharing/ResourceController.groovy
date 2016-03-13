@@ -37,7 +37,9 @@ class ResourceController {
             co.visiblity = Visiblity.PUBLIC
         println("co:${co.properties}")
         List<Resource> resources = Resource.search(co).list()
-        render "resources $resources"
+//        render "resources $resources"
+
+        render(template: '/topic/resourceSearch', model: [posts: resources])
 
 
     }

@@ -13,6 +13,23 @@ class TopicController {
 
     }
 
+    def join(Long id)
+    {
+
+       Topic topic= Topic.findById(id)
+        Subscription subscription=new Subscription(user: session.user,topic: topic,seriousness: Seriousness.VERY_SERIOUS)
+        if(!subscription)
+            flash.error="subscription not found"
+    }
+
+    def invite(Long id,String email)
+    {
+       Topic topic= Topic.findById(id)
+           if(!topic)
+               flash.error="Topic not found"
+
+    }
+
     def show(ResourceSearchCo co) {
         //Topic topic=Topic.findById(id)
         Topic topic = Topic.read(co.topicId)

@@ -68,7 +68,9 @@
 </span></button>
     <ul class="dropdown-menu">
         <li><g:link controller="user" action="profile" params="[id:session.user.id,topicId:0,visiblity:com.ttnd.linksharing.Enum.Visiblity.PUBLIC]">profile</g:link></li>
-        <li><a href="#">user</a></li>
+        %{--<li><a href="#">user</a></li>--}%
+        <li><g:link controller="user" action="list" >user</g:link></li>
+
         <li><a href="#">topic</a></li>
         <li><a href="#">Post</a></li>
         <g:link action="logout" controller="login">Logout</g:link>
@@ -117,7 +119,6 @@
 <asset:stylesheet href="application.css"/>
 <asset:javascript src="jquery-2.2.1.min.js"/>
 <asset:javascript src="jquery.validate.min.js"/>
-<asset:javascript src="additional-methods.min.js"/>
 
 </body>
 </html>

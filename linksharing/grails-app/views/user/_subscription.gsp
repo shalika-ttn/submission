@@ -16,9 +16,13 @@
 
                         </div>
 
-                        <div style="padding:10px"><a>${subscription.topic.name}</a>
+                        <div style="padding:10px">
+                            %{--<a>${subscription.topic.name}</a>--}%
+                            <g:link action="show" controller="topic" params='[topicId: "${subscription.topic.id}"]'>${subscription.topic.name}</g:link>
                             <br>
                             <g:link>@${subscription.user}</g:link>
+
+
                              <br/>
                             %{--<p style="color:#d3d3d3">@${subscription.user}</p>--}%
                             <g:link name="${subscription.id}"

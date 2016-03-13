@@ -70,7 +70,7 @@ class SubscriptionController {
         } else {
 //            render "Failure in deleting subscription"
 //            render([error: "subscription not deletd successfully"] as JSON)
-            result.error = "subscription is delted"
+            result.error = "subscription can not be deleted"
         }
         render result as JSON
 
