@@ -8,6 +8,7 @@ import com.ttnd.linksharing.DTO.EmailDTO
 import com.ttnd.linksharing.Topic
 import com.ttnd.linksharing.Subscription
 import com.ttnd.linksharing.VO.UserVO
+import grails.converters.JSON
 
 
 class UserController {
@@ -159,5 +160,26 @@ class UserController {
 //        redirect(controller: "login", action: "index")
 //    }
 //
+
+
+    def privateProfile(Long id)
+    {
+        User user=User.findById(id)
+       List<Topic> topicList=Topic.findAllByCreatedBy(user)
+       render(view:'privateProfile',model:[topicList:topicList]  )
+    }
+
+    def changePassword(String password,String confirmPassword)
+    {
+
+        if (User.executeUpdate("update User set password=${confirmPassword} where id=${session.user.id}")) {
+           // render ([message:"successfully changed password"]as JSON)
+            render (view: 'changePassword')
+        } else {
+            //render ([error:"updation unsuccessful!"]as JSON)
+            render "unsuccesfulllllll"
+        }
+
+    }
 
 }
