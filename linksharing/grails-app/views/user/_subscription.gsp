@@ -18,8 +18,9 @@
 
                         <div style="padding:10px"><a>${subscription.topic.name}</a>
                             <br>
-
-                            <p style="color:#d3d3d3">@${subscription.user}</p>
+                            <g:link>@${subscription.user}</g:link>
+                             <br/>
+                            %{--<p style="color:#d3d3d3">@${subscription.user}</p>--}%
                             <g:link name="${subscription.id}"
                                     onclick="unsubscribe(${subscription.id})">Unsubscribe</g:link>
 

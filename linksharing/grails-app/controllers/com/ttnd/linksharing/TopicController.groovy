@@ -23,8 +23,9 @@ class TopicController {
 
         } else {
             if (topic.visiblity == Visiblity.PUBLIC) {
+                List<Resource> resourceList= Resource.findAllByTopic(topic)
 
-                render(view: 'show', model: [userlist: topic.subscribedUser, topics: topic])
+                render(view: 'show', model: [userlist: topic.subscribedUser, topics: topic,posts:resourceList])
 
             } else if (topic.visiblity == Visiblity.PRIVATE) {
                 if (Subscription.findByUserAndTopic(topic.createdBy, topic))
@@ -105,13 +106,15 @@ class TopicController {
     }
 
     def delete(Long id) {
+        Map result = [:]
         Topic topic = Topic.findById(id)
         if (topic) {
+            println("================in if of topic")
             topic.delete(flush: true)
-            render(view: "delete")
+            result.message = "topic visiblity deleted succesfully"
         } else
-            render "cant delete topic"
-
+            result.error = "topic cant be deleted succesfully"
+        render result as JSON
     }
 
 

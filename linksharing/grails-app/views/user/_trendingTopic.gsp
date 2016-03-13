@@ -23,7 +23,7 @@
 
                         <div class="row">
                             <div class="col-xs-4">
-                                <small class="col-xs-12">@shalika</small>
+                               <g:link> <small class="col-xs-12">@${trend.createdBy}</small></g:link>:
                                 %{--<g:link name="${trend.id}" onclick="subscribe(${trend.id})"><small--}%
                                         %{--class="col-xs-12">Subscribe</small></g:link>--}%
                                 <ls:unSubscribed topicId="${trend.id}"/>

@@ -47,8 +47,9 @@ class LoginController {
                 flash.message = "Your accoutn is not active"
 
         } else {
-            flash.message = "User not found"
-            render flash.message
+            flash.error = "User  is not registered please register First"
+             render (template: "loginform")
+//            render flash.message
         }
     }
 

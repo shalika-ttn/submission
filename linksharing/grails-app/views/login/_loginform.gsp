@@ -3,7 +3,14 @@
         <div class="panel panel-heading">Login</div>
 
         <div class="panel-body">
-            <g:form class="form-horizontal">
+            <div class=" panel panel-default" >
+                <g:if test="${flash.error}">
+                    ${flash.error}
+
+                </g:if>
+            </div>
+
+                   <g:form class="form-horizontal">
                 <div class="form-group" style="padding:10px">
                     <label for="name" class="control-label col-xs-4">Username</label>
 

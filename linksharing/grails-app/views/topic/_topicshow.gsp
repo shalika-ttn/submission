@@ -1,6 +1,9 @@
 <div class="panel panel-default">
 
-    <div class="panel-heading">topic:${topics.name}</div>
+    <div class="panel-heading">topic:${topics.name}
+
+
+    </div>
 
 
     <div class=row style="padding:10px">
@@ -38,7 +41,7 @@
     </div>
 
     <div class="row">
-       <ls:topicshow id="${topics.id}"/>
+        <ls:topicshow id="${topics.id}"/>
     </div>
 
 </div>

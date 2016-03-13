@@ -115,6 +115,42 @@ $(document).ready(function () {
    });
 
 
+    //$(".subscriptionDelete").click(function(event){
+    //    alert("Do you want Topic to get delete");
+    //
+    //    event.preventDefault();
+    //    $.ajax({
+    //
+    //        url: '/topic/delete',
+    //        data: {id:$(this).attr('id')},
+    //        method: 'post',
+    //        success: subscriptionsuccess,
+    //        error: function () {
+    //            alert("some error occured")
+    //        }
+    //    });
+    //});
+
+
+    $("#clearSearchPostBox").click(function () {
+        $("#searchPostBox").val("")
+    });
+
+    $("#findSearchPostBox").click(function() {
+        topicId = $(this).attr('topicId')
+
+        $.ajax({
+            url: "/resource/search",
+            data: {q: $('#searchPostBox').val(), topicId: topicId},
+            method:'post',
+            success: function (result) {
+                alert(result)
+                //$("#topicPosts").html(result)
+            }
+        });
+    });
+
+
 
 });
 

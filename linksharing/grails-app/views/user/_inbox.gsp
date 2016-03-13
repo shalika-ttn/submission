@@ -1,6 +1,10 @@
 <div class=row>
     <div class="panel panel-primary">
-        <div class="panel-heading">Inbox</div>
+        <div class="panel-heading">Inbox
+
+
+
+        </div>
 
         <div class="panel-body">
             <g:each in="${readingItems}" var="read">
