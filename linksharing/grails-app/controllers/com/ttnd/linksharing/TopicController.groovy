@@ -42,9 +42,6 @@ class TopicController {
     def invite(Long id,String email)
     {
        Topic topic= Topic.get(id)
-//           if(!topic)
-//               flash.error="Topic not found"
-//
         if (topic) {
             TopicVo topicVO = new TopicVo(id: topic.id, name: topic.name, visiblity:topic.visiblity,
                     createdBy: topic.createdBy)
@@ -52,13 +49,13 @@ class TopicController {
                     view: '/email/_invite', model: [currentUser: session.user, topic: topicVO])
             emailService.sendMail(emailDTO)
             flash.message = "Successfully send invitation"
-            println("---------------inside if--------------------")
+            render (view: '/user/inviteUser')
         } else {
             flash.error = "Can't sent invitation"
-            println("---------------inside else--------------------")
+            render flash.error
         }
 
-        redirect(controller: "user", action:"index")
+       // redirect(controller: "user", action:"index")
 
 
     }
