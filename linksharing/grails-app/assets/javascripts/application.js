@@ -44,7 +44,7 @@ function success(data, id) {
 
 function subscriptionsuccess(data) {
     var messageAlert = $(".messageAlert");
-    alert(data.message)
+    //alert(data.message)
     for (item in data) {
         if (item === "message") {
             messageAlert.text(data[item]);
@@ -75,8 +75,10 @@ function unsubscribe(id) {
 
 function deleteTopic(id){
     event.preventDefault();
-    alert("Do you want Topic to get delete");
-    $.ajax({
+
+    if (confirm("Do you want Topic to get delete") == true)
+    {
+        $.ajax({
 
         url: '/topic/delete',
         data: {id:id},
@@ -85,7 +87,8 @@ function deleteTopic(id){
         error: function () {
             alert("some error occured")
         }
-    });
+    });}
+
 }
 
 
