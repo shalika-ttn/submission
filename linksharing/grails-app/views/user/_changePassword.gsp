@@ -8,10 +8,10 @@
 
 
             <div class="form-group">
-                <label for="password" class="control-label col-xs-5">Password*</label>
+                <label for="password1" class="control-label col-xs-5">Password*</label>
 
                 <div class="col-xs-7">
-                    <g:passwordField name="password" type="password" class="form-control" id="password"
+                    <g:passwordField name="password1" type="password" class="form-control" id="password"
                                      placeholder="******"/>
                     <div class="alert-danger" role="alert">
                         <g:fieldError field="password" bean="${user}"/>
@@ -37,7 +37,7 @@
                 <div class="col-xs-9"></div>
 
                 <div class="col-xs-3">
-                    <g:actionSubmit value="update" class="btn btn-success">Update</g:actionSubmit>
+                    <g:actionSubmit value="update" action="changePassword" class="btn btn-success">Update</g:actionSubmit>
 
                 </div>
             </div>

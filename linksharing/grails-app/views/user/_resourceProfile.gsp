@@ -27,16 +27,18 @@
 
                         <div style="float:right">
                             %{--<g:link controller="documentResource" action="download" params="[id:read.resource.id]">download </g:link>--}%
-                            <a href="#">download</a>
-                            <a href="#">fullsize</a>
-
+                            %{--<a href="#">download</a>--}%
+                            %{--<a href="#">fullsize</a>--}%
+                            <ls:checkResourceType resource="${read.id}"/>
                             %{--<g:if test="${read.isRead}">--}%
                             %{--<a href="#">mark as Unread</a>--}%
                             %{--</g:if>--}%
                             %{--<ls:checkIsRead isRead="${read.isRead}">--}%
                             %{--</ls:checkIsRead>--}%
-                            <g:link controller="user" action="post">view post</g:link>
+                            %{--<g:link controller="user" action="post">view post</g:link>--}%
 
+                            <g:link controller="user" action="post"
+                                    params="[postId: read.id]">view post</g:link>
                         </p>
                         </div>
                     </div>

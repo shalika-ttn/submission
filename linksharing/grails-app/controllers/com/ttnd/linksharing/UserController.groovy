@@ -24,7 +24,7 @@ class UserController {
         User u = session.user
         List<Subscription> subscriptions = Subscription.findAllByUser(u)
         println "------------------------------${subscriptions}-----------------------"
-        List<ReadingItem> readingItems = ReadingItem.findAllByUser(session.user, [sort: 'dateCreated', order: 'desc',max:10])
+        List<ReadingItem> readingItems = ReadingItem.findAllByUser(session.user, [sort: 'dateCreated', order: 'desc', max: 10])
         render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics,
                                           readingItems  : readingItems, subscriptions: subscriptions])
 
@@ -45,9 +45,9 @@ class UserController {
             if (user.save(flush: true)) {
 //                flash.message = "user saved successfully"
 //                redirect(action: 'index', controller: 'login')
-                 render (view: "register")
+                render(view: "register")
             } else {
-                  render(view: "/login/home", model: [user: user])
+                render(view: "/login/home", model: [user: user])
             }
         } else
             render("already registered")
@@ -97,10 +97,6 @@ class UserController {
         }
     }
 
-
-
-
-
 //    def canDeleteResource(Long postId)
 //    {
 //        Resource resource= Resource.get(postId)
@@ -137,7 +133,6 @@ class UserController {
         render(view: "/user/profile", model: [topics: topic, subscriptions: subscriptionTopic, resources: resourceList])
     }
 
-
 //    def forgotPassword(String email)
 //    {
 //       User user= User.findByEmail(email)
@@ -162,24 +157,24 @@ class UserController {
 //
 
 
-    def privateProfile(Long id)
-    {
-        User user=User.findById(id)
-       List<Topic> topicList=Topic.findAllByCreatedBy(user)
-       render(view:'privateProfile',model:[topicList:topicList]  )
+    def privateProfile(Long id) {
+        User user = User.findById(id)
+        List<Topic> topicList = Topic.findAllByCreatedBy(user)
+        render(view: 'privateProfile', model: [topicList: topicList])
     }
 
-    def changePassword(String password,String confirmPassword)
-    {
+    def changePassword(String password1, String confirmPassword) {
+        if (password1 == confirmPassword) {
+            println("+++++++++++++++${password1} ${confirmPassword}+++++++++++++++++++++ ")
 
-        if (User.executeUpdate("update User set password=${confirmPassword} where id=${session.user.id}")) {
-           // render ([message:"successfully changed password"]as JSON)
-            render (view: 'changePassword')
-        } else {
-            //render ([error:"updation unsuccessful!"]as JSON)
-            render "unsuccesfulllllll"
-        }
-
+            if (User.executeUpdate("update User set password='${confirmPassword}' where id='${session.user.id}'")) {
+                // render ([message:"successfully changed password"]as JSON)
+                render(view: 'changePassword')
+            } else {
+                //render ([error:"updation unsuccessful!"]as JSON)
+                render "unsuccesfulllllll"
+            }
+        } else render "password dosnt match confirm password"
     }
 
 }

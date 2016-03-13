@@ -20,8 +20,11 @@
                             %{--<a>${subscription.topic.name}</a>--}%
                             <g:link action="show" controller="topic" params='[topicId: "${subscription.topic.id}"]'>${subscription.topic.name}</g:link>
                             <br>
-                            <g:link>@${subscription.user}</g:link>
-
+                            %{--<g:link>@${subscription.user}</g:link>--}%
+                            <g:link controller="user" action="profile"
+                                        params='[id:"${subscription.user.id}",topicId:"${subscription.topic.id}",
+                                                 visiblity:"${subscription.topic.visiblity}"]'>
+                            @${subscription.user}</g:link>
 
                              <br/>
                             %{--<p style="color:#d3d3d3">@${subscription.user}</p>--}%

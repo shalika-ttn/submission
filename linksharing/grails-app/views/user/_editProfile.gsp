@@ -4,9 +4,7 @@
     <div class="panel-body">
 
         <div>
-            <g:if test="${flash.error}">
-                ${flash.error}
-            </g:if>
+
         </div>
         <g:uploadForm class="form-horizontal" name="registerForm" id="registerForm" action="register" controller="user">
             <div class="form-group">
