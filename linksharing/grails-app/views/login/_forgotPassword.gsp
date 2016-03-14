@@ -13,28 +13,34 @@
 
                             <div class="panel-body">
 
-                                <form class="form">
+                                <g:form class="form" controller="user" action="forgotPassword">
                                     <fieldset>
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i
                                                         class="glyphicon glyphicon-envelope color-blue"></i></span>
 
-                                                <input id="emailInput" placeholder="email address" class="form-control"
-                                                       oninvalid="setCustomValidity('Please enter a valid email address!')"
-                                                       onchange="try {
-                                                           setCustomValidity('')
-                                                       } catch (e) {
-                                                       }" required="" type="email">
+                                                %{--<input id="emailInput" placeholder="email address" class="form-control"--}%
+                                                %{--oninvalid="setCustomValidity('Please enter a valid email address!')"--}%
+                                                %{--onchange="try {--}%
+                                                %{--setCustomValidity('')--}%
+                                                %{--} catch (e) {--}%
+                                                %{--}" required="" type="email">--}%
+
+                                                <g:textField name="email" class="form-control" id="inputEmail"
+                                                             placeholder="Email"/>
+
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <input class="btn btn-lg btn-primary btn-block" value="Send My Password"
-                                                   type="submit">
+                                            <g:actionSubmit value="send my password" action="forgotPassword"
+                                                            class="btn btn-success">Register</g:actionSubmit>
+                                            %{--<input class="btn btn-lg btn-primary btn-block" value="Send My Password"--}%
+                                            %{--type="submit">--}%
                                         </div>
                                     </fieldset>
-                                </form>
+                                </g:form>
 
                             </div>
                         </div>

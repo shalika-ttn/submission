@@ -134,6 +134,18 @@ class User {
         this.id==user.id
     }
 
+
+    static void updatePassword(String newPassword,String email) {
+
+        if (User.executeUpdate("update User set password='${newPassword}' where email='$email'")) {
+            println("----------------updated----------------------------")
+            true
+        } else {
+            println("--------------cant update----------------")
+          false
+        }
+    }
+
     String toString() {
         "$firstName "
     }

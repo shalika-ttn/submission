@@ -129,7 +129,6 @@ class TopicController {
 
     def update(Long id, String visiblity) {
         Map result = [:]
-//        println("#################${id},,,,,,,,${seriousness}")
 //        Subscription subscription1 = Subscription.get(id)
         Topic topic = Topic.get(id)
 

@@ -133,28 +133,26 @@ class UserController {
         render(view: "/user/profile", model: [topics: topic, subscriptions: subscriptionTopic, resources: resourceList])
     }
 
-//    def forgotPassword(String email)
-//    {
-//       User user= User.findByEmail(email)
-//
-//        if(user&&user.active) {
-//            String newPassword = Utill.getRandomPassword()
-//            user.password=newPassword
-//            EmailDTO emailDTO = new EmailDTO(to: [email], subject: "Your Link sharing New Password",
-//                    view: '/email/_password', model: [newPassword: newPassword])
-//
-//            emailService.sendMail(emailDTO)
-//            if (User.updatePassword(newPassword, email)) {
-//                flash.message = "${user.password}If your Email id is valid and you are active user then you will get your new password via mail"
-//            } else {
-//                flash.error = "Please try again"
-//            }
-//        } else {
-//            flash.error = "You are not authorized user"
-//        }
-//        redirect(controller: "login", action: "index")
-//    }
-//
+    def forgotPassword(String email) {
+        User user = User.findByEmail(email)
+
+        if (user && user.active) {
+            String newPassword = Utill.getRandomPassword()
+            user.password = newPassword
+            EmailDTO emailDTO = new EmailDTO(to: [email], subject: "Your Link sharing New Password",
+                    view: '/email/_password', model: [newPassword: newPassword])
+
+            emailService.sendMail(emailDTO)
+            if (User.updatePassword(newPassword, email)) {
+                flash.message = "${user.password}If your Email id is valid and you are active user then you will get your new password via mail"
+            } else {
+                flash.error = "Please try again"
+            }
+        } else {
+            flash.error = "You are not authorized user"
+        }
+        redirect(controller: "login", action: "index")
+    }
 
 
     def privateProfile(Long id) {
@@ -168,13 +166,25 @@ class UserController {
             println("+++++++++++++++${password1} ${confirmPassword}+++++++++++++++++++++ ")
 
             if (User.executeUpdate("update User set password='${confirmPassword}' where id='${session.user.id}'")) {
-                // render ([message:"successfully changed password"]as JSON)
                 render(view: 'changePassword')
             } else {
-                //render ([error:"updation unsuccessful!"]as JSON)
                 render "unsuccesfulllllll"
             }
         } else render "password dosnt match confirm password"
     }
 
+
+    def updtaeProfile(UserCo userCo)
+    {
+            if(User.executeUpdate("update User set firstName='${userCo.firstName}' lastNmae='${userCo.lastName}'" +
+                    "userName='${userCo.lastName}' photo='${userCo.pic}' where id='${session.user.id}' "))
+            {
+                render "saved sucessfully"
+
+            }
+        else
+           render "unsucesfullll"
+
+
+    }
 }
