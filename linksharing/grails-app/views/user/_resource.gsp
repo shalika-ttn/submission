@@ -35,9 +35,9 @@
                             <ls:canDeleteResources resourceId="${post.id}"/>
                             %{--<a href="#">edit</a>--}%
 
-                            <ls:caneditResources />
-                            <a href="#">download</a>
-                            <a href="#">fullsize</a>
+                            <ls:caneditResources id="${post.id}" description="${post.description}"/>
+                            %{--<a href="#">download</a>--}%
+                            %{--<a href="#">fullsize</a>--}%
 
                             %{--<g:if test="${read.isRead}">--}%
                             %{--<a href="#">mark as Unread</a>--}%
@@ -71,6 +71,7 @@
 
             </div>
         </g:form>
+        <g:render template="/user/editResource" model="[post:post]"></g:render>
     </div>
 
 </div>

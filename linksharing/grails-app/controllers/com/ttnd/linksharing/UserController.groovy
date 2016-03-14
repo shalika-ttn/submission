@@ -174,10 +174,10 @@ class UserController {
     }
 
 
-    def updtaeProfile(UserCo userCo)
-    {
-            if(User.executeUpdate("update User set firstName='${userCo.firstName}' lastNmae='${userCo.lastName}'" +
-                    "userName='${userCo.lastName}' photo='${userCo.pic}' where id='${session.user.id}' "))
+    def updateProfile(UserCo userCo)
+    { println ("====================${userCo.properties}+++++++++++++++++")
+            if(User.executeUpdate("update User set firstName='${userCo.firstName}' ,lastName='${userCo.lastName}'," +
+                    "userName='${userCo.userName}', photo='${userCo.pic}' where id='${session.user.id}' "))
             {
                 render "saved sucessfully"
 

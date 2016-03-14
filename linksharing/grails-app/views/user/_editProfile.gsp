@@ -6,7 +6,7 @@
         <div>
 
         </div>
-        <g:uploadForm class="form-horizontal" name="registerForm" id="registerForm" action="register" controller="user">
+        <g:uploadForm class="form-horizontal" name="profileForm" id="profileForm" action="updateProfile" controller="user">
             <div class="form-group">
                 <label for="firstName" class="control-label col-xs-5">First Name*</label>
 
@@ -60,7 +60,7 @@
                 <div class="col-xs-9"></div>
 
                 <div class="col-xs-3">
-                    <g:actionSubmit value="update" class="btn btn-success">Register</g:actionSubmit>
+                    <g:actionSubmit value="update" action="updateProfile" class="btn btn-success">Register</g:actionSubmit>
 
                 </div>
             </div>

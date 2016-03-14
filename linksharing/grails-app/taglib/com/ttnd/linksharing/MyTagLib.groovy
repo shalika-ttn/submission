@@ -182,10 +182,14 @@ class MyTagLib {
     }
 
 
-    def caneditResources = {
+    def caneditResources = {attrs->
         if (session.user) {
-            out << "<a>Edit</a>"
+//            out << "<a>Edit</a>"
+//         out<<g.link(controller:'resource',action:'save',params: [postId:attrs.id,description:attrs.description],{"edit"} )
+//        out<<
+       out<< "<a  href=\"javascript:void(0)\" data-toggle=\"modal\" data-target=\"#edit\">Edit</a>"
         }
+
     }
 
 
