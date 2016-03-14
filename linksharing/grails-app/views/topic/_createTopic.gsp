@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <label for="name" class="control-label col-xs-2">Name</label>
                             <div class="col-xs-10">
-                                <g:textField name="name" class="form-control" id="inputEmail" placeholder="Email"/>
+                                <g:textField name="name" class="form-control" id="inputEmail" placeholder="name"/>
                             </div>
                         </div>
                         <div class="form-group">

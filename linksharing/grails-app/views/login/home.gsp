@@ -29,6 +29,13 @@
 
     <div class="col-xs-4" style="float:right">
         <div class="row">
+            <div class=" panel panel-default" >
+                <g:if test="${flash.error}">
+                    <h3>${flash.error}</h3>
+
+                </g:if>
+            </div>
+
             <g:render template="/login/loginform"/>
         </div>
 

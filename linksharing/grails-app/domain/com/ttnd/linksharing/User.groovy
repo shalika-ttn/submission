@@ -11,7 +11,7 @@ class User {
     String password
     String email
     Byte[] photo
-    Boolean admin =false
+    Boolean admin = false
     Boolean active = true
     Date dateCreated
     Date lastUpdated
@@ -22,7 +22,7 @@ class User {
                       resourceRatings: ResourceRating]
 
     static mapping = {
-        photo (sqlType: 'longblob')
+        photo(sqlType: 'longblob')
         sort id: 'desc'
 
     }
@@ -43,7 +43,7 @@ class User {
 
         confirmPassword bindable: true, nullable: true, blank: true, validator: { val, obj ->
             //println "obj:${obj}******${val}"
-            if(!obj.id) {
+            if (!obj.id) {
                 if (obj.password != val) {
                     return false
                 }
@@ -70,7 +70,6 @@ class User {
             }
         }
     }
-
 
 
     String getName() {
@@ -119,28 +118,24 @@ class User {
 
     }
 
-    Subscription getSubscription(Long id)
-    {
-        Topic topic =Topic.findById(id)
-        Subscription subscription=Subscription.findByUserAndTopic(this,topic)
+    Subscription getSubscription(Long id) {
+        Topic topic = Topic.findById(id)
+        Subscription subscription = Subscription.findByUserAndTopic(this, topic)
         subscription
 
     }
 
-    Boolean equals(User user)
-    {
-        this.id==user.id
+    Boolean equals(User user) {
+        this.id == user.id
     }
 
 
-    static void updatePassword(String newPassword,String email) {
+    static void updatePassword(String newPassword, String email) {
 
         if (User.executeUpdate("update User set password='${newPassword}' where email='$email'")) {
-            println("----------------updated----------------------------")
             true
         } else {
-            println("--------------cant update----------------")
-          false
+            false
         }
     }
 

@@ -1,9 +1,6 @@
 <div class=row>
     <div class="panel panel-primary">
         <div class="panel-heading">Inbox
-
-
-
         </div>
 
         <div class="panel-body">
@@ -12,10 +9,11 @@
                 <li class="list-group-item" style="height:110px;">
 
                     %{--<div class="glyphicon glyphicon-user" style="font-size:70px;float:left;padding:10px"></div>--}%
-                    <div class="col-xs-2" style="float: left" ><ls:userImage id="${read.resource.createdBy?.id}"/></div>
+                    <div class="col-xs-2" style="float: left"><ls:userImage id="${read.resource.createdBy?.id}"/></div>
 
                     <div>
-                        <a href=# style="float:right">Post</a>
+                        <g:link style="float: right" action="show" controller="topic"
+                                params='[topicId: "${read.resource.topic.id}"]'>${read.resource.topic.name}</g:link>
 
                         <p>${read.user.firstName}  ${read.isRead}</p>
 
@@ -27,12 +25,6 @@
                         <div style="float:right">
                             <ls:checkResourceType resource="${read.resource.id}"/>
 
-                            %{--<g:link controller="documentResource" action="download" params="[id:read.resource.id]">download </g:link>--}%
-                            %{--<a href="#">download</a>--}%
-
-                            %{--<g:if test="${read.isRead}">--}%
-                            %{--<a href="#">mark as Unread</a>--}%
-                            %{--</g:if>--}%
                             <ls:checkIsRead resourceId="${read.resource.id}" isRead="${read.isRead}">
                             </ls:checkIsRead>
                             <g:link controller="user" action="post"

@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading">Recent Post
     </div>
     <g:each in="${resources1}" var="res">

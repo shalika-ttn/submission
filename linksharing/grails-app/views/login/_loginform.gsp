@@ -1,14 +1,14 @@
 <div class=row>
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
         <div class="panel panel-heading">Login</div>
 
         <div class="panel-body">
-            <div class=" panel panel-default" >
-                <g:if test="${flash.error}">
-                    ${flash.error}
+            %{--<div class=" panel panel-default" >--}%
+                %{--<g:if test="${flash.error}">--}%
+                    %{--<h3>${flash.error}</h3>--}%
 
-                </g:if>
-            </div>
+                %{--</g:if>--}%
+            %{--</div>--}%
 
                    <g:form class="form-horizontal">
                 <div class="form-group" style="padding:10px">

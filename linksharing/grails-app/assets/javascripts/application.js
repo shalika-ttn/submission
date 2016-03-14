@@ -22,6 +22,7 @@ if (typeof jQuery !== 'undefined') {
     })(jQuery);
 }
 
+
 function success(data, id) {
     $("#alert").html(data.message);
 

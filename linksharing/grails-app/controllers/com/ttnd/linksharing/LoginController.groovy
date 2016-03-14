@@ -48,8 +48,7 @@ class LoginController {
 
         } else {
             flash.error = "User  is not registered please register First"
-             render (template: "loginform")
-//            render flash.message
+             redirect (action:'index' )
         }
     }
 

@@ -1,13 +1,16 @@
-<div class="panel panel-default">
+<head>
+    <style>
+    .error {
+        color: #ff0000;
+    }
+    </style>
+</head>>
+
+<div class="panel panel-primary">
     <div class="panel panel-heading">Register</div>
 
     <div class="panel-body">
 
-        <div>
-            <g:if test="${flash.error}">
-                ${flash.error}
-            </g:if>
-        </div>
         <g:uploadForm class="form-horizontal" name="registerForm" id="registerForm" action="register" controller="user">
             <div class="form-group">
                 <label for="firstName" class="control-label col-xs-5">First Name*</label>
