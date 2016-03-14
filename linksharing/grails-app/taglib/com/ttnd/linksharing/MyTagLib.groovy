@@ -23,12 +23,12 @@ class MyTagLib {
 
         if (session.user) {
 
-            if (attrs.isrRead)
+            if (attrs.isRead)
 //                out << "<a href='#'>Mark as unread </a>"
-                out << g.link(controller: "readingItems", action: "changeIsRead", params: [id: attrs.resourceId, isRead: false], u())
+                out << g.link(controller: "readingItems", class: "ajaxLink ${attrs.resourceId}", action: "changeIsRead", onclick: "markread(${attrs.resourceId},${attrs.isRead})", params: [id: attrs.resourceId, isRead: false], u())
             else
 //                out << "<a href='#'>Mark  as read</a>"
-                out << g.link(controller: "readingItems", action: "changeIsRead", params: [id: attrs.resourceId, isRead: true], m())
+                out << g.link(controller: "readingItems", class: "ajaxLink ${attrs.resourceId}", action: "changeIsRead", onclick: "markread(${attrs.resourceId},${attrs.isRead})", params: [id: attrs.resourceId, isRead: true], m())
 
         }
     }
@@ -67,14 +67,20 @@ class MyTagLib {
 
 
     def checkResourceType = { attrs ->
-        Resource resource = Resource.read(attrs.resource)
-        if (resource instanceof LinkResource) {
-            out<<g.link(controller:'linkResource',action:'viewFullSite',params: [id:attrs.resource],{"ViewFullSite "}  )
+        if (session.user) {
+            Resource resource = Resource.read(attrs.resource)
+            if (resource instanceof LinkResource) {
+                out << g.link(controller: 'linkResource', action: 'viewFullSite', params: [id: attrs.resource], {
+                    "ViewFullSite "
+                })
 
 
-        } else if (resource instanceof DocumentResource) {
-            out<<g.link(controller:'documentResource',action:'download',params: [id:attrs.resource],{"Download "}  )
+            } else if (resource instanceof DocumentResource) {
+                out << g.link(controller: 'documentResource', action: 'download', params: [id: attrs.resource], {
+                    "Download "
+                })
 
+            }
         }
 
     }
@@ -82,18 +88,18 @@ class MyTagLib {
 
     def unSubscribed = { attrs, body ->
         if (session.user) {
-            Long id=attrs.long('topicId')
+            Long id = attrs.long('topicId')
 
             User user = session.user
             if (user.isSubscribed(attrs.long('topicId'))) {
-                out <<  g.link(class:'unsubscribe',onclick:"unsubscribe(${id})",id:"${id}" ,{"Unsubscribe"})
+                out << g.link(class: 'unsubscribe', onclick: "unsubscribe(${id})", id: "${id}", { "Unsubscribe" })
 
             } else {
                 String subscribe = "${createLink(controller: 'subscription', action: 'save', params: [id: attrs.long('topicId')])}"
                 out << "<a href=$subscribe class='subscribe' id=\"${id}\">Subscribe</a>"
             }
 
-            }
+        }
 
     }
     def canUpdateTopic = { attrs, body ->
@@ -103,7 +109,7 @@ class MyTagLib {
             if (topic.createdBy.id == session.user.id || session.user.admin) {
                 out << render(template: '/user/mySubscribedAndCreatedTopics', model: [topicId: topic.id])
             } else {
-                out << render(template: '/user/mySubscribedTopics',model:[topicId: topic.id] )
+                out << render(template: '/user/mySubscribedTopics', model: [topicId: topic.id])
 
             }
         }
@@ -182,20 +188,20 @@ class MyTagLib {
     }
 
 
-    def caneditResources = {attrs->
+    def caneditResources = { attrs ->
         if (session.user) {
 //            out << "<a>Edit</a>"
 //         out<<g.link(controller:'resource',action:'save',params: [postId:attrs.id,description:attrs.description],{"edit"} )
 //        out<<
-       out<< "<a  href=\"javascript:void(0)\" data-toggle=\"modal\" data-target=\"#edit\">Edit</a>"
+            out << "<a  href=\"javascript:void(0)\" data-toggle=\"modal\" data-target=\"#edit\">Edit</a>"
         }
 
     }
 
 
-    def topicshow = {attrs->
+    def topicshow = { attrs ->
         if (session.user) {
-            out << render(template: '/user/mySubscribedTopics' ,model: [topicId: attrs.id])
+            out << render(template: '/user/mySubscribedTopics', model: [topicId: attrs.id])
         }
     }
 

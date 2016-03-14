@@ -9,12 +9,14 @@ class ReadingItemsController {
 
     def changeIsRead(Long id, Boolean isRead) {
 
+        println("================inside chnge is read+++++++++++++++++++++++++++")
+        Map result = [:]
         if (ReadingItem.executeUpdate("update ReadingItem set isRead=${isRead} where id=${id}")) {
-            render ([message:"successfully changed isRead"]as JSON)
+            result.message = "successfully changed isRead"
         } else {
-            render ([error:"updation unsuccessful!"]as JSON)
+            result.error = "cant changed isRead property"
         }
-
+        render result as JSON
     }
 
 

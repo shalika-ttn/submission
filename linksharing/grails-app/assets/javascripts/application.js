@@ -58,6 +58,11 @@ function subscriptionsuccess(data) {
         }
     }
 }
+
+function toggle(id) {
+
+}
+
 function unsubscribe(id) {
     event.preventDefault();
     $.ajax({
@@ -73,25 +78,73 @@ function unsubscribe(id) {
     })
 }
 
-function deleteTopic(id){
+function deleteTopic(id) {
     event.preventDefault();
 
-    if (confirm("Do you want Topic to get delete") == true)
-    {
+    if (confirm("Do you want Topic to get delete") == true) {
         $.ajax({
 
-        url: '/topic/delete',
-        data: {id:id},
-        method: 'post',
-        success: subscriptionsuccess,
-        error: function () {
-            alert("some error occured")
-        }
-    });}
+            url: '/topic/delete',
+            data: {id: id},
+            method: 'post',
+            success: subscriptionsuccess,
+            error: function () {
+                alert("some error occured")
+            }
+        });
+    }
 
 }
 
+function markread(id, isRead) {
+    event.preventDefault();
+    alert("mark as read");
+    //var self =  $(this).attr('name');
+    //$("#id_n")
 
+    $.ajax({
+
+        url: '/readingItems/changeIsRead',
+        data: {id: id, isRead: isRead},
+        method: 'post',
+        success: function (data) {
+            console.log("Try");
+            console.log(jQuery(self));
+            var messageAlert = $(".messageAlert");
+
+            //alert(data.message)
+            for (item in data) {
+                if (item === "message") {
+                     //if(isRead==true)
+                     //{}
+
+                    //$(self).text("Mark as read");
+                    //jQuery(self).val("Mark as Read");
+                    //console.log("."+id + "");
+                    //console.log(jQuery("."+id + ""));
+                    //console.log(jQuery("." + id).prop('href'));
+                    //console.log(jQuery("." + id).attr('href'));
+                    jQuery("."+id + "").text("Mark as UnRead");
+                    messageAlert.text(data[item]);
+                    messageAlert.addClass("alert-success");
+                    messageAlert.css({'display': 'block'});
+                }
+                else {
+                    console.log("."+id + "");
+                    console.log(jQuery("."+id + ""));
+                    jQuery("."+id).text("Mark as read");
+                    messageAlert.text(data[item]);
+                    messageAlert.addClass("alert-danger");
+                    messageAlert.css({'display': 'block'});
+                }
+            }
+        },
+        error: function () {
+            alert("some error occured")
+        }
+    });
+
+}
 
 $(document).ready(function () {
 
@@ -116,35 +169,34 @@ $(document).ready(function () {
         });
     });
 
-   $(".subscribe").click(function(event){
-       alert("hello");
+    $(".subscribe").click(function (event) {
+        alert("hello");
 
-       event.preventDefault();
-       $.ajax({
-           url: '/subscription/save',
-           data: {id: $(this).attr('id')},
-           method: 'post',
-           success: subscriptionsuccess,
-           error: function () {
-               alert("some error occured")
-           }
-       });
-   });
-
+        event.preventDefault();
+        $.ajax({
+            url: '/subscription/save',
+            data: {id: $(this).attr('id')},
+            method: 'post',
+            success: subscriptionsuccess,
+            error: function () {
+                alert("some error occured")
+            }
+        });
+    });
 
 
     $("#clearSearchPostBox").click(function () {
         $("#searchPostBox").val("")
     });
 
-    $("#findSearchPostBox").click(function() {
+    $("#findSearchPostBox").click(function () {
         topicId = $(this).attr('topicId')
 
         $.ajax({
             url: "/resource/search",
             data: {q: $('#searchPostBox').val(), topicId: topicId},
-            method:'post',
-            type:'html',
+            method: 'post',
+            type: 'html',
             success: function (result) {
                 //alert(result)
                 $("#topicPosts").html(result)
@@ -155,65 +207,64 @@ $(document).ready(function () {
 });
 
 
-
 //
 //$(function () {
 
-    $('#registerForm').validate({
-        rules: {
-            'firstName': {
-                required: true
-            },
-            'lastName': {
-                required: true
-            },
-            'password': {
-                required: true,
-                minlength: 5
-            },
-            'confirmPassword': {
-                required: true,
-                confirm: true
-            },
-            'userName': {
-                required: true,
-                remote: {
-                    url: "/login/validateUserName",
-                    type: "post"
-                }
-            },
-            'email': {
-                required: true,
-                email: true,
-                remote: {
-                    url: "/login/validateEmail",
-                    type: "post"
-                }
+$('#registerForm').validate({
+    rules: {
+        'firstName': {
+            required: true
+        },
+        'lastName': {
+            required: true
+        },
+        'password': {
+            required: true,
+            minlength: 5
+        },
+        'confirmPassword': {
+            required: true,
+            confirm: true
+        },
+        'userName': {
+            required: true,
+            remote: {
+                url: "/login/validateUserName",
+                type: "post"
             }
         },
-        submitHandler: function (form) {
-            form.submit();
-        },
-        messages:{
-            'firstName':{
-                required:"firstName is a required Field"
-            },
-            'lastName':{
-                required:"please provide a LastName "
+        'email': {
+            required: true,
+            email: true,
+            remote: {
+                url: "/login/validateEmail",
+                type: "post"
             }
         }
-
-    });
-
-    jQuery.validator.addMethod("confirm", function (value, element) {
-        var result = false;
-        var password = $('#registerForm input[id=password]').val();
-
-        if (password === value) {
-            result = true;
+    },
+    submitHandler: function (form) {
+        form.submit();
+    },
+    messages: {
+        'firstName': {
+            required: "firstName is a required Field"
+        },
+        'lastName': {
+            required: "please provide a LastName "
         }
-        return result;
-    }, "Confirm password not matched with password");
+    }
+
+});
+
+jQuery.validator.addMethod("confirm", function (value, element) {
+    var result = false;
+    var password = $('#registerForm input[id=password]').val();
+
+    if (password === value) {
+        result = true;
+    }
+    return result;
+}, "Confirm password not matched with password");
 
 
 

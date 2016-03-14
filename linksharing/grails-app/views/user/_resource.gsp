@@ -16,7 +16,9 @@
 
                         <p>${post.description}</p>
 
+            <g:if test="${session.user}">
                         <div style="float: left">
+
                             <g:select name="score" from="${[1, 2, 3, 4, 5]}"
                                       noSelection="['': '-Select vote-']"/>
 
@@ -26,6 +28,8 @@
                             <g:actionSubmit value="Vote" controller="ResourceRating" action="save"
                                             class="btn ">Vote</g:actionSubmit>
                         </div>
+            </g:if>
+
                         <a href="#"><span class="fa fa-facebook-official"></span></a>   <a href="#"><i
                             class="fa fa-tumblr-square"></i></a>
                         <a href="#"><i class="fa fa-google-plus"></i></a>

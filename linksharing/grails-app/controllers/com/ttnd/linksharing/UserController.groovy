@@ -54,6 +54,22 @@ class UserController {
 
     }
 
+    def toggleActive(Long id) {
+        if (session.user?.admin) {
+            User user = User.findById(id)
+            if (user.active)
+                user.active = false
+            else
+                user.active = true
+
+            if (user.save(flush: true))
+                flash.message = "Toggled succesfully"
+            else
+                flash.error = "toggled unsuccesfully"
+        }
+        redirect(controller: 'user',action:'list' )
+    }
+
 
     def search() {
 
@@ -92,8 +108,10 @@ class UserController {
                         lastName: user.lastName, active: user.active))
             }
             render(view: 'list', model: [users: userVOList])
+
+
         } else {
-            redirect(controller: 'login', action: 'index')
+            redirect(controller: 'user', action: 'index')
         }
     }
 
@@ -174,16 +192,14 @@ class UserController {
     }
 
 
-    def updateProfile(UserCo userCo)
-    { println ("====================${userCo.properties}+++++++++++++++++")
-            if(User.executeUpdate("update User set firstName='${userCo.firstName}' ,lastName='${userCo.lastName}'," +
-                    "userName='${userCo.userName}', photo='${userCo.pic}' where id='${session.user.id}' "))
-            {
-                render "saved sucessfully"
+    def updateProfile(UserCo userCo) {
+        println("====================${userCo.properties}+++++++++++++++++")
+        if (User.executeUpdate("update User set firstName='${userCo.firstName}' ,lastName='${userCo.lastName}'," +
+                "userName='${userCo.userName}', photo='${userCo.pic}' where id='${session.user.id}' ")) {
+            render "saved sucessfully"
 
-            }
-        else
-           render "unsucesfullll"
+        } else
+            render "unsucesfullll"
 
 
     }

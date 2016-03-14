@@ -11,7 +11,7 @@ class User {
     String password
     String email
     Byte[] photo
-    Boolean admin
+    Boolean admin =false
     Boolean active = true
     Date dateCreated
     Date lastUpdated
@@ -43,8 +43,10 @@ class User {
 
         confirmPassword bindable: true, nullable: true, blank: true, validator: { val, obj ->
             //println "obj:${obj}******${val}"
-            if (obj.password != val) {
-                return false
+            if(!obj.id) {
+                if (obj.password != val) {
+                    return false
+                }
             }
         }
 
@@ -75,10 +77,6 @@ class User {
         "$firstName $lastName"
 
     }
-
-
-
-
 
     List<Topic> getsubscribedTopics() {
         List<Topic> result = Subscription.createCriteria().list() {
