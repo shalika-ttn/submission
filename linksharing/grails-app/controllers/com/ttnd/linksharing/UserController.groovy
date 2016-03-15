@@ -2,14 +2,11 @@ package com.ttnd.linksharing
 
 import com.ttnd.linksharing.CO.ResourceSearchCo
 import com.ttnd.linksharing.CO.TopicSearchCo
+import com.ttnd.linksharing.CO.UpdatePasswordCo
 import com.ttnd.linksharing.CO.UserCo
 import com.ttnd.linksharing.CO.UserSearchCo
 import com.ttnd.linksharing.DTO.EmailDTO
-import com.ttnd.linksharing.Topic
-import com.ttnd.linksharing.Subscription
 import com.ttnd.linksharing.VO.UserVO
-import grails.converters.JSON
-
 
 class UserController {
 
@@ -67,7 +64,7 @@ class UserController {
             else
                 flash.error = "toggled unsuccesfully"
         }
-        redirect(controller: 'user',action:'list' )
+        redirect(controller: 'user', action: 'list')
     }
 
 
@@ -176,19 +173,29 @@ class UserController {
     def privateProfile(Long id) {
         User user = User.findById(id)
         List<Topic> topicList = Topic.findAllByCreatedBy(user)
-        render(view: 'privateProfile', model: [topicList: topicList])
+        render(view: 'privateProfile', model: [topicList: topicList,id:id ])
     }
 
-    def changePassword(String password1, String confirmPassword) {
-        if (password1 == confirmPassword) {
-            println("+++++++++++++++${password1} ${confirmPassword}+++++++++++++++++++++ ")
+//    def changePassword(String password1, String confirmPassword) {
+//        if (password1 == confirmPassword) {
+//            println("+++++++++++++++${password1} ${confirmPassword}+++++++++++++++++++++ ")
+//
+//            if (User.executeUpdate("update User set password='${confirmPassword}' where id='${session.user.id}'")) {
+//                render(view: 'changePassword')
+//            } else {
+//                render "unsuccesfulllllll"
+//            }
+//        } else render "password dosnt match confirm password"
+//    }
 
-            if (User.executeUpdate("update User set password='${confirmPassword}' where id='${session.user.id}'")) {
-                render(view: 'changePassword')
-            } else {
-                render "unsuccesfulllllll"
-            }
-        } else render "password dosnt match confirm password"
+    def updatePassword(UpdatePasswordCo updatePasswordCo) {
+        println("===============hello update===========")
+        if (User.executeUpdate("update User set password='${updatePasswordCo.password}' where id='${updatePasswordCo.id}'")) {
+            render(view: 'updatePassword')
+        } else {
+            render "unsuccesfulllllll"
+        }
+
     }
 
 
@@ -203,4 +210,6 @@ class UserController {
 
 
     }
+
+
 }
