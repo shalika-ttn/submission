@@ -7,8 +7,10 @@ import com.ttnd.linksharing.CO.UserCo
 import com.ttnd.linksharing.CO.UserSearchCo
 import com.ttnd.linksharing.DTO.EmailDTO
 import com.ttnd.linksharing.VO.UserVO
+import org.apache.tools.ant.types.resources.Resources
 
 class UserController {
+    int x=0;
 
     def assetResourceLocator
     def mailService
@@ -136,17 +138,32 @@ class UserController {
 
 
     def profile(ResourceSearchCo co) {
-        TopicSearchCo topicSearchCo = new TopicSearchCo(id: co.id, visiblity: co.visiblity)
 
+        co.max = co.max ?: 5
+        co.offset = co.offset ?: 0
+        TopicSearchCo topicSearchCo = new TopicSearchCo(id: co.id, visiblity: co.visiblity, max: co.max, offset: co.offset)
+        User user = User.findById(co.id)
+        Integer totalCount = Resource.countByCreatedBy(user)
         List<Topic> topic = topicService.search(topicSearchCo)
 
         List<Topic> subscriptionTopic = subscriptionService.search(topicSearchCo)
+//        Integer totalCount1 = Subscription.countByUser(user)
+
         List<Resource> resourceList = resourceService.search(co)
-        println("=========${resourceList.size()}=================")
+//        totalCount += resourceList.size()
+//        println("=========${resourceList.size()}=================")
+            if(x==0)
+            {
+                render(view: "/user/profile", model: [topics: topic, subscriptions: subscriptionTopic, resources: resourceList, co: co, totalCount: totalCount])
+                x++
+            }
+        else
+                render(template: "/user/resourceAjax", model: [resources: resourceList, co: co, totalCount: totalCount])
 
 
-        render(view: "/user/profile", model: [topics: topic, subscriptions: subscriptionTopic, resources: resourceList])
     }
+
+
 
     def forgotPassword(String email) {
         User user = User.findByEmail(email)
@@ -173,7 +190,7 @@ class UserController {
     def privateProfile(Long id) {
         User user = User.findById(id)
         List<Topic> topicList = Topic.findAllByCreatedBy(user)
-        render(view: 'privateProfile', model: [topicList: topicList,id:id ])
+        render(view: 'privateProfile', model: [topicList: topicList, id: id])
     }
 
 //    def changePassword(String password1, String confirmPassword) {

@@ -70,6 +70,7 @@ grails.project.dependency.resolution = {
         runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+//        compile "org.grails.plugins:remote-pagination:0.4.8"
         //compile "org.grails.plugins:twitter-bootstrap:3.3.4"
     }
 
@@ -86,6 +87,7 @@ grails.project.dependency.resolution = {
         compile "org.grails.plugins:mail:1.0.7"
         compile "org.grails.plugins:codenarc:0.25.1"
         compile ':quartz:1.0.1'
+        compile ":remote-pagination:0.4.8"
 
         test "org.grails.plugins:code-coverage:2.0.3-3"
 

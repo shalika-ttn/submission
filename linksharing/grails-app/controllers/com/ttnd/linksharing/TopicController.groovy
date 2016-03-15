@@ -17,8 +17,7 @@ class TopicController {
 
     }
 
-    def join(Long topicId)
-    {
+    def join(Long topicId) {
         User user = session.user
         if (user) {
             Topic topic = Topic.get(topicId)
@@ -39,23 +38,22 @@ class TopicController {
 
     }
 
-    def invite(Long id,String email)
-    {
-       Topic topic= Topic.get(id)
+    def invite(Long id, String email) {
+        Topic topic = Topic.get(id)
         if (topic) {
-            TopicVo topicVO = new TopicVo(id: topic.id, name: topic.name, visiblity:topic.visiblity,
+            TopicVo topicVO = new TopicVo(id: topic.id, name: topic.name, visiblity: topic.visiblity,
                     createdBy: topic.createdBy)
             EmailDTO emailDTO = new EmailDTO(to: [email], subject: "Invitations for topic from linksharing",
                     view: '/email/_invite', model: [currentUser: session.user, topic: topicVO])
             emailService.sendMail(emailDTO)
             flash.message = "Successfully send invitation"
-            render (view: '/user/inviteUser')
+            render(view: '/user/inviteUser')
         } else {
             flash.error = "Can't sent invitation"
             render flash.error
         }
 
-       // redirect(controller: "user", action:"index")
+        // redirect(controller: "user", action:"index")
 
 
     }
@@ -70,9 +68,9 @@ class TopicController {
 
         } else {
             if (topic.visiblity == Visiblity.PUBLIC) {
-                List<Resource> resourceList= Resource.findAllByTopic(topic)
+                List<Resource> resourceList = Resource.findAllByTopic(topic)
 
-                render(view: 'show', model: [userlist: topic.subscribedUser, topics: topic,posts:resourceList])
+                render(view: 'show', model: [userlist: topic.subscribedUser, topics: topic, posts: resourceList])
 
             } else if (topic.visiblity == Visiblity.PRIVATE) {
                 if (Subscription.findByUserAndTopic(topic.createdBy, topic))
@@ -129,15 +127,10 @@ class TopicController {
 
     def update(Long id, String visiblity) {
         Map result = [:]
-//        Subscription subscription1 = Subscription.get(id)
         Topic topic = Topic.get(id)
-
-//        println("******************811111111111111111111${subscription1}")
 
         if (topic) {
             topic.visiblity = visiblity as Visiblity
-
-//            println("***************22222222222222222222222${subscription1.seriousness}")
             if (topic.save(flush: true)) {
                 println("in if")
                 result.message = "topic visiblity updated  saved succesfully"
@@ -149,6 +142,18 @@ class TopicController {
         println(".............>>${result}")
         render result as JSON
 
+    }
+
+    def topicUpdate(Long id, String topicName) {
+        Topic topic = Topic.get(id)
+        if (topic) {
+            topic.name = topicName
+            if (topic.save(flush: true))
+                render(success: "Topic saved succesfully" as JSON)
+            else
+                render(error: "Topic can not be saved succesfully" as JSON)
+        } else
+            render(error: "topic can not be found" as JSON)
     }
 
     def delete(Long id) {

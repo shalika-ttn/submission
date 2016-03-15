@@ -1,18 +1,19 @@
+<%@ page import="java.awt.print.Book" %>
 <div class=row>
     <div class="panel panel-primary">
         <div class="panel-heading">Post</div>
 
-        <div class="panel-body">
+        <div class="panel-body" id="resourcechange">
             <g:each in="${resources}" var="read">
 
-                <li class="list-group-item" style="height:110px;">
+                <li class="list-group-item" style="height:110px;" >
 
                     %{--<div class="glyphicon glyphicon-user" style="font-size:70px;float:left;padding:10px"></div>--}%
                     <div class="col-xs-2" style="float: left">
-                     ${read.topic.name}
-                     <br>
-                    %{--${read.class}--}%
-                </div>
+                        ${read.topic.name}
+                        <br>
+                        %{--${read.class}--}%
+                    </div>
 
                     <div>
                         <a href=# style="float:right">Post</a>
@@ -45,6 +46,12 @@
                 </li>
             </g:each>
 
+            %{--<g:paginate total="${totalCount}" controller="user" action="profile"--}%
+                        %{--params='[id: "${co.id}", visiblity: "${co.visiblity}"]'--}%
+                        %{--offset="${co.offset}"/>--}%
+
+            <util:remotePaginate controller="user" action="profile" total="${totalCount}"
+                           params='[id:"${co.id}",visiblity:"${co.visiblity}"]'      update="resourcechange" max="5" pageSizes="[5, 10]"/>
         </div>
     </div>
 </div>

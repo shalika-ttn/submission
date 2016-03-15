@@ -116,8 +116,8 @@ function markread(id, isRead) {
             //alert(data.message)
             for (item in data) {
                 if (item === "message") {
-                     //if(isRead==true)
-                     //{}
+                    //if(isRead==true)
+                    //{}
 
                     //$(self).text("Mark as read");
                     //jQuery(self).val("Mark as Read");
@@ -125,15 +125,15 @@ function markread(id, isRead) {
                     //console.log(jQuery("."+id + ""));
                     //console.log(jQuery("." + id).prop('href'));
                     //console.log(jQuery("." + id).attr('href'));
-                    jQuery("."+id + "").text("Mark as UnRead");
+                    jQuery("." + id + "").text("Mark as UnRead");
                     messageAlert.text(data[item]);
                     messageAlert.addClass("alert-success");
                     messageAlert.css({'display': 'block'});
                 }
                 else {
-                    console.log("."+id + "");
-                    console.log(jQuery("."+id + ""));
-                    jQuery("."+id).text("Mark as read");
+                    console.log("." + id + "");
+                    console.log(jQuery("." + id + ""));
+                    jQuery("." + id).text("Mark as read");
                     messageAlert.text(data[item]);
                     messageAlert.addClass("alert-danger");
                     messageAlert.css({'display': 'block'});
@@ -204,6 +204,33 @@ $(document).ready(function () {
             }
         });
     });
+
+
+    //$(".changeTopicName").bind('click', function () {
+    //    var topicId = $(this).attr("topicId")
+    //    var parent = $(this).attr("parent")
+    //    var topicName = $("#" + parent + "_" + topicId).val()
+    //    var visibility = "public";
+    //    alert(topicName)
+    //    $.ajax({
+    //        url: "/topic/topicUpdate",
+    //        data: {topicName: topicName, id: topicId},
+    //        success: function (data) {
+    //            if (data.success) {
+    //                $(".topicName_" + topicId).html(data.topicName)
+    //                $("#" + parent + "Edit_" + topicId).hide()
+    //                subscriptionsuccess({message: "Updated topic"});
+    //            } else {
+    //                subscriptionsuccess({error: data.message})
+    //
+    //
+    //            }
+    //        }
+    //    });
+    //
+    //
+    //});
+
 
 });
 

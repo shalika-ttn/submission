@@ -30,7 +30,7 @@
 </div>
 
 <div class="col-xs-6" style="float:right">
-    <g:render template="resourceProfile"/>
+    <g:render template="resourceProfile" model="[totalCount:totalCount]"/>
     %{--<g:render template="inbox" model="[readingItems: readingItems]"/>--}%
 </div>
 

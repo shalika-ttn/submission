@@ -7,8 +7,8 @@ import grails.transaction.Transactional
 class ResourceService {
 
     List<Resource> search(ResourceSearchCo resourceSearchCo) {
-
-        Resource.resourceSearch(resourceSearchCo.getUser()).list()
+        println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${resourceSearchCo.properties}")
+        Resource.resourceSearch(resourceSearchCo.getUser()).list([max: resourceSearchCo.max, offset: resourceSearchCo.offset])
 
     }
 }

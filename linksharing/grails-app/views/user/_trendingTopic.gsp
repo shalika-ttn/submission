@@ -6,6 +6,22 @@
 
         <div class="panel-body " id="${trend.id}">
             <div>
+
+                %{--<div class="row" id="topicEdit${trend.id}" style="display: none">--}%
+                    %{--<form class="form-inline" role="form">--}%
+                        %{--<div class="form-group">--}%
+
+                            %{--<input type="text" name="topic" class="form-control col-xs-4" placeholder="${trend.name}"--}%
+                                   %{--id="trending_${trend.id}">--}%
+                            %{--<button name="saveTopic" class="btn changeTopicName" parent="trending"--}%
+                                    %{--topicId="${trend.id}">save</button>--}%
+                            %{--<button type="button" class="btn btn-default">cancel</button>--}%
+
+                        %{--</div>--}%
+                    %{--</form>--}%
+
+                %{--</div>--}%
+
                 <div class="row">
                     <div class="list-group  col-xs-3">
                         <div class="img-thumbnail" style="float:left">
@@ -23,13 +39,13 @@
 
                         <div class="row">
                             <div class="col-xs-4">
-                               %{--<g:link> <small class="col-xs-12">@${trend.createdBy}</small></g:link>--}%
+                                %{--<g:link> <small class="col-xs-12">@${trend.createdBy}</small></g:link>--}%
                                 <li><g:link controller="user" action="profile"
-                                            params='[id:"${trend.createdBy.id}",topicId:"${trend.id}",visiblity:"${trend.visiblity}"]'>
+                                            params='[id: "${trend.createdBy.id}", topicId: "${trend.id}", visiblity: "${trend.visiblity}"]'>
                                     ${trend.createdBy}</g:link></li>
 
                                 %{--<g:link name="${trend.id}" onclick="subscribe(${trend.id})"><small--}%
-                                        %{--class="col-xs-12">Subscribe</small></g:link>--}%
+                                %{--class="col-xs-12">Subscribe</small></g:link>--}%
                                 <ls:unSubscribed topicId="${trend.id}"/>
 
                             </div>
@@ -51,11 +67,7 @@
                 </div>
             </div>
 
-            <div>
-            </div>
             <hr/>
-
-
 
         </div>
     </g:each>

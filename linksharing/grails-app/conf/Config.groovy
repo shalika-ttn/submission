@@ -63,7 +63,8 @@ grails {
     }
 }
 
-
+grails.plugins.remotepagination.enableBootstrap=true
+grails.plugins.remotepagination.max=5
 grails.converters.encoding = "UTF-8"
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
