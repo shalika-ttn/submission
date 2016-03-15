@@ -32,8 +32,24 @@
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin:10px">
     <div class="navbar-form  navbar-right" role="search">
 
-        <input type="text" placeholder="Search"><span class="glyphicon glyphicon-search"
-                                                      style="margin-left:-161px">
+        %{--<input type="text" placeholder="Search"><span class="glyphicon glyphicon-search"--}%
+                                                      %{--style="margin-left:-161px">--}%
+    %{--<form class="navbar-form navbar-right" style="padding-right:30px">--}%
+
+        <div class="input-group" style="padding-right:30px">
+            <span class="input-group-btn">
+                <button  id="findSearchPostBox" topicId="${0}"
+                        class="btn btn-primary glyphicon glyphicon-search searchButtons findSearchPostBox">
+                </button></span> <input type="text" id="searchPostBox" class="form-control input-group searchPostBox"
+                                        placeholder="Search">
+            <span class="input-group-btn">
+                <button id="clearSearchPostBox"
+                        class="btn btn-primary glyphicon-searchphicon glyphicon-remove searchButtons">
+                </button></span></div>
+    %{--</form>--}%
+
+
+
     </span>
     </input>
 
@@ -67,9 +83,9 @@
                                                                                       style="font-size:20px">
 </span></button>
     <ul class="dropdown-menu">
-        <li><g:link controller="user" action="privateProfile" params="[id:session.user.id]">profile</g:link></li>
+        <li><g:link controller="user" action="privateProfile" params="[id: session.user.id]">profile</g:link></li>
         %{--<li><a href="#">user</a></li>--}%
-        <li><g:link controller="user" action="list" >user</g:link></li>
+        <li><g:link controller="user" action="list">user</g:link></li>
 
         <g:link action="logout" controller="login">Logout</g:link>
     </ul>
@@ -83,7 +99,7 @@
 </nav>
 </div>
     <g:render template="/topic/createTopic"/>
-    <g:render template="/topic/sendInvitation" model="[listOfTopics:session.user.subscribedTopics]"/>
+    <g:render template="/topic/sendInvitation" model="[listOfTopics: session.user.subscribedTopics]"/>
     <g:render template="/documentResource/createDocument"/>
     <g:render template="/linkResource/createLink"/>
     </div>
@@ -97,13 +113,27 @@
                 </div>
             </div>
 
-            <form class="navbar-form navbar-right" style="padding-right:30px" role="search">
+            %{--<form class="navbar-form navbar-right" style="padding-right:30px" role="search">--}%
 
-                <input type="text" placeholder="Search"><span class="glyphicon glyphicon-search"
-                                                              style="margin-left:-161px">
-            </span>
+            %{--<input type="text" placeholder="Search"><span class="glyphicon glyphicon-search"--}%
+            %{--style="margin-left:-161px">--}%
+            %{--</span>--}%
 
-            </form>
+            %{--</form>--}%
+
+            %{--<form class="navbar-form navbar-right" style="padding-right:30px">--}%
+
+                %{--<div class="input-group" style="padding-right:30px">--}%
+                    %{--<span class="input-group-btn">--}%
+                        %{--<button id="findSearchPostBox"--}%
+                                %{--class="btn btn-primary glyphicon glyphicon-search searchButtons">--}%
+                        %{--</button></span> <input type="text" id="searchPostBox" class="form-control input-group"--}%
+                                                %{--placeholder="Search">--}%
+                    %{--<span class="input-group-btn">--}%
+                        %{--<button id="clearSearchPostBox"--}%
+                                %{--class="btn btn-primary glyphicon-searchphicon glyphicon-remove searchButtons">--}%
+                        %{--</button></span></div>--}%
+            %{--</form>--}%
         </nav>
     </div>
 

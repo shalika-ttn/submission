@@ -129,7 +129,7 @@ class UserController {
         if (mailService.sendMail {
             to "surbhi.dhawan@tothenew.com"
 //           from "shalika.singhal@tothenew.com"
-            subject "Hello sakshi"
+            subject "Hello surbhi"
             body 'How are you?'
         })
             render "sucessss"

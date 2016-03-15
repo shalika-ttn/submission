@@ -4,9 +4,9 @@
 
             <div class="input-group">
                 <span class="input-group-btn">
-                    <button id="findSearchPostBox" topicId="${topics.id}"
-                            class="btn btn-primary glyphicon glyphicon-search searchButtons">
-                    </button></span> <input type="text" id="searchPostBox" class="form-control input-group"
+                    <button  id="findSearchPostBox" topicId="${topics.id}"
+                            class="btn btn-primary glyphicon glyphicon-search searchButtons findSearchPostBox">
+                    </button></span> <input type="text" id="searchPostBox" class="form-control input-group searchPostBox"
                                             placeholder="Search">
                 <span class="input-group-btn">
                     <button id="clearSearchPostBox"

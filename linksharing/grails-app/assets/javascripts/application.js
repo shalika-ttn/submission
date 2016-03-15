@@ -190,12 +190,12 @@ $(document).ready(function () {
         $("#searchPostBox").val("")
     });
 
-    $("#findSearchPostBox").click(function () {
-        topicId = $(this).attr('topicId')
+    $(".findSearchPostBox").click(function () {
+        topicId = $(this).attr('topicId');
 
         $.ajax({
             url: "/resource/search",
-            data: {q: $('#searchPostBox').val(), topicId: topicId},
+            data: {q: $(this).parent().parent().find($('.searchPostBox')).val(), topicId: topicId},
             method: 'post',
             type: 'html',
             success: function (result) {

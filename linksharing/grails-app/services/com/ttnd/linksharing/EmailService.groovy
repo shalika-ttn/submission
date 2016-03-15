@@ -6,7 +6,8 @@ import grails.transaction.Transactional
 @Transactional
 class EmailService {
     def mailService
-//    def messageSource
+
+  def messageSource
 
     def sendMail(EmailDTO emailDTO) {
         mailService.sendMail {
@@ -20,10 +21,10 @@ class EmailService {
         }
     }
 
-//    def sendUnreadResourcesEmail(User user, List<Resource> unreadResource) {
-//        EmailDTO emailDTO = new EmailDTO(to: [user.email],
-//                subject: messageSource.getMessage("com.tothenew.co.dto.EmailDTO.unread.subject", [].toArray(), Locale.default),
-//                view: "/email/unreadResources", model: [user: user, unreadResource: unreadResource])
-//        sendMail(emailDTO)
-//    }
+    def sendUnreadResourcesEmail(User user, List<Resource> unreadResource) {
+        EmailDTO emailDTO = new EmailDTO(to: [user.email],
+                subject: messageSource.getMessage("com.ttnd.linksharing.DTO.EmailDTO.unread.subject",[].toArray(), Locale.default),
+                view: "/email/unreadResources", model: [user: user, unreadResource: unreadResource])
+        sendMail(emailDTO)
+    }
 }

@@ -35,6 +35,7 @@ class ResourceController {
     def search(ResourceSearchCo co) {
         if (co.q)
             co.visiblity = Visiblity.PUBLIC
+        println ("+++++++++global properties+++++++++++++++++++${co.topicId}")
         println("co:${co.properties}")
         List<Resource> resources = Resource.search(co).list()
 //        render "resources $resources"

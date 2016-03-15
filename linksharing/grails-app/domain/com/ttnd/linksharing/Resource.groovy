@@ -34,9 +34,10 @@ abstract class Resource {
                     // resources= Resource.findAllById(co.topicId)
 
                 }
-                ilike('description', "%${co.q}%")
+
 
             }
+            ilike('description', "%${co.q}%")
         }
             resourceSearch { User user ->
                 eq('createdBy', user)
@@ -85,6 +86,16 @@ abstract class Resource {
     {
         File file = new File(this.filepath)
         file.delete()
+    }
+
+
+    static List usersWithUnreadResources()
+    {
+        return ReadingItem.createCriteria().listDistinct {
+            projections { property('user')
+            }
+            eq('isRead', false)
+        }
     }
 
     String toString() {
