@@ -152,10 +152,10 @@ class UserController {
         List<Resource> resourceList = resourceService.search(co)
 //        totalCount += resourceList.size()
 //        println("=========${resourceList.size()}=================")
-            if(x==0)
+            if(!request.xhr)
             {
                 render(view: "/user/profile", model: [topics: topic, subscriptions: subscriptionTopic, resources: resourceList, co: co, totalCount: totalCount])
-                x++
+                
             }
         else
                 render(template: "/user/resourceAjax", model: [resources: resourceList, co: co, totalCount: totalCount])
