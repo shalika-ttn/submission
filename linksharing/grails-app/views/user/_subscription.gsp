@@ -6,20 +6,20 @@
     <div class="panel-body">
 
         <g:each in="${subscriptions}" var="subscription">
-            %{--<div class="row" id="subEdit${subscription.topic.id}" style="display: none">--}%
-                %{--<div class="form-inline" role="form">--}%
+            <div class="row" id="subscriptionEdit_${subscription.topic.id}" style="display: none">
+                <div class="form-inline" role="form">
 
-                    %{--<div class="form-group">--}%
+                    <div class="form-group">
 
-                        %{--<input type="text" name="topic" class="form-control col-xs-4"--}%
-                               %{--placeholder="${subscription.topic.name}" id="subscription_${subscription.topic.id}">--}%
-                        %{--<button name="saveTopic" class="btn changeTopicName" parent="subscription"--}%
-                                %{--topicId="${subscription.topic.id}">save</button>--}%
-                        %{--<button type="button" class="btn btn-default">cancel</button>--}%
+                        <input type="text" name="topic" class="form-control col-xs-4"
+                               placeholder="${subscription.topic.name}" id="subscription_${subscription.topic.id}">
+                        <button name="saveTopic" class="btn changeTopicName" parent="subscription"
+                                topicId="${subscription.topic.id}">save</button>
+                        <button type="button" class="btn btn-default">cancel</button>
 
-                    %{--</div>--}%
-                %{--</div>--}%
-            %{--</div>--}%
+                    </div>
+                </div>
+            </div>
 
             <div class=row id="${subscription.id}">
                 <div class="row">
@@ -73,7 +73,7 @@
 
                 <div>
                     %{--<div class="row">--}%
-                    <ls:canUpdateTopic topicId="${subscription.topic.id}"/>
+                    <ls:canUpdateTopic topicId="${subscription.topic.id}" parent="subscription"/>
                 </div>
                 %{--</div>--}%
             </div>

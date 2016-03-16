@@ -29,7 +29,7 @@
 
     <div class="col-xs-4" style="float:right">
         <div class="row">
-            <div class=" panel panel-default" >
+            <div class=" panel panel-default">
                 <g:if test="${flash.error}">
                     <h3>${flash.error}</h3>
 

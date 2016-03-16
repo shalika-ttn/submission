@@ -104,10 +104,11 @@ class MyTagLib {
     }
     def canUpdateTopic = { attrs, body ->
         Topic topic = Topic.findById(attrs.long('topicId'))
+        String parent=attrs.parent
 //        Topic topic= attrs.topic as Topic
         if (session.user) {
             if (topic.createdBy.id == session.user.id || session.user.admin) {
-                out << render(template: '/user/mySubscribedAndCreatedTopics', model: [topicId: topic.id])
+                out << render(template: '/user/mySubscribedAndCreatedTopics', model: [topicId: topic.id,parent:parent])
             } else {
                 out << render(template: '/user/mySubscribedTopics', model: [topicId: topic.id])
 

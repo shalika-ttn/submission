@@ -206,30 +206,40 @@ $(document).ready(function () {
     });
 
 
-    //$(".changeTopicName").bind('click', function () {
-    //    var topicId = $(this).attr("topicId")
-    //    var parent = $(this).attr("parent")
-    //    var topicName = $("#" + parent + "_" + topicId).val()
-    //    var visibility = "public";
-    //    alert(topicName)
-    //    $.ajax({
-    //        url: "/topic/topicUpdate",
-    //        data: {topicName: topicName, id: topicId},
-    //        success: function (data) {
-    //            if (data.success) {
-    //                $(".topicName_" + topicId).html(data.topicName)
-    //                $("#" + parent + "Edit_" + topicId).hide()
-    //                subscriptionsuccess({message: "Updated topic"});
-    //            } else {
-    //                subscriptionsuccess({error: data.message})
-    //
-    //
-    //            }
-    //        }
-    //    });
-    //
-    //
-    //});
+    $(".edit").bind('click', function () {
+        var topicId = $(this).attr("topicId")
+        var parent = $(this).attr("parent")
+        event.preventDefault()
+        var editRow = $("#" + parent + "Edit_" + topicId)
+        editRow.show()
+        event.preventDefault()});
+
+
+    $(".changeTopicName").bind('click', function () {
+        alert("hello")
+        var topicId = $(this).attr("topicId")
+        var parent = $(this).attr("parent")
+        var topicName = $("#" + parent + "_" + topicId).val()
+        var visibility = "public";
+        alert(topicName + topicId + parent)
+        $.ajax({
+            url: "/topic/topicUpdate",
+            data: {topicName: topicName, id: topicId},
+            success: function (data) {
+                if (data.success) {
+                    $(".topicName_" + topicId).html(data.topicName)
+                    $("#" + parent + "Edit_" + topicId).hide()
+                    subscriptionsuccess({message: "Updated topic"});
+                } else {
+                    subscriptionsuccess({error: data.message})
+
+
+                }
+            }
+        });
+
+
+    });
 
 
 });

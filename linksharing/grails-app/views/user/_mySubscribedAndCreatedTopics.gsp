@@ -20,11 +20,13 @@
         <div class="col-xs-3">
             <button><i class="glyphicon glyphicon-envelope" style="font-size:15px"></i></button>
             %{--<button><i class="glyphicon glyphicon-file" style="font-size:15px"></i></button>--}%
-            <span><a href="javascript:void (0)" id="edit=${topicId}" class="glyphicon glyphicon-edit nav_icon edit"
+            %{--<g:textField name="${parent}_${topicId}" id="${parent}_${topicId}" value="abc"/>--}%
+            <span><a href="javascript:void (0)" id="edit=${topicId}"
+                     class="glyphicon glyphicon-edit nav_icon edit"
                      topicId="${topicId}" parent="${parent}"></a></span>
 
-            <g:link  class="subscriptionDelete" id="${topicId}"  onclick="deleteTopic(${topicId})"><i
-                   class="glyphicon glyphicon-trash" style="font-size:15px"></i></g:link>
+            <g:link class="subscriptionDelete" id="${topicId}" onclick="deleteTopic(${topicId})"><i
+                    class="glyphicon glyphicon-trash" style="font-size:15px"></i></g:link>
 
         </div>
     </div>

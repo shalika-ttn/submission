@@ -7,20 +7,20 @@
         <div class="panel-body " id="${trend.id}">
             <div>
 
-                %{--<div class="row" id="topicEdit${trend.id}" style="display: none">--}%
-                    %{--<form class="form-inline" role="form">--}%
-                        %{--<div class="form-group">--}%
+                <div class="row" id="trendingEdit_${trend.id}" style="display: none">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
 
-                            %{--<input type="text" name="topic" class="form-control col-xs-4" placeholder="${trend.name}"--}%
-                                   %{--id="trending_${trend.id}">--}%
-                            %{--<button name="saveTopic" class="btn changeTopicName" parent="trending"--}%
-                                    %{--topicId="${trend.id}">save</button>--}%
-                            %{--<button type="button" class="btn btn-default">cancel</button>--}%
+                            <input type="text" name="topic" class="form-control col-xs-4" placeholder="${trend.name}"
+                                   id="trending_${trend.id}">
+                            <button name="saveTopic" class="btn changeTopicName" parent="trending"
+                                    topicId="${trend.id}">save</button>
+                            <button type="button" class="btn btn-default">cancel</button>
 
-                        %{--</div>--}%
-                    %{--</form>--}%
+                        </div>
+                    </form>
 
-                %{--</div>--}%
+                </div>
 
                 <div class="row">
                     <div class="list-group  col-xs-3">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    <ls:canUpdateTopic topicId="${trend.id}"/>
+                    <ls:canUpdateTopic topicId="${trend.id}" parent="trending"/>
                 </div>
             </div>
 
