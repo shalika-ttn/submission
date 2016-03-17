@@ -43,9 +43,9 @@ class LoginController {
             if (user.active) {
                 session.user = user
                 redirect(controller: 'user', action: 'index')
-            } else
+            } else {
                 flash.message = "Your accoutn is not active"
-
+            }
         } else {
             flash.error = "User  is not registered please register First"
              redirect (action:'index' )

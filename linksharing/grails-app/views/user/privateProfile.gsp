@@ -23,6 +23,14 @@
 
 <div class="col-xs-6" style="float:right">
     <div class="row">
+        <div class=" panel panel-default">
+            <g:if test="${flash.message}">
+                <h3>${flash.message}</h3>
+
+            </g:if>
+        </div>
+
+
         <g:render template="editProfile"/>
     </div>
 

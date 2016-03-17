@@ -233,7 +233,6 @@ class UserController {
 //        } else {
 //            render "unsuccesfulllllll"
 //        }
-        println("===============${updatePasswordCo.properties}==========")
 
         if (session.user) {
 
@@ -248,33 +247,25 @@ class UserController {
                         user.confirmPassword = updatePasswordCo.confirmPassword
 
                         if (user.save(flush: true, failOnError: true)) {
-                            println("==========================inside if---------of update password")
-//                            flash.message = "Password updated successfully."
-//                            session.user = user
                             render(view: "/user/updatePassword", model: [user: user])
                         } else {
                             flash.error = "Password could not be updated."
                             redirect(controller: "user", action: "privateProfile(${session.user.id})")
-                            // render flash.error
                         }
                     } else {
                         flash.error = "Password and confirm password do not match."
                         redirect(controller: "user", action: "privateProfile", params: [id: session.user.id])
 
-                        // render flash.error
                     }
 
                 } else {
                     flash.error = "Password should be more than 5 characters long."
                     redirect(controller: "user", action: "privateProfile", params: [id: session.user.id])
-                    // render flash.error
                 }
             } else {
                 flash.error = "Current and old passwod field do not match."
                 redirect(controller: "user", action: "privateProfile", params: [id: session.user.id])
-                // render flash.error
             }
-            //redirect(controller: "user", action: "edit")
         } else {
             render "failureeeeeee"
         }
@@ -288,7 +279,8 @@ class UserController {
         //File neww=request.getFile("file")
         if (User.executeUpdate("update User set firstName='${userCo.firstName}' ,lastName='${userCo.lastName}'," +
                 "userName='${userCo.userName}', photo='${userCo.pic}' where id='${session.user.id}' ")) {
-            render "saved sucessfully"
+            flash.message="User profile updated successfully"
+            redirect (controller: 'user',action: 'privateProfile',params: [id:session.user.id])
 
         } else
             render "unsucesfullll"
