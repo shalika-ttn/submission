@@ -153,8 +153,8 @@ class UserController {
 //        totalCount += resourceList.size()
 //        println("=========${resourceList.size()}=================")
         if (!request.xhr) {
-            render(view: "/user/profile", model: [topics: topic, subscriptions: subscriptionTopic, resources: resourceList, co: co, totalCount: totalCount
-            ,totalCount1: totalCount1])
+            render(view: "/user/profile", model: [topics       : topic, subscriptions: subscriptionTopic, resources: resourceList, co: co, totalCount: totalCount
+                                                  , totalCount1: totalCount1])
 
         } else
             render(template: "/user/resourceAjax", model: [resources: resourceList, co: co, totalCount: totalCount])
@@ -163,7 +163,7 @@ class UserController {
     }
 
     def profile2(TopicSearchCo co) {
-         println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+        println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
 
         co.max = co.max ?: 5
         co.offset = co.offset ?: 0
@@ -247,31 +247,32 @@ class UserController {
                         user.password = updatePasswordCo.password
                         user.confirmPassword = updatePasswordCo.confirmPassword
 
-                        if (user.save(flush: true,failOnError: true)) {
+                        if (user.save(flush: true, failOnError: true)) {
+                            println("==========================inside if---------of update password")
 //                            flash.message = "Password updated successfully."
 //                            session.user = user
-                            render(view: 'updatePassword')
+                            render(view: "/user/updatePassword", model: [user: user])
                         } else {
                             flash.error = "Password could not be updated."
                             render flash.error
                         }
-                    } else
-                          flash.error = "Password and confirm password do not match."
-                    render flash.error
+                    } else {
+                        flash.error = "Password and confirm password do not match."
+                        render flash.error
+                    }
 
                 } else {
                     flash.error = "Password should be more than 5 characters long."
                     render flash.error
                 }
-            } else
+            } else {
                 flash.error = "Current and old passwod field do not match."
-            render flash.error
-
+                render flash.error
+            }
             //redirect(controller: "user", action: "edit")
+        } else {
+            render "failureeeeeee"
         }
-     else
-        render "failureeeeeee"
-
 
 
     }

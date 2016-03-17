@@ -5,7 +5,7 @@
   Time: 11:45 PM
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+%{--<%@ page contentType="text/html;charset=UTF-8" %>--}%
 <html>
 <head>
     <title></title>
@@ -14,7 +14,8 @@
 
 <body>
 
-<p> password saved succesfully </p>
+<p>password saved succesfully</p>
+
 
 <a href="${createLink(uri: '/')}" class="btn btn-primary">
     <i class="ace-icon fa fa-tachometer"></i>
@@ -22,5 +23,6 @@
 </a>
 
 
+${user}
 </body>
 </html>
