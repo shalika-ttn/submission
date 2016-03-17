@@ -99,7 +99,7 @@ function deleteTopic(id) {
 
 function markread(id, isRead) {
     event.preventDefault();
-    alert("mark as read");
+    //alert("mark as read");
     //var self =  $(this).attr('name');
     //$("#id_n")
 
@@ -184,7 +184,7 @@ $(document).ready(function () {
     });
 
     $(".subscribe").click(function (event) {
-        alert("hello");
+        //alert("hello");
 
         event.preventDefault();
         $.ajax({
