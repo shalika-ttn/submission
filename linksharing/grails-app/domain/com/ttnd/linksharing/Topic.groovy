@@ -38,7 +38,7 @@ class Topic {
     }
 
     static List<TopicVo> trendingTopics() {
-        List result = Resource.createCriteria().list([sort:'dateCreated',max:10]) {
+        List result = Resource.createCriteria().list([sort: 'dateCreated', max: 10]) {
 
             projections {
                 createAlias('topic', 't')
@@ -63,8 +63,8 @@ class Topic {
 
     }
 
-    List<Topic> getsubscribedUser() {
-        List<Topic> result = Subscription.createCriteria().list() {
+    List<User> getsubscribedUsers() {
+        List<User> result = Subscription.createCriteria().list() {
 
 
             projections {
@@ -79,7 +79,7 @@ class Topic {
 
     }
 
-     Boolean isPublic(Long id) {
+    Boolean isPublic(Long id) {
         Topic topic = Topic.findById(id)
 
         if (topic.visiblity == Visiblity.PUBLIC)
@@ -88,11 +88,13 @@ class Topic {
             false
     }
 
-     Boolean canViewBy(Long id) {
-        Topic topic = Topic.findById(id)
-      List<User> user= topic.subscribedUser
+    Boolean canViewBy(Long userid) {
+        User user = User.findById(userid)
+        println("----------------------------- in can View by")
+        Topic topic = Topic.findById(this.id)
+        List<User> users = topic.subscribedUsers
 
-        if (isPublic(id) || this.contains(user)||user.admin)
+        if (isPublic(this.id) || users.contains(this) || user.admin)
             true
         else
             false

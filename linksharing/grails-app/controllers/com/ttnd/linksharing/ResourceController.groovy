@@ -76,7 +76,7 @@ class ResourceController {
     private def readingItem(Resource resource) {
         Topic topic = resource.topic
 
-        List<User> user = topic.getsubscribedUser()
+        List<User> user = topic.getsubscribedUsers()
 
         user.each {
             ReadingItem readingItem

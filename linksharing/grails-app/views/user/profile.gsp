@@ -25,7 +25,7 @@
     </div>
 
     <div class="row">
-        <g:render template="profileSubscription"/>
+        <g:render template="profileSubscription" model="[totalCount1:totalCount1 ]"/>
     </div>
 </div>
 

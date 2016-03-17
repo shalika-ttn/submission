@@ -10,7 +10,7 @@ import com.ttnd.linksharing.VO.UserVO
 import org.apache.tools.ant.types.resources.Resources
 
 class UserController {
-    int x=0;
+    int x = 0;
 
     def assetResourceLocator
     def mailService
@@ -126,9 +126,9 @@ class UserController {
 
     def mail() {
         if (mailService.sendMail {
-            to "surbhi.dhawan@tothenew.com"
+            to "shalika.singhal@tothenew.com"
 //           from "shalika.singhal@tothenew.com"
-            subject "Hello surbhi"
+            subject "Hello sha"
             body 'How are you?'
         })
             render "sucessss"
@@ -147,22 +147,42 @@ class UserController {
         List<Topic> topic = topicService.search(topicSearchCo)
 
         List<Topic> subscriptionTopic = subscriptionService.search(topicSearchCo)
-//        Integer totalCount1 = Subscription.countByUser(user)
+        Integer totalCount1 = Subscription.countByUser(user)
 
         List<Resource> resourceList = resourceService.search(co)
 //        totalCount += resourceList.size()
 //        println("=========${resourceList.size()}=================")
-            if(!request.xhr)
-            {
-                render(view: "/user/profile", model: [topics: topic, subscriptions: subscriptionTopic, resources: resourceList, co: co, totalCount: totalCount])
-                
-            }
-        else
-                render(template: "/user/resourceAjax", model: [resources: resourceList, co: co, totalCount: totalCount])
+        if (!request.xhr) {
+            render(view: "/user/profile", model: [topics: topic, subscriptions: subscriptionTopic, resources: resourceList, co: co, totalCount: totalCount
+            ,totalCount1: totalCount1])
+
+        } else
+            render(template: "/user/resourceAjax", model: [resources: resourceList, co: co, totalCount: totalCount])
 
 
     }
 
+    def profile2(TopicSearchCo co) {
+         println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+
+        co.max = co.max ?: 5
+        co.offset = co.offset ?: 0
+        TopicSearchCo topicSearchCo = new TopicSearchCo(id: co.id, visiblity: co.visiblity, max: co.max, offset: co.offset)
+        User user = User.findById(co.id)
+        Integer totalCount = Resource.countByCreatedBy(user)
+        List<Topic> topic = topicService.search(topicSearchCo)
+
+        List<Topic> subscriptionTopic = subscriptionService.search(topicSearchCo)
+        Integer totalCount1 = Subscription.countByUser(user)
+
+        List<Resource> resourceList = resourceService.search(co)
+//        totalCount += resourceList.size()
+//        println("=========${resourceList.size()}================="
+
+        render(template: "/user/profileSubscription", model: [subscriptions: subscriptionTopic, co: co, totalCount1: totalCount1])
+
+
+    }
 
 
     def forgotPassword(String email) {
@@ -176,7 +196,8 @@ class UserController {
 
             emailService.sendMail(emailDTO)
             if (User.updatePassword(newPassword, email)) {
-                flash.message = "${user.password}If your Email id is valid and you are active user then you will get your new password via mail"
+                println("-------------inside user forgot password ===========")
+                flash.message = " hello ${user.userName} you will get your new password via mail"
             } else {
                 flash.error = "Please try again"
             }

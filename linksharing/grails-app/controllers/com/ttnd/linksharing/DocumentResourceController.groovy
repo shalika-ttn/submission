@@ -65,12 +65,21 @@ class DocumentResourceController extends ResourceController {
 //
 
     def download(Long id) {
+
+        println("----------------------------- ${id}")
         DocumentResource resource = DocumentResource.findById(id)
         if (resource) {
+            println("-----------------------------in resource ${id}")
             Topic topic = resource.topic
+            println("----------------------------- ${topic.properties}")
             if (topic.canViewBy(session.user.id)) {
+
+
+
+                println("-----------------------------in dwonload if ${id}")
                 File file1 = new File(resource.filepath)
                 response.setHeader("Content-disposition", "attachment; filename=" + resource.fileName)
+
                 response.contentType = Constant.DOCUMENT_CONTENT_TYPE
                 response.contentLength = file1.bytes.length
                 response.outputStream << file1.bytes

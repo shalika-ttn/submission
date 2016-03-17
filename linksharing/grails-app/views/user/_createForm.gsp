@@ -4,7 +4,7 @@
         color: #ff0000;
     }
     </style>
-</head>>
+</head>
 
 <div class="panel panel-primary">
     <div class="panel panel-heading">Register</div>

@@ -118,22 +118,35 @@ function markread(id, isRead) {
                 if (item === "message") {
                     //if(isRead==true)
                     //{}
+                       if(isRead)
+                       {
+                           jQuery("." + id + "").text("Mark as Read..");
+                           //event.preventDefault();
+                           messageAlert.text(data[item]);
+                           messageAlert.addClass("alert-success");
+                           messageAlert.css({'display': 'block'});
 
+                       }
+                    else
+                       { jQuery("." + id + "").text("Mark as UnRead..");
+                           messageAlert.text(data[item]);
+                           messageAlert.addClass("alert-success");
+                           messageAlert.css({'display': 'block'});
+
+
+                       }
                     //$(self).text("Mark as read");
                     //jQuery(self).val("Mark as Read");
                     //console.log("."+id + "");
                     //console.log(jQuery("."+id + ""));
                     //console.log(jQuery("." + id).prop('href'));
                     //console.log(jQuery("." + id).attr('href'));
-                    jQuery("." + id + "").text("Mark as UnRead");
-                    messageAlert.text(data[item]);
-                    messageAlert.addClass("alert-success");
-                    messageAlert.css({'display': 'block'});
+
                 }
                 else {
                     console.log("." + id + "");
                     console.log(jQuery("." + id + ""));
-                    jQuery("." + id).text("Mark as read");
+                   // jQuery("." + id).text("Mark as read");
                     messageAlert.text(data[item]);
                     messageAlert.addClass("alert-danger");
                     messageAlert.css({'display': 'block'});
@@ -216,12 +229,12 @@ $(document).ready(function () {
 
 
     $(".changeTopicName").bind('click', function () {
-        alert("hello")
+        //alert("hello")
         var topicId = $(this).attr("topicId")
         var parent = $(this).attr("parent")
         var topicName = $("#" + parent + "_" + topicId).val()
         var visibility = "public";
-        alert(topicName + topicId + parent)
+        //alert(topicName + topicId + parent)
         $.ajax({
             url: "/topic/topicUpdate",
             data: {topicName: topicName, id: topicId},

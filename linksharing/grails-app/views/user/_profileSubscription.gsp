@@ -4,7 +4,7 @@
     </div>
     <g:each in="${subscriptions}" var="trend">
 
-        <div class="panel-body ">
+        <div class="panel-body " id="subscriptionchange">
             <div>
                 <div class="row">
                     <div class="list-group  col-xs-3">
@@ -45,8 +45,10 @@
 
         </div>
     </g:each>
-    %{--<util:remotePaginate controller="user" action="profile" total="${totalCount1}"--}%
-                         %{--params='[id:"${co.id}",visiblity:"${co.visiblity}"]'      update="resourcechange" max="5" pageSizes="[5, 10]"/>--}%
+%{--<div class="paginateButtons">--}%
+    %{--<util:remotePaginate controller="user" action="profile2" total="${totalCount1}" id="${co.id}"--}%
+                         %{--params='[id:"${co.id}",visiblity:"${co.visiblity}"]'  update="subscriptionchange" max="5" pageSizes="[5, 10]"/>--}%
+%{--</div>--}%
 
 
 </div>

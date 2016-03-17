@@ -51,7 +51,7 @@
                         %{--offset="${co.offset}"/>--}%
 
             <util:remotePaginate controller="user" action="profile" total="${totalCount}"
-                           params='[id:"${co.id}",visiblity:"${co.visiblity}"]'      update="resourcechange" max="5" pageSizes="[5, 10]"/>
+                           params='[id:"${co.id}",visiblity:"${co.visiblity}",offset:"${co.offset}"]'   update="resourcechange" max="5" pageSizes="[5, 10]"/>
         </div>
     </div>
 </div>

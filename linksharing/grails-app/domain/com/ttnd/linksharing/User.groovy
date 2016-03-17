@@ -43,7 +43,9 @@ class User {
 
         confirmPassword bindable: true, nullable: true, blank: true, validator: { val, obj ->
             //println "obj:${obj}******${val}"
-            if (!obj.id) {
+
+
+            if (val) {
                 if (obj.password != val) {
                     return false
                 }
@@ -130,9 +132,10 @@ class User {
     }
 
 
-    static void updatePassword(String newPassword, String email) {
+    static Boolean updatePassword(String newPassword, String email) {
 
         if (User.executeUpdate("update User set password='${newPassword}' where email='$email'")) {
+            println("===================inside if++++++++++++++++++++")
             true
         } else {
             false

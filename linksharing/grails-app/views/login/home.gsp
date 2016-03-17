@@ -34,6 +34,11 @@
                     <h3>${flash.error}</h3>
 
                 </g:if>
+
+                <g:if test="${flash.message}">
+                    <h3>${flash.message}</h3>
+
+                </g:if>
             </div>
 
             <g:render template="/login/loginform"/>
