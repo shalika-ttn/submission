@@ -78,16 +78,19 @@ class DocumentResourceController extends ResourceController {
 
                 println("-----------------------------in dwonload if ${id}")
                 File file1 = new File(resource.filepath)
-                response.setHeader("Content-disposition", "attachment; filename=" + resource.fileName)
+
+               response.setHeader("Content-disposition", "attachment; filename=" + resource.fileName)
 
                 response.contentType = Constant.DOCUMENT_CONTENT_TYPE
+
                 response.contentLength = file1.bytes.length
                 response.outputStream << file1.bytes
             } else {
                 render "resource is not accessible by logged in user"
             }
         } else
-            render "resource not found"
+            flash.error="resource not found"
+
 
     }
 }

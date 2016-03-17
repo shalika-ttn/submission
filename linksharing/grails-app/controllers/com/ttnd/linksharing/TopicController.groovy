@@ -70,11 +70,11 @@ class TopicController {
             if (topic.visiblity == Visiblity.PUBLIC) {
                 List<Resource> resourceList = Resource.findAllByTopic(topic)
 
-                render(view: 'show', model: [userlist: topic.subscribedUser, topics: topic, posts: resourceList])
+                render(view: 'show', model: [userlist: topic.subscribedUsers, topics: topic, posts: resourceList])
 
             } else if (topic.visiblity == Visiblity.PRIVATE) {
                 if (Subscription.findByUserAndTopic(topic.createdBy, topic))
-                    render "sucess subscription"
+                    render "Topic is private and subscription also found but cant be redirected"
                 else {
                     flash.message = "subscription not found"
                     redirect(controller: "login", action: "index")

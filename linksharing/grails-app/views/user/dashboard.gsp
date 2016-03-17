@@ -22,6 +22,18 @@
 </div>
 
 <div class="col-xs-6" style="float:right">
+    %{--<div class=" panel panel-default">--}%
+        %{--<g:if test="${flash.error}">--}%
+            %{--<h3>${flash.error}</h3>--}%
+
+        %{--</g:if>--}%
+
+        %{--<g:if test="${flash.message}">--}%
+            %{--<h3>${flash.message}</h3>--}%
+
+        %{--</g:if>--}%
+    %{--</div>--}%
+
     <g:render template="inbox" model="[readingItems: readingItems]"/>
 </div>
 

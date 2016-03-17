@@ -1,10 +1,10 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" style="overflow-y: auto;height: 238px">
     <div class="panel-heading">
         <h3 class="panel-title">Trending topic</h3>
     </div>
     <g:each in="${trendingTopics}" var="trend">
 
-        <div class="panel-body " id="${trend.id}">
+        <div class="panel-body " id="${trend.id}" >
             <div>
 
                 <div class="row" id="trendingEdit_${trend.id}" style="display: none">

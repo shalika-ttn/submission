@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" style="overflow-y: auto;height: 238px">
     <div class="panel-heading">Subscription
         <a href="#" style="float:right">View All</a>
     </div>
