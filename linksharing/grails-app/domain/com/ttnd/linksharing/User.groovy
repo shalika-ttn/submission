@@ -2,7 +2,9 @@ package com.ttnd.linksharing
 
 import com.ttnd.linksharing.CO.UserSearchCo
 import com.ttnd.linksharing.Resource
+import groovy.transform.EqualsAndHashCode
 
+@EqualsAndHashCode
 class User {
 
     String firstName

@@ -254,20 +254,25 @@ class UserController {
                             render(view: "/user/updatePassword", model: [user: user])
                         } else {
                             flash.error = "Password could not be updated."
-                            render flash.error
+                            redirect(controller: "user", action: "privateProfile(${session.user.id})")
+                            // render flash.error
                         }
                     } else {
                         flash.error = "Password and confirm password do not match."
-                        render flash.error
+                        redirect(controller: "user", action: "privateProfile", params: [id: session.user.id])
+
+                        // render flash.error
                     }
 
                 } else {
                     flash.error = "Password should be more than 5 characters long."
-                    render flash.error
+                    redirect(controller: "user", action: "privateProfile", params: [id: session.user.id])
+                    // render flash.error
                 }
             } else {
                 flash.error = "Current and old passwod field do not match."
-                render flash.error
+                redirect(controller: "user", action: "privateProfile", params: [id: session.user.id])
+                // render flash.error
             }
             //redirect(controller: "user", action: "edit")
         } else {

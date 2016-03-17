@@ -3,7 +3,9 @@ package com.ttnd.linksharing
 import com.ttnd.linksharing.CO.ResourceSearchCo
 import com.ttnd.linksharing.Enum.Visiblity
 import com.ttnd.linksharing.VO.RatingInfoVo
+import groovy.transform.EqualsAndHashCode
 
+@EqualsAndHashCode
 abstract class Resource {
     String description
     User createdBy

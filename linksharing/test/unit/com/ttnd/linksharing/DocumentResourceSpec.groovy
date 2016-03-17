@@ -10,11 +10,6 @@ import spock.lang.Specification
 @TestFor(DocumentResource)
 class DocumentResourceSpec extends Specification {
 
-    def setup() {
-    }
-
-    def cleanup() {
-    }
 
 
     void "test document resource"() {

@@ -129,7 +129,9 @@ class MyTagLib {
                 out << g.select(class: 'seriousness', topicId: topicId, name: 'seriousness', from: Seriousness.values(),
                         value: subscription.seriousness, id: topicId)
             else
-                flash.error = "User not subscribed to topic"
+                //flash.error = "User not subscribed to topic"
+           out<<  "User not subscribed to topic "
+
         } else
             flash.error = "Either topic or user not available."
 
@@ -146,6 +148,7 @@ class MyTagLib {
                         value: topic.visiblity)
             else
                 flash.error = "topic not found by given topicId"
+
         } else
             flash.error = "Either  user not available."
 

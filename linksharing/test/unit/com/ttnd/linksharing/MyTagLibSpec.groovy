@@ -9,12 +9,5 @@ import spock.lang.Specification
 @TestFor(MyTagLib)
 class MyTagLibSpec extends Specification {
 
-    def setup() {
-    }
 
-    def cleanup() {
-    }
-
-    void "test something"() {
-    }
 }

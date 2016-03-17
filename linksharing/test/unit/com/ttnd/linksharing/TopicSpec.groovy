@@ -12,11 +12,7 @@ import com.ttnd.linksharing.Enum.Visiblity
 @TestFor(Topic)
 class TopicSpec extends Specification {
 
-    def setup() {
-    }
 
-    def cleanup() {
-    }
 
     //@Unroll("Executing #sno")
     void "topic validations"() {

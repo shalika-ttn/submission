@@ -27,7 +27,16 @@
     </div>
 
     <div class="row">
+
+        <div class=" panel panel-default">
+            <g:if test="${flash.error}">
+                <h3>${flash.error}</h3>
+
+            </g:if>
+        </div>
+
         <g:render template="changePassword" model="[id: id]"/>
+
     </div>
 </div>
 

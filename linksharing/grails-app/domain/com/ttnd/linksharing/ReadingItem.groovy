@@ -1,7 +1,9 @@
 package com.ttnd.linksharing
 
-import javax.validation.groups.Default
+import groovy.transform.EqualsAndHashCode
 
+
+@EqualsAndHashCode
 class ReadingItem {
 
     Boolean isRead

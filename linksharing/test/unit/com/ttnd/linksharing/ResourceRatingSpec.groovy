@@ -9,11 +9,7 @@ import spock.lang.Specification
 @TestFor(ResourceRating)
 class ResourceRatingSpec extends Specification {
 
-    def setup() {
-    }
 
-    def cleanup() {
-    }
 
     void "test resource rating"() {
 

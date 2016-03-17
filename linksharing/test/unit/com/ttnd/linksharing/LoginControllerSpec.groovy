@@ -10,11 +10,6 @@ import spock.lang.Specification
 @TestFor(LoginController)
 class LoginControllerSpec extends Specification {
 
-    def setup() {
-    }
-
-    def cleanup() {
-    }
 
     def "login index"() {
         when:

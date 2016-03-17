@@ -11,11 +11,6 @@ import spock.lang.Unroll
  */
 class SubscriptionSpec extends Specification {
 
-    def setup() {
-    }
-
-    def cleanup() {
-    }
 
 
     @Unroll("Test subscription for #description")

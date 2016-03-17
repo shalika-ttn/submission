@@ -1,7 +1,9 @@
 package com.ttnd.linksharing
 
 import com.ttnd.linksharing.Enum.Seriousness
+import groovy.transform.EqualsAndHashCode
 
+@EqualsAndHashCode
 class Subscription {
 
     Date dateCreated
