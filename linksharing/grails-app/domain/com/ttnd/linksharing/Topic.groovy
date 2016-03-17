@@ -79,10 +79,10 @@ class Topic {
 
     }
 
-    Boolean isPublic(Long id) {
-        Topic topic = Topic.findById(id)
+    Boolean isPublic() {
+        //Topic topic = Topic.findById(this.id)
 
-        if (topic.visiblity == Visiblity.PUBLIC)
+        if (this.visiblity == Visiblity.PUBLIC)
             true
         else
             false
@@ -94,7 +94,7 @@ class Topic {
         Topic topic = Topic.findById(this.id)
         List<User> users = topic.subscribedUsers
 
-        if (isPublic(this.id) || users.contains(this) || user.admin)
+        if (topic.isPublic() || users.contains(this) || user.admin)
             true
         else
             false

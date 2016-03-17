@@ -228,17 +228,58 @@ class UserController {
 
     def updatePassword(UpdatePasswordCo updatePasswordCo) {
         println("===============hello update===========")
-        if (User.executeUpdate("update User set password='${updatePasswordCo.password}' where id='${updatePasswordCo.id}'")) {
-            render(view: 'updatePassword')
-        } else {
-            render "unsuccesfulllllll"
+//        if (User.executeUpdate("update User set password='${updatePasswordCo.password}' where id='${updatePasswordCo.id}'")) {
+//            render(view: 'updatePassword')
+//        } else {
+//            render "unsuccesfulllllll"
+//        }
+        println("===============${updatePasswordCo.properties}==========")
+
+        if (session.user) {
+
+            User user = User.get(session.user.id)
+
+            if (updatePasswordCo.oldPassword == user.password) {
+
+                if (updatePasswordCo.password && updatePasswordCo.password.size() >= 5) {
+                    if ((updatePasswordCo.password == updatePasswordCo.confirmPassword)) {
+
+                        user.password = updatePasswordCo.password
+                        user.confirmPassword = updatePasswordCo.confirmPassword
+
+                        if (user.save(flush: true,failOnError: true)) {
+//                            flash.message = "Password updated successfully."
+//                            session.user = user
+                            render(view: 'updatePassword')
+                        } else {
+                            flash.error = "Password could not be updated."
+                            render flash.error
+                        }
+                    } else
+                          flash.error = "Password and confirm password do not match."
+                    render flash.error
+
+                } else {
+                    flash.error = "Password should be more than 5 characters long."
+                    render flash.error
+                }
+            } else
+                flash.error = "Current and old passwod field do not match."
+            render flash.error
+
+            //redirect(controller: "user", action: "edit")
         }
+     else
+        render "failureeeeeee"
+
+
 
     }
 
 
     def updateProfile(UserCo userCo) {
         println("====================${userCo.properties}+++++++++++++++++")
+        //File neww=request.getFile("file")
         if (User.executeUpdate("update User set firstName='${userCo.firstName}' ,lastName='${userCo.lastName}'," +
                 "userName='${userCo.userName}', photo='${userCo.pic}' where id='${session.user.id}' ")) {
             render "saved sucessfully"
