@@ -44,15 +44,19 @@ function success(data, id) {
 }
 
 function subscriptionsuccess(data) {
+    alert("hello")
     var messageAlert = $(".messageAlert");
     //alert(data.message)
     for (item in data) {
         if (item === "message") {
+            alert("helloc")
             messageAlert.text(data[item]);
             messageAlert.addClass("alert-success");
             messageAlert.css({'display': 'block'});
         }
         else {
+            alert("helloc")
+
             messageAlert.text(data[item]);
             messageAlert.addClass("alert-danger");
             messageAlert.css({'display': 'block'});
@@ -129,6 +133,7 @@ function markread(id, isRead) {
                        }
                     else
                        { jQuery("." + id + "").text("Mark as UnRead..");
+                           //event.preventDefault();
                            messageAlert.text(data[item]);
                            messageAlert.addClass("alert-success");
                            messageAlert.css({'display': 'block'});
@@ -167,7 +172,11 @@ $(document).ready(function () {
         $.ajax({
             url: "/subscription/update",
             data: {id: $(this).attr('topicId'), seriousness: $(this).val()},
-            success: subscriptionsuccess
+            success:subscriptionsuccess,
+            error: function () {
+                alert("some error occured")
+            }
+
 
         });
     });

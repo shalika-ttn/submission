@@ -12,4 +12,11 @@ beans = {
             {
 
             }
+
+
+    myBean2(com.ttnd.linksharing.DemoEmployee) {
+
+        firstname="shubhangi"
+        lastname="garg"
+            }
 }

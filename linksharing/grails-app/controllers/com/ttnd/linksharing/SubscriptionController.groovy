@@ -39,12 +39,13 @@ class SubscriptionController {
 
     def update(Long id, String seriousness) {
         Map result = [:]
-        Subscription subscription1 = Subscription.get(id)
+      Topic topic=Topic.findById(id);
+        Subscription subscription1 = Subscription.findByTopic(topic)
         if (subscription1) {
             subscription1.seriousness = seriousness as Seriousness
             if (subscription1.save(flush: true)) {
                 println("in if")
-                result.message = "supscription seriousness updated is saved succesfully"
+                result.message = "subscription seriousness updated is saved succesfully"
             } else {
                 println("in else")
                 result.error = "subscription seriousness updated is not saved succesfully"

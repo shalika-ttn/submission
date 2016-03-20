@@ -105,7 +105,6 @@ class MyTagLib {
     def canUpdateTopic = { attrs, body ->
         Topic topic = Topic.findById(attrs.long('topicId'))
         String parent=attrs.parent
-//        Topic topic= attrs.topic as Topic
         if (session.user) {
             if (topic.createdBy.id == session.user.id || session.user.admin) {
                 out << render(template: '/user/mySubscribedAndCreatedTopics', model: [topicId: topic.id,parent:parent])
@@ -123,10 +122,10 @@ class MyTagLib {
         User user = session.user
 
         if (user) {
-
-            Subscription subscription = user.getSubscription(topicId)
+            Topic topic= Topic.findById(topicId)
+          Subscription subscription=Subscription.findByTopic(topic)
             if (subscription)
-                out << g.select(class: 'seriousness', topicId: topicId, name: 'seriousness', from: Seriousness.values(),
+                out << g.select(class:'seriousness', topicId: topicId, name: 'seriousness', from:Seriousness.values(),
                         value: subscription.seriousness, id: topicId)
             else
                 //flash.error = "User not subscribed to topic"

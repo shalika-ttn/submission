@@ -140,30 +140,31 @@
 </g:else>
 
 <div class="alert messageAlert" id="alert" style="display:none">
+
 </div>
 %{--<div class="container">--}%
-    <div class="alert messageAlert" id="alert" style="display:none">
-    </div>
+    %{--<div class="alert messageAlert" id="alert" style="display:none">--}%
+    %{--</div>--}%
 
-    <div class="row">
-        <g:if test="${flash.message}">
+    %{--<div class="row">--}%
+        %{--<g:if test="${flash.message}">--}%
 
-            <div class="col-xs-12 alert alert-success">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <label><%=flash.message%></label>
-            </div>
-        </g:if>
-    </div>
+            %{--<div class="col-xs-12 alert alert-success">--}%
+                %{--<button type="button" class="close" data-dismiss="alert">×</button>--}%
+                %{--<label><%=flash.message%></label>--}%
+            %{--</div>--}%
+        %{--</g:if>--}%
+    %{--</div>--}%
 
-    <div class="row">
-        <g:if test="${flash.error}">
-            <div class="col-xs-12 alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <label><%=flash.error%></label>
-            </div>
-        </g:if>
-    </div>
-   %{----}%
+    %{--<div class="row">--}%
+        %{--<g:if test="${flash.error}">--}%
+            %{--<div class="col-xs-12 alert alert-danger">--}%
+                %{--<button type="button" class="close" data-dismiss="alert">×</button>--}%
+                %{--<label><%=flash.error%></label>--}%
+            %{--</div>--}%
+        %{--</g:if>--}%
+    %{--</div>--}%
+
 %{--</div>--}%
 <g:layoutBody/>
 
