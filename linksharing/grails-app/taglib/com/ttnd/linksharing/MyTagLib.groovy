@@ -223,4 +223,9 @@ class MyTagLib {
             out << "<img src=\"/user/image/${attrs.id}\" width=\"64\" height\"64\"/>"
     }
 
+
+
+    def socialIcon={
+        out<<""
+    }
 }

@@ -83,6 +83,33 @@ function unsubscribe(id) {
     })
 }
 
+function myFunction() {
+    //var z=0,l=574.4444596620258;
+    //if(z==0) {
+    //    //alert("helllllo");
+    //    var x =l
+    //}
+    //else
+    //    x=x+l;
+        var y = $(".inboxUser").scrollTop();
+    console.log(y);
+    if((y+15)>=$(".inboxUser").height()) {
+        $.ajax({
+            url:'/readingItems/inboxUser',
+            success: function (data) {
+                $(".inboxBody").append(data)
+              //alert("sucesfull")
+            },
+            error: function (data) {
+                alert("some error occured"+data)
+            }
+
+        });
+        //alert("equal");
+    }
+
+    //alert("height" + y);
+}
 function deleteTopic(id) {
     event.preventDefault();
 
@@ -122,24 +149,23 @@ function markread(id, isRead) {
                 if (item === "message") {
                     //if(isRead==true)
                     //{}
-                       if(isRead)
-                       {
-                           jQuery("." + id + "").text("Mark as Read..");
-                           //event.preventDefault();
-                           messageAlert.text(data[item]);
-                           messageAlert.addClass("alert-success");
-                           messageAlert.css({'display': 'block'});
+                    if (isRead) {
+                        jQuery("." + id + "").text("Mark as Read..");
+                        //event.preventDefault();
+                        messageAlert.text(data[item]);
+                        messageAlert.addClass("alert-success");
+                        messageAlert.css({'display': 'block'});
 
-                       }
-                    else
-                       { jQuery("." + id + "").text("Mark as UnRead..");
-                           //event.preventDefault();
-                           messageAlert.text(data[item]);
-                           messageAlert.addClass("alert-success");
-                           messageAlert.css({'display': 'block'});
+                    }
+                    else {
+                        jQuery("." + id + "").text("Mark as UnRead..");
+                        //event.preventDefault();
+                        messageAlert.text(data[item]);
+                        messageAlert.addClass("alert-success");
+                        messageAlert.css({'display': 'block'});
 
 
-                       }
+                    }
                     //$(self).text("Mark as read");
                     //jQuery(self).val("Mark as Read");
                     //console.log("."+id + "");
@@ -151,7 +177,7 @@ function markread(id, isRead) {
                 else {
                     console.log("." + id + "");
                     console.log(jQuery("." + id + ""));
-                   // jQuery("." + id).text("Mark as read");
+                    // jQuery("." + id).text("Mark as read");
                     messageAlert.text(data[item]);
                     messageAlert.addClass("alert-danger");
                     messageAlert.css({'display': 'block'});
@@ -167,12 +193,30 @@ function markread(id, isRead) {
 
 $(document).ready(function () {
 
+
+
+    $('.share_button').click(function(e){
+        e.preventDefault();
+        FB.ui(
+            {
+                method: 'feed',
+                name: 'This is the content of the "name" field.',
+                link: ' http://www.hyperarts.com/',
+                //link: 'http://localhost:8080/',
+
+                //picture: 'http://www.hyperarts.com/external-xfbml/share-image.gif',
+                caption: 'This is the content of the "caption" field.',
+                description: 'This is the content of the "description" field, below the caption.',
+                message: ''
+            });
+    });
+
     $(".seriousness").change(function () {
         console.log("............." + $(this).attr('topicId') + "---------" + $(this).val());
         $.ajax({
             url: "/subscription/update",
             data: {id: $(this).attr('topicId'), seriousness: $(this).val()},
-            success:subscriptionsuccess,
+            success: subscriptionsuccess,
             error: function () {
                 alert("some error occured")
             }
@@ -234,7 +278,8 @@ $(document).ready(function () {
         event.preventDefault()
         var editRow = $("#" + parent + "Edit_" + topicId)
         editRow.show()
-        event.preventDefault()});
+        event.preventDefault()
+    });
 
 
     $(".changeTopicName").bind('click', function () {
@@ -262,6 +307,18 @@ $(document).ready(function () {
 
 
     });
+
+
+    //$(".inboxUser").scroll(function()
+    //{
+    //    $.ajax({
+    //        url: '/readingItems/inboxUser',
+    //        //data: {id: $(this).attr('id')},
+    //        //data:{readingItems,}
+    //
+    //    });
+    //
+    //});
 
 
 });

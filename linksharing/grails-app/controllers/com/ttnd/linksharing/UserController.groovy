@@ -10,7 +10,7 @@ import com.ttnd.linksharing.VO.UserVO
 import org.apache.tools.ant.types.resources.Resources
 
 class UserController {
-    int x = 0;
+  //  int x = 0;
 
     def assetResourceLocator
     def mailService
@@ -26,7 +26,6 @@ class UserController {
         List<ReadingItem> readingItems = ReadingItem.findAllByUser(session.user, [sort: 'dateCreated', order: 'desc', max: 10])
         render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics,
                                           readingItems  : readingItems, subscriptions: subscriptions])
-
     }
 
     def register(UserCo co) {

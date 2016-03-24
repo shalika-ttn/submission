@@ -43,6 +43,7 @@ class LoginController {
             if (user.active) {
                 session.user = user
                 redirect(controller: 'user', action: 'index')
+                flash.message="welcome ${user.name}"
             } else {
                 flash.message = "Your accoutn is not active"
             }

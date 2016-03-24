@@ -26,6 +26,16 @@ class ApplicationFilters {
 //            }
 //
 //        }
+//        consolecheck(controller: 'login', invert: true) {
+//            before = {
+//                println "================================================"
+//                if (!session.user)
+//                    redirect(controller: 'login', action: 'index')
+//
+//
+//            }
+//
+//        }
 //
 //
     }

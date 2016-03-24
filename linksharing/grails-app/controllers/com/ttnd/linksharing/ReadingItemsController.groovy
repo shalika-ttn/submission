@@ -33,5 +33,12 @@ class ReadingItemsController {
         render result as JSON
     }
 
+    def inboxUser() {
+        List<ReadingItem> readingItems = ReadingItem.findAllByUser(session.user, [sort: 'dateCreated', order: 'desc', max: 10,offset:10])
+    println("--------------hello ")
+//        List<ReadingItem> readingItems = ReadingItem.findAllByUser(session.user)
+        render (template:"/user/inbox2" ,model:[readingItems: readingItems])
+    }
+
 
 }

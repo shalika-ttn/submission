@@ -19,6 +19,12 @@
 
     <div class="col-xs-7" style="float:left">
         <div class="row">
+            %{--<div--}%
+                    %{--class="fb-like"--}%
+                    %{--data-share="true"--}%
+                    %{--data-width="450"--}%
+                    %{--data-show-faces="true">--}%
+            %{--</div>--}%
             <g:render template="/login/recentPost"/>
         </div>
 
@@ -29,17 +35,17 @@
 
     <div class="col-xs-4" style="float:right">
         <div class="row">
-            <div class=" panel panel-default">
-                <g:if test="${flash.error}">
-                    <h3>${flash.error}</h3>
+            %{--<div class=" panel panel-default">--}%
+                %{--<g:if test="${flash.error}">--}%
+                    %{--<h3>${flash.error}</h3>--}%
 
-                </g:if>
+                %{--</g:if>--}%
 
-                <g:if test="${flash.message}">
-                    <h3>${flash.message}</h3>
+                %{--<g:if test="${flash.message}">--}%
+                    %{--<h3>${flash.message}</h3>--}%
 
-                </g:if>
-            </div>
+                %{--</g:if>--}%
+            %{--</div>--}%
 
             <g:render template="/login/loginform"/>
         </div>

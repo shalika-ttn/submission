@@ -1,4 +1,4 @@
-<div class="panel panel-primary" style="overflow-y: auto;height: 238px">
+<div class="panel panel-primary" style="overflow-y: auto;height: 500px">
     <div class="panel-heading">
         <h3 class="panel-title">Trending topic</h3>
     </div>
