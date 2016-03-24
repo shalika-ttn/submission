@@ -34,11 +34,22 @@
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                     %{--<a href="#"><div class="fa fa-google-plus inline"></div></a>--}%
 
-                    <a href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,
+                    <a href="https://plus.google.com/share?url={https://plus.google.com/share}" onclick="javascript:window.open(this.href,
                             '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img
                             src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/></a>
 
-                    %{--<a href="#" class="inline" style="float:right"><u>View Post</u></a>--}%
+                    <!-- Place this tag in your head or just before your close body tag. -->
+                    %{--<script src="https://apis.google.com/js/platform.js" async defer></script>--}%
+
+                    %{--<!-- Place this tag where you want the share button to render. -->--}%
+                    %{--<div class="g-plus" data-action="share"></div>--}%
+                    %{--<script>--}%
+                        %{--window.___gcfg = {--}%
+                            %{--lang: 'en-US',--}%
+                            %{--parsetags: 'onload'--}%
+                        %{--};--}%
+                    %{--</script>--}%
+
                    <div style="float: right"> <g:link  controller="resource" action="post2" params="[id:res.id]">view post</g:link>
                    </div>
                 </div>
