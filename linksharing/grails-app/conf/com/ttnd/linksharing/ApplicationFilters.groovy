@@ -32,10 +32,10 @@ class ApplicationFilters {
                 if (session.user?.admin)
                 {  println("==========allowed==========")
 
-//                     redirect(controller: 'console',action: 'index')
-                           }
+                }
                 else
                     redirect(controller: 'user',action: 'index')
+
 
             }
 
