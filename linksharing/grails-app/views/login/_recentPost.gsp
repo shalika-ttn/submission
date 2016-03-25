@@ -38,17 +38,6 @@
                             '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img
                             src="https://www.gstatic.com/images/icons/gplus-16.png" alt="Share on Google+"/></a>
 
-                    <!-- Place this tag in your head or just before your close body tag. -->
-                    %{--<script src="https://apis.google.com/js/platform.js" async defer></script>--}%
-
-                    %{--<!-- Place this tag where you want the share button to render. -->--}%
-                    %{--<div class="g-plus" data-action="share"></div>--}%
-                    %{--<script>--}%
-                        %{--window.___gcfg = {--}%
-                            %{--lang: 'en-US',--}%
-                            %{--parsetags: 'onload'--}%
-                        %{--};--}%
-                    %{--</script>--}%
 
                    <div style="float: right"> <g:link  controller="resource" action="post2" params="[id:res.id]">view post</g:link>
                    </div>

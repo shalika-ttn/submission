@@ -26,16 +26,20 @@ class ApplicationFilters {
 //            }
 //
 //        }
-//        consolecheck(controller: 'login', invert: true) {
-//            before = {
-//                println "================================================"
-//                if (!session.user)
-//                    redirect(controller: 'login', action: 'index')
-//
-//
-//            }
-//
-//        }
+        consolecheck(controller: 'console') {
+            before = {
+                println "================================================"
+                if (session.user?.admin)
+                {  println("==========allowed==========")
+
+//                     redirect(controller: 'console',action: 'index')
+                           }
+                else
+                    redirect(controller: 'user',action: 'index')
+
+            }
+
+        }
 //
 //
     }
