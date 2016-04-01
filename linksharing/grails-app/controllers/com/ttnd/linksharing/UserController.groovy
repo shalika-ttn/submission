@@ -10,7 +10,7 @@ import com.ttnd.linksharing.VO.UserVO
 import org.apache.tools.ant.types.resources.Resources
 
 class UserController {
-  //  int x = 0;
+    //  int x = 0;
 
     def assetResourceLocator
     def mailService
@@ -74,27 +74,43 @@ class UserController {
     }
 
     def post(Long postId) {
+        println("-----------helllllllllo-----")
         Resource resource = Resource.get(postId);
-        if (resource.canViewByResource(postId))
+        User user = session.user
+        println("+++++++++++++++++++++++++++++++++=${resource.id}---------------------------------------------------------")
+        if (resource.canViewByResource(user.id)) {
+            println("helllllllllo222222222222222222222222222222222222222222222222222222222222222222222222222222")
             render(view: "post", model: [post: resource])
-
+        }
 
     }
 
+//    def image(Long id) {
+//        User user = User.findById(id)
+//        byte[] image
+//        if (user.photo) {
+//            println "sfsdf"
+//            println user.photo
+//            image = user.photo
+//        } else {
+//            image = assetResourceLocator.findAssetForURI('userImage.jpeg').byteArray
+//        }
+//        OutputStream out = response.getOutputStream()
+//        out.write(image)
+//        out.flush()
+//        out.close()
+//
+//
+//    }
+
     def image(Long id) {
-        User user = User.findById(id)
-        byte[] image
-        if (user.photo) {
-            image = user.photo
+        User user = User.read(id)
+        if (user?.photo) {
+            response.outputStream << user.photo
         } else {
-            image = assetResourceLocator.findAssetForURI('userImage.jpeg').byteArray
+            response.outputStream << assetResourceLocator.findAssetForURI('userImage.jpeg').getInputStream()
         }
-        OutputStream out = response.getOutputStream()
-        out.write(image)
-        out.flush()
-        out.close()
-
-
+        response.outputStream.flush()
     }
 
 
@@ -102,7 +118,7 @@ class UserController {
         List<UserVO> userVOList = []
         if (session.user?.admin) {
             User.search(userSearchCO).list([sort: userSearchCO.sort, order: userSearchCO.order]).each { user ->
-                userVOList.add(new UserVO(id: user.id, userName: user.userName, email: user.email, firstName: user.firstName,
+                   userVOList.add(new UserVO(id: user.id, userName: user.userName, email: user.email, firstName: user.firstName,
                         lastName: user.lastName, active: user.active))
             }
             render(view: 'list', model: [users: userVOList])
@@ -275,11 +291,16 @@ class UserController {
 
     def updateProfile(UserCo userCo) {
         println("====================${userCo.properties}+++++++++++++++++")
+        Byte[] userPic = params.pic.bytes
+        println "Photo"
+        println params.pic.bytes
+        println "Photo"
+
         //File neww=request.getFile("file")
         if (User.executeUpdate("update User set firstName='${userCo.firstName}' ,lastName='${userCo.lastName}'," +
-                "userName='${userCo.userName}', photo='${userCo.pic}' where id='${session.user.id}' ")) {
-            flash.message="User profile updated successfully"
-            redirect (controller: 'user',action: 'privateProfile',params: [id:session.user.id])
+                "userName='${userCo.userName}', photo='${userPic}' where id='${session.user.id}' ")) {
+            flash.message = "User profile updated successfully"
+            redirect(controller: 'user', action: 'privateProfile', params: [id: session.user.id])
 
         } else
             render "unsucesfullll"

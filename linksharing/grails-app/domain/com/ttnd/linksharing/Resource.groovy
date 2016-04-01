@@ -21,7 +21,7 @@ abstract class Resource {
         description(type: 'text')
     }
 
-    static constraints = {
+    static constraints ={
     }
 
     static namedQueries = {
@@ -75,9 +75,8 @@ abstract class Resource {
     }
 
     Boolean canViewByResource(Long id) {
-        Resource resource = Resource.findById(id)
 
-        if (resource.topic.canViewBy(topic.id))
+        if (this.topic.canViewBy(id))
             true
         else
             false

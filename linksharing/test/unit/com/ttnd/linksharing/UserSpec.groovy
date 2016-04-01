@@ -12,7 +12,8 @@ import spock.lang.Unroll
 class UserSpec extends Specification {
 
 
-    @Unroll("Executing #sno")
+//    @Unroll("Executing #sno")
+    @IgnoreRest
     void "test user validations"() {
         expect:
         User user = new User(firstName: fname, lastName: lname, email: email, password: password, userName: uname,
@@ -78,7 +79,7 @@ class UserSpec extends Specification {
         user2.errors.allErrors.size() == 1
         user2.errors.getFieldErrorCount('email') == 1
     }
-  @IgnoreRest
+
     def "tostring"()
  {
         given:
@@ -88,6 +89,6 @@ class UserSpec extends Specification {
         String s=user.toString()
 
         then:
-        s=="welcome shalika "
+        s=="shalika"
     }
 }

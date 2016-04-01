@@ -82,20 +82,16 @@ function unsubscribe(id) {
         }
     })
 }
-
+var inc=-10;
 function myFunction() {
-    //var z=0,l=574.4444596620258;
-    //if(z==0) {
-    //    //alert("helllllo");
-    //    var x =l
-    //}
-    //else
-    //    x=x+l;
-        var y = $(".inboxUser").scrollTop();
+           var y = $(".inboxUser").scrollTop();
     console.log(y);
-    if((y+15)>=$(".inboxUser").height()) {
+    if((y+13.4)>=$(".inboxUser").height()) {
+        inc=inc+10;
+      console.log(inc)
         $.ajax({
             url:'/readingItems/inboxUser',
+            data:{off:inc},
             success: function (data) {
                 $(".inboxBody").append(data)
               //alert("sucesfull")
@@ -105,10 +101,7 @@ function myFunction() {
             }
 
         });
-        //alert("equal");
     }
-
-    //alert("height" + y);
 }
 function deleteTopic(id) {
     event.preventDefault();

@@ -28,6 +28,7 @@ class Topic {
     }
     static mapping = {
         sort "name"
+         resources fetch:'join'
     }
 
     def afterInsert() {
@@ -96,7 +97,7 @@ class Topic {
         Topic topic = Topic.findById(this.id)
         List<User> users = topic.subscribedUsers
 
-        if (topic.isPublic() || users.contains(this) || user.admin)
+        if (topic.isPublic() || users.contains(user) || user.admin)
             true
         else
             false

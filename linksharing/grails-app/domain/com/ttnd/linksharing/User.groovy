@@ -26,7 +26,7 @@ class User {
     static mapping = {
         photo(sqlType: 'longblob')
         sort id: 'desc'
-
+//        topics lazy: false
     }
 
     static constraints = {

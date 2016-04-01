@@ -19,12 +19,7 @@
 
     <div class="col-xs-7" style="float:left">
         <div class="row">
-            %{--<div--}%
-                    %{--class="fb-like"--}%
-                    %{--data-share="true"--}%
-                    %{--data-width="450"--}%
-                    %{--data-show-faces="true">--}%
-            %{--</div>--}%
+
             <g:render template="/login/recentPost"/>
         </div>
 
