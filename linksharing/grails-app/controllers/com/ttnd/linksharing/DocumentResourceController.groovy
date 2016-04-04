@@ -93,4 +93,10 @@ class DocumentResourceController extends ResourceController {
 
 
     }
+    def checkMultipleList()
+    { println("hellllllllllllllllllllllllo")
+           List<Topic> topicList=params.topics
+        render "${topicList.properties}++++++"
+
+    }
 }
