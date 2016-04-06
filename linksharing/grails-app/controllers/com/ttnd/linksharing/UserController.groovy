@@ -7,6 +7,7 @@ import com.ttnd.linksharing.CO.UserCo
 import com.ttnd.linksharing.CO.UserSearchCo
 import com.ttnd.linksharing.DTO.EmailDTO
 import com.ttnd.linksharing.VO.UserVO
+import grails.plugin.springsecurity.annotation.Secured
 import org.apache.tools.ant.types.resources.Resources
 
 class UserController {
@@ -18,14 +19,19 @@ class UserController {
     def subscriptionService
     def resourceService
     def emailService
+    def springSecurityService
 
+    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
     def index() {
-        User u = session.user
-        List<Subscription> subscriptions = Subscription.findAllByUser(u)
-        println "------------------------------${subscriptions}-----------------------"
-        List<ReadingItem> readingItems = ReadingItem.findAllByUser(session.user, [sort: 'dateCreated', order: 'desc', max: 10])
-        render(view: 'dashboard', model: ['listOfTopics': session.user.subscribedTopics,
-                                          readingItems  : readingItems, subscriptions: subscriptions])
+        if (springSecurityService.isLoggedIn()) {
+            User user = session.user = User.read(springSecurityService.currentUserId as Long)
+//            User user = User.loggedInUser()
+            List<Subscription> subscriptions = Subscription.findAllByUser(user)
+            println "------------------------------${subscriptions}-----------------------"
+            List<ReadingItem> readingItems = ReadingItem.findAllByUser(user, [sort: 'dateCreated', order: 'desc', max: 10])
+            render(view: 'dashboard', model: ['listOfTopics': user.subscribedTopics,
+                                              readingItems  : readingItems, subscriptions: subscriptions])
+        }
     }
 
     def register(UserCo co) {
@@ -118,7 +124,7 @@ class UserController {
         List<UserVO> userVOList = []
         if (session.user?.admin) {
             User.search(userSearchCO).list([sort: userSearchCO.sort, order: userSearchCO.order]).each { user ->
-                   userVOList.add(new UserVO(id: user.id, userName: user.userName, email: user.email, firstName: user.firstName,
+                userVOList.add(new UserVO(id: user.id, userName: user.userName, email: user.email, firstName: user.firstName,
                         lastName: user.lastName, active: user.active))
             }
             render(view: 'list', model: [users: userVOList])

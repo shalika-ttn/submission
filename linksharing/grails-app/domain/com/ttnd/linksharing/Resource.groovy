@@ -69,7 +69,11 @@ abstract class Resource {
 
     static List<Resource> resourcePost() {
         List result1 = ResourceRating.showTopPost()
-        List<Resource> resources = Resource.getAll(result1)
+        List ids=[]
+        result1.each {
+            ids.add(it[0])
+        }
+        List<Resource> resources = Resource.getAll(ids)
 
         resources
     }

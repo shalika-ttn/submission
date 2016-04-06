@@ -9,6 +9,8 @@ import com.ttnd.linksharing.Subscription
 import com.ttnd.linksharing.Topic
 import com.ttnd.linksharing.User
 import com.ttnd.linksharing.Constants.Constant
+import com.ttnd.linksharing.Role
+import com.ttnd.linksharing.UserRole
 
 
 class BootStrap {
@@ -25,18 +27,31 @@ class BootStrap {
         subscribeTopics(topics, users)
         List<ReadingItem> readingItems = createReadingItems()
         List<ResourceRating> resourceRatings = createResourceRating(users)
+
+    }
+
+    List<Role> createRoles() {
+        Role adminRole = Role.findOrSaveWhere(authority: 'ROLE_ADMIN')
+        Role userRole = Role.findOrSaveWhere(authority: 'ROLE_USER')
+
+        List<Role> roles = []
+        roles.add(adminRole)
+        roles.add(userRole)
+
+        return roles
     }
 
     List<User> createUsers() {
         List<User> users = []
         if (User.count == 0) {
             User user1 = new User(firstName: "shalika", lastName: "singhal", email: "shalika.singhal@tothenew.com",
-                    password: Constant.DEFAULT_PASSWD, userName: "sha", admin: true, active: true, confirmPassword: "abcd10");
+                    password: Constant.DEFAULT_PASSWD, username: "shalika.singhal@tothenew.com");
+
             // println "=++++++++++++++++++++++++++++++++++++ ${messageSource.getMessage('com.ttnd.linksharing.User.email.nullable', null)}"
 
             User user2 = new User(firstName: "saloni", lastName: "sharma", email: "saloni.sharma@tothenew.com",
-                    password: Constant.DEFAULT_PASSWD, userName: "sal",
-                    admin: false, active: true, confirmPassword: "abcd10");
+                    password: Constant.DEFAULT_PASSWD, username: "saloni.sharma@tothenew.com");
+
             try {
                 if (user1.save(flush: true)) {
                     users.add(user1)
@@ -54,6 +69,8 @@ class BootStrap {
                     println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${it.defaultMessage}")
                 }
             }
+            UserRole.create(user1, createRoles()[0], true)
+            UserRole.create(user1, createRoles()[1], true)
             try {
                 if (user2.save(flush: true, failOnError: true)) {
                     users.add(user2)
@@ -62,6 +79,8 @@ class BootStrap {
             } catch (Exception e) {
                 log.error "Error saving user : ${user2.errors.allErrors}"
             }
+            UserRole.create(user2, createRoles()[1], true)
+
 
         } else {
             users = User.list()
@@ -133,7 +152,7 @@ class BootStrap {
                     log.error "Error saving resource : ${documentResource1.errors.allErrors}"
 
                 Resource documentResource2 = new DocumentResource(createdBy: topic.createdBy, topic: topic, description: "this doc is for ${topic.name}",
-                        filepath: "hello/d2",contentType: Constant.DOCUMENT_CONTENT_TYPE)
+                        filepath: "hello/d2", contentType: Constant.DOCUMENT_CONTENT_TYPE)
                 if (documentResource2.save()) {
                     resources.add(documentResource2)
                     topic.addToResources(documentResource2)
@@ -155,29 +174,29 @@ class BootStrap {
     // Resouces which are not created by the topic subscribed by user should have that resource in their reading item
 
     List<ReadingItem> createReadingItems() {
+        println("+++++++++++++++++++++++++++++++++enter newwwwwwwwwwwwwww111111111")
         List<User> users = User.list()
         List<Topic> topics = Topic.list()
         List<ReadingItem> readingItems = []
-       if(!ReadingItem.count) {
-           users.each { user ->
-               topics.each { topic ->
-                   if (Subscription.findByUserAndTopic(user, topic)) {
-                       topic.resources.each { resource ->
-                           if (resource.createdBy != user && !user.readingItems?.contains(resource)) {
-                               ReadingItem readingItem = new ReadingItem(user: user, resource: resource, isRead: false)
-                               if (readingItem.save()) {
-                                   readingItems.add(readingItem)
-                                   user.addToReadingItems(readingItem)
-                                   log.info "${readingItem} saved successfully"
-                               } else
-                                   log.error "Error saving ${readingItem.errors.allErrors}"
-                           }
-                       }
-                   }
-               }
-           }
-       }
-        return readingItems
+        if (!ReadingItem.count) {
+            println("+++++++++++++++++++++++++++++++++enter newwwwwwwwwwwwwww")
+        }
+        users.each { user ->
+            println("+++++++++++++++++++++++++++++++${user.properties}")
+            Resource.findAllByCreatedByNotEqual(user).each { resource ->
+                ReadingItem readingItem = new ReadingItem(user: user, resource: resource, isRead: false)
+                if (readingItem.save(flush: true)) {
+                    readingItems.add(readingItem)
+                    user.addToReadingItems(readingItem)
+                    log.info "${readingItem} saved successfully"
+                    println("+++++++++++++++++++++++++++++++++enter 2")
+
+                } else
+                    log.error "Error saving ${readingItem.errors.allErrors}"
+
+            }
+        }
+
     }
 
     List<ResourceRating> createResourceRating(List<User> users) {

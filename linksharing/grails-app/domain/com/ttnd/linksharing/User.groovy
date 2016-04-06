@@ -1,59 +1,78 @@
 package com.ttnd.linksharing
 
+import grails.util.Holders
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
 import com.ttnd.linksharing.CO.UserSearchCo
 import com.ttnd.linksharing.Resource
-import groovy.transform.EqualsAndHashCode
 
-@EqualsAndHashCode
-class User {
+@EqualsAndHashCode(includes = 'username')
+@ToString(includes = 'username', includeNames = true, includePackage = false)
+class User implements Serializable {
 
+    private static final long serialVersionUID = 1
+
+    transient springSecurityService
+
+    String username
+    String password
     String firstName
     String lastName
-    String userName
-    String password
     String email
     Byte[] photo
-    Boolean admin = false
-    Boolean active = true
     Date dateCreated
     Date lastUpdated
-    String confirmPassword
-    long id
-    static transients = ['name', 'confirmPassword', 'subscribedTopics']
-    static hasMany = [topics         : Topic, subscriptions: Subscription, resources: Resource, readingItems: ReadingItem,
-                      resourceRatings: ResourceRating]
 
-    static mapping = {
-        photo(sqlType: 'longblob')
-        sort id: 'desc'
-//        topics lazy: false
-    }
+
+    boolean enabled = true
+    boolean accountExpired
+    boolean accountLocked
+    boolean passwordExpired
 
     static constraints = {
 
 
         email(unique: true, email: true, blank: false, nullable: false)
 
-        password(nullable: false, blank: false, minSize: 5)
+//		password(nullable: false, blank: false, minSize: 5)
         photo(nullable: true)
         firstName(nullable: false, blank: false)
         lastName(nullable: false, blank: false)
-        active(nullable: true)
-        admin(nullable: true)
-        userName(nullable: false, blank: false, unique: true)
+//		userName(nullable: false, blank: false, unique: true)
 
+//		confirmPassword bindable: true, nullable: true, blank: true, validator: { val, obj ->
+//			//println "obj:${obj}******${val}"
+//
+//
+//			if (val) {
+//				if (obj.password != val) {
+//					return false
+//				}
+//			}
+//		}
+        username blank: false, unique: true
+        password blank: false
 
-        confirmPassword bindable: true, nullable: true, blank: true, validator: { val, obj ->
-            //println "obj:${obj}******${val}"
+    }
 
+    User(String username, String password) {
+        this()
+        this.username = username
+        this.password = password
+    }
 
-            if (val) {
-                if (obj.password != val) {
-                    return false
-                }
-            }
+    Set<Role> getAuthorities() {
+        UserRole.findAllByUser(this)*.role
+    }
+
+    def beforeInsert() {
+        encodePassword()
+    }
+
+    def beforeUpdate() {
+        if (isDirty('password')) {
+            encodePassword()
         }
-
     }
 
     static namedQueries = {
@@ -148,4 +167,22 @@ class User {
         "$firstName "
     }
 
+    protected void encodePassword() {
+        password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
+    }
+
+    static transients = ['springSecurityService', 'subscribedTopics', 'name']
+
+    static hasMany = [topics         : Topic, subscriptions: Subscription, resources: Resource, readingItems: ReadingItem,
+                      resourceRatings: ResourceRating]
+
+    static mapping = {
+        password column: '`password`'
+        photo(sqlType: 'longblob')
+
+    }
+
+    static User loggedInUser() {
+        Holders.applicationContext.getBean('springSecurityService').getCurrentUser()
+    }
 }

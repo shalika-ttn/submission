@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    <ls:canUpdateTopic topicId="${trend.id}" parent="trending"/>
+                    %{--<ls:canUpdateTopic topicId="${trend.id}" parent="trending"/>--}%
                 </div>
             </div>
 
