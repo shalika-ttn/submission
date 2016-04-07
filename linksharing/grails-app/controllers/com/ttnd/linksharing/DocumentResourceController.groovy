@@ -93,4 +93,12 @@ class DocumentResourceController extends ResourceController {
 
 
     }
+    def multiListCheck( List <Integer> id)
+    {
+        id =  params.list('id')
+        println id
+//            render "helllllllllllo ${id[0]}"
+        render(view: 'multiListCheck',model: [listId:id])
+
+    }
 }

@@ -97,6 +97,11 @@
                 <span class="glyphicon glyphicon-file" style="font-size:20px"></span>
             </button>
         </li>
+        <li>
+            <button type="button" data-toggle="modal" data-target="#myModal5">
+                <span class="glyphicon glyphicon-paperclip" style="font-size:20px"></span>
+            </button>
+        </li>
 
         <span class="glyphicon glyphicon-user" style="font-size:23px"></span>
 
@@ -109,7 +114,6 @@
                             params="[id: session.user.id]">profile</g:link></li>
                 %{--<li><a href="#">user</a></li>--}%
                 <li><g:link controller="user" action="list">user</g:link></li>
-
                 <g:link action="logout" controller="login">Logout</g:link>
             </ul>
         </div>
@@ -125,6 +129,8 @@
     <g:render template="/topic/sendInvitation" model="[listOfTopics: session.user.subscribedTopics]"/>
     <g:render template="/documentResource/createDocument"/>
     <g:render template="/linkResource/createLink"/>
+    <g:render template="/documentResource/multiList"/>
+
     </div>
 </g:if>
 <g:else>
