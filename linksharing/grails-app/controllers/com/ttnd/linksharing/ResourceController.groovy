@@ -5,7 +5,10 @@ import com.ttnd.linksharing.Enum.Visiblity
 import com.ttnd.linksharing.VO.RatingInfoVo
 import com.ttnd.linksharing.VO.TopicVo
 import com.ttnd.linksharing.Topic
+import grails.plugin.springsecurity.annotation.Secured
 
+
+@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 
 class ResourceController {
 

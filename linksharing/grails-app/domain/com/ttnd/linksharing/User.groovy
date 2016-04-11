@@ -119,7 +119,7 @@ class User implements Serializable {
     Boolean canDeleteResource(Long resourceId) {
         Resource resource = Resource.findById(resourceId)
 
-        if ((resource.createdBy == this) || this?.admin)
+        if ((resource.createdBy == this) || this.getAdminRole())
             true
         else
             false
@@ -180,6 +180,14 @@ class User implements Serializable {
         password column: '`password`'
         photo(sqlType: 'longblob')
 
+    }
+
+    Boolean getAdminRole()
+    {
+       if( this.authorities.contains(Role.findByAuthority('ROLE_ADMIN')))
+           return true
+        else
+           false
     }
 
     static User loggedInUser() {

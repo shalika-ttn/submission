@@ -20,7 +20,7 @@
     <div class="col-xs-7" style="float:left">
         <div class="row">
 
-            %{--<g:render template="/login/recentPost"/>--}%
+            <g:render template="/login/recentPost"/>
         </div>
 
         <div class="row">

@@ -16,7 +16,7 @@
 
 <div class="col-xs-5" style="float:left">
 
-    <g:render template="usershow" />
+    <g:render template="usershow"/>
     <g:render template="subscription" model="[subscriptions: subscriptions]"/>
     <ls:trendingTopics></ls:trendingTopics>
 </div>

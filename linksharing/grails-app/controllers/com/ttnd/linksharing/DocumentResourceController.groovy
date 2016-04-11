@@ -1,11 +1,14 @@
 package com.ttnd.linksharing
 
 import com.ttnd.linksharing.CO.documentResourceCo
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 import org.h2.schema.Constant
 import org.springframework.web.multipart.MultipartFile
 import com.ttnd.linksharing.Constants.Constant
 
+
+@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 
 class DocumentResourceController extends ResourceController {
     @Override

@@ -10,6 +10,7 @@ import com.ttnd.linksharing.VO.UserVO
 import grails.plugin.springsecurity.annotation.Secured
 import org.apache.tools.ant.types.resources.Resources
 
+@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 class UserController {
     //  int x = 0;
 
@@ -21,7 +22,7 @@ class UserController {
     def emailService
     def springSecurityService
 
-    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
+
     def index() {
         if (springSecurityService.isLoggedIn()) {
             User user = session.user = User.read(springSecurityService.currentUserId as Long)

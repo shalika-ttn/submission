@@ -6,7 +6,10 @@ import com.ttnd.linksharing.Enum.Seriousness
 import com.ttnd.linksharing.Enum.Visiblity
 import com.ttnd.linksharing.VO.TopicVo
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
+
+@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 
 class TopicController {
     def emailService

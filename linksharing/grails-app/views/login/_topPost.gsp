@@ -38,7 +38,6 @@
 
                     <div class="row">
 
-                        %{--<a href="#" class="inline" style="float:right"><u>View Post</u></a>--}%
                         <g:link  controller="resource" action="post2" params="[id:res.id]">view post</g:link>
                     </div>
                 </div>

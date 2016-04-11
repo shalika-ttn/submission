@@ -2,6 +2,9 @@ package com.ttnd.linksharing
 
 import com.ttnd.linksharing.Enum.Seriousness
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 
 class SubscriptionController {
 

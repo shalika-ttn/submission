@@ -94,15 +94,21 @@ class LoginController {
     def auth() {
 
         def config = SpringSecurityUtils.securityConfig
+        List result = ResourceRating.showRecentPost()
+
+        List<Resource> resources1 = Resource.getAll(result)
+
 
         if (springSecurityService.isLoggedIn()) {
             redirect uri: config.successHandler.defaultTargetUrl
+
+
             return
         }
 
         String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
         render view:'/login/home', model: [postUrl            : postUrl,
-                                   rememberMeParameter: config.rememberMe.parameter]
+                                   rememberMeParameter: config.rememberMe.parameter,resources1:resources1]
     }
 
     /**
