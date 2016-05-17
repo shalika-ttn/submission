@@ -44,12 +44,12 @@ function success(data, id) {
 }
 
 function subscriptionsuccess(data) {
-    alert("hello")
+    //alert("hello")
     var messageAlert = $(".messageAlert");
     //alert(data.message)
     for (item in data) {
         if (item === "message") {
-            alert("helloc")
+            //alert("helloc")
             messageAlert.text(data[item]);
             messageAlert.addClass("alert-success");
             messageAlert.css({'display': 'block'});

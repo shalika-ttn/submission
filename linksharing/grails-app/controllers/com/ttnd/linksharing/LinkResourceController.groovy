@@ -16,8 +16,9 @@ class LinkResourceController extends ResourceController {
         if (link) {
             if (link.save(flush: true)) {
                 readingItem(link)
-                flash.message = " Link saved ------Success "
-                render flash.message
+                render (view: '/linkResource/linkSave');
+//                flash.message = " Link saved ------Success "
+//                render flash.message
                 // render(view: 'save')
             } else {
                 log.error(" Could not save document ${link}")

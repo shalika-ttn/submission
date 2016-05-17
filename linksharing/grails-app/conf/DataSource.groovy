@@ -21,7 +21,7 @@ environments {
         autoReconnect = true
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost:3306/linksharing?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
+            url = "jdbc:mysql://localhost:3306/linksharing2?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
             logSql = true
 
         }
@@ -29,7 +29,7 @@ environments {
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/linksharing?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
+            url = "jdbc:mysql://localhost:3306/linksharing2?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
         }
     }
     production {

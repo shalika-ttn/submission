@@ -8,8 +8,8 @@ import com.ttnd.linksharing.Topic
 import grails.plugin.springsecurity.annotation.Secured
 
 
-@Secured(['ROLE_USER', 'ROLE_ADMIN'])
-
+//@Secured(['ROLE_USER', 'ROLE_ADMIN'])
+@Secured(['permitAll'])
 class ResourceController {
 
     def index() {

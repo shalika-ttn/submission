@@ -8,6 +8,10 @@
             <div>
                 <div class="row">
                     <div class="list-group  col-xs-3">
+                        <div class="img-thumbnail" style="float:left">
+                            <ls:userImage id="${session.user?.id}"/>
+
+                        </div>
 
                     </div>
 

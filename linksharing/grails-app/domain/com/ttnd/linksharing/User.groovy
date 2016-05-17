@@ -77,9 +77,9 @@ class User implements Serializable {
 
     static namedQueries = {
         search { UserSearchCo userSearchCO ->
-            eq('admin', false)
+//            eq('admin', false)
             if (userSearchCO.active != null) {
-                eq("active", userSearchCO.active)
+                eq("enabled", userSearchCO.active)
             }
 
             if (userSearchCO.q) {

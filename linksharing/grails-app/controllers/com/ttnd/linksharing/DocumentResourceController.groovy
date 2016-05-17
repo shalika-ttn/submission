@@ -31,8 +31,8 @@ class DocumentResourceController extends ResourceController {
             File file = new File(filepath) << documentResourceCo.myFile.bytes
             println("........${file.size()}")
             if (doc.save(flush: true)) {
-                flash.message = " document saved ------Success "
-                render flash.message
+//
+                render(view:'/documentResource/saveDocDoc');
                 readingItem(doc)
                 ResourceRating resourceRating=new ResourceRating(user:user,resource: doc,score: 4)
                 resourceRating.save(flush: true)

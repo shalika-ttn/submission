@@ -2,7 +2,7 @@ package com.ttnd.linksharing.VO
 
 class UserVO {
     Long id
-    String userName
+    String username
     String firstName
     String lastName
     String email

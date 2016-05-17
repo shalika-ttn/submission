@@ -69,7 +69,7 @@
 
                 <tr class="${bootstrapAlertClass}">
                     <td>${user.id}</td>
-                    <td>${user.userName}</td>
+                    <td>${user.username}</td>
                     <td>${user.email}</td>
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>

@@ -9,7 +9,8 @@ import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 
-@Secured(['ROLE_USER', 'ROLE_ADMIN'])
+//@Secured(['ROLE_USER', 'ROLE_ADMIN'])
+@Secured(['permitAll'])
 
 class TopicController {
     def emailService
@@ -61,6 +62,7 @@ class TopicController {
 
     }
 
+//    @Secured(['permitAll'])
     def show(ResourceSearchCo co) {
         //Topic topic=Topic.findById(id)
         Topic topic = Topic.read(co.topicId)

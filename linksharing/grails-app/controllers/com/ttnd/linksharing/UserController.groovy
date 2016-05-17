@@ -10,7 +10,7 @@ import com.ttnd.linksharing.VO.UserVO
 import grails.plugin.springsecurity.annotation.Secured
 import org.apache.tools.ant.types.resources.Resources
 
-@Secured(['ROLE_USER', 'ROLE_ADMIN'])
+@Secured(['permitAll'])
 class UserController {
     //  int x = 0;
 
@@ -22,9 +22,11 @@ class UserController {
     def emailService
     def springSecurityService
 
-
+    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
     def index() {
         if (springSecurityService.isLoggedIn()) {
+            println ">>>>>>>>>>>>>>>>>>>>>>>>>>>${springSecurityService.currentUser}"
+            println ">>>>>>>>>>>>>>>>>>>>>>>>>>>${springSecurityService.currentUserId}"
             User user = session.user = User.read(springSecurityService.currentUserId as Long)
 //            User user = User.loggedInUser()
             List<Subscription> subscriptions = Subscription.findAllByUser(user)
@@ -41,8 +43,10 @@ class UserController {
             log.error("user is not registered...")
             flash.message = "please register !"
 
+//            User user = new User(firstName: co.firstName, lastName: co.lastName, email: co.email, password: co.password,
+//                    username: co.username, confirmPassword: co.confirmPassword)
             User user = new User(firstName: co.firstName, lastName: co.lastName, email: co.email, password: co.password,
-                    userName: co.userName, confirmPassword: co.confirmPassword)
+                    username: co.username)
 
             if (!params.pic.empty)
                 user.photo = co.pic
@@ -50,6 +54,8 @@ class UserController {
             if (user.save(flush: true)) {
 //                flash.message = "user saved successfully"
 //                redirect(action: 'index', controller: 'login')
+                def userRole = Role.findOrSaveWhere(authority: 'ROLE_USER')
+                UserRole.create(user,userRole, true)
                 render(view: "register")
             } else {
                 render(view: "/login/home", model: [user: user])
@@ -59,13 +65,15 @@ class UserController {
 
     }
 
+    @Secured(['ROLE_ADMIN'])
     def toggleActive(Long id) {
-        if (session.user?.admin) {
+        session.user = User.read(springSecurityService.currentUserId as Long)
+        if (session.user.getAdminRole()) {
             User user = User.findById(id)
-            if (user.active)
-                user.active = false
+            if (user.enabled)
+                user.enabled = false
             else
-                user.active = true
+                user.enabled = true
 
             if (user.save(flush: true))
                 flash.message = "Toggled succesfully"
@@ -80,6 +88,7 @@ class UserController {
 
     }
 
+    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
     def post(Long postId) {
         println("-----------helllllllllo-----")
         Resource resource = Resource.get(postId);
@@ -122,11 +131,12 @@ class UserController {
 
 
     def list(UserSearchCo userSearchCO) {
+        User user = session.user = User.read(springSecurityService.currentUserId as Long)
         List<UserVO> userVOList = []
-        if (session.user?.admin) {
-            User.search(userSearchCO).list([sort: userSearchCO.sort, order: userSearchCO.order]).each { user ->
-                userVOList.add(new UserVO(id: user.id, userName: user.userName, email: user.email, firstName: user.firstName,
-                        lastName: user.lastName, active: user.active))
+        if (user.getAdminRole()) {
+            User.search(userSearchCO).list([sort: userSearchCO.sort, order: userSearchCO.order]).each { user1 ->
+                userVOList.add(new UserVO(id: user1.id, username: user1.username, email: user.email, firstName: user.firstName,
+                        lastName: user.lastName, active: user1.enabled))
             }
             render(view: 'list', model: [users: userVOList])
 
@@ -305,7 +315,7 @@ class UserController {
 
         //File neww=request.getFile("file")
         if (User.executeUpdate("update User set firstName='${userCo.firstName}' ,lastName='${userCo.lastName}'," +
-                "userName='${userCo.userName}', photo='${userPic}' where id='${session.user.id}' ")) {
+                "username='${userCo.username}', photo='${userPic}' where id='${session.user.id}' ")) {
             flash.message = "User profile updated successfully"
             redirect(controller: 'user', action: 'privateProfile', params: [id: session.user.id])
 

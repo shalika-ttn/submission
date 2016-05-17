@@ -53,10 +53,10 @@
                 <label for="userName" class="control-label col-xs-5">Username*</label>
 
                 <div class="col-xs-7">
-                    <g:textField name="userName" class="form-control" id="userName" value="${user?.userName}"
+                    <g:textField name="username" class="form-control" id="userName" value="${user?.username}"
                                  placeholder="userName"/>
                     <div class="alert-danger" role="alert">
-                        <g:fieldError field="userName" bean="${user}"/>
+                        <g:fieldError field="username" bean="${user}"/>
                     </div>
                 </div>
             </div>

@@ -106,7 +106,7 @@ class MyTagLib {
         Topic topic = Topic.findById(attrs.long('topicId'))
         String parent=attrs.parent
         if (session.user) {
-            if (topic.createdBy.id == session.user.id || session.user.admin) {
+            if (topic.createdBy.id == session.user.id || session.user.getAdminRole()) {
                 out << render(template: '/user/mySubscribedAndCreatedTopics', model: [topicId: topic.id,parent:parent])
             } else {
                 out << render(template: '/user/mySubscribedTopics', model: [topicId: topic.id])
@@ -217,7 +217,7 @@ class MyTagLib {
 
     def userImage = { attrs, body ->
         User user = User.findById(attrs.id)
-        if (user.photo)
+        if (user?.photo)
             out << "<img src=\"/user/image/${attrs.id}\" width=\"64\" height\"64\"/> "
         else
             out << "<img src=\"/user/image/${attrs.id}\" width=\"64\" height\"64\"/>"

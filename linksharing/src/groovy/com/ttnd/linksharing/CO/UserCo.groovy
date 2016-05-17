@@ -8,7 +8,7 @@ class UserCo {
     String lastName
     String email
     byte[] pic;
-    String userName
+    String username
     String password
     String confirmPassword
     Boolean active
